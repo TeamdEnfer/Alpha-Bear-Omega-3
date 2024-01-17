@@ -1,0 +1,36 @@
+running egg_info
+creating ../../build/alphabearomega3/alphabearomega3.egg-info
+writing ../../build/alphabearomega3/alphabearomega3.egg-info/PKG-INFO
+writing dependency_links to ../../build/alphabearomega3/alphabearomega3.egg-info/dependency_links.txt
+writing entry points to ../../build/alphabearomega3/alphabearomega3.egg-info/entry_points.txt
+writing requirements to ../../build/alphabearomega3/alphabearomega3.egg-info/requires.txt
+writing top-level names to ../../build/alphabearomega3/alphabearomega3.egg-info/top_level.txt
+writing manifest file '../../build/alphabearomega3/alphabearomega3.egg-info/SOURCES.txt'
+reading manifest file '../../build/alphabearomega3/alphabearomega3.egg-info/SOURCES.txt'
+adding license file 'LICENSE'
+writing manifest file '../../build/alphabearomega3/alphabearomega3.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/tx/Documents/Github/Alpha-Bear-Omega-3/control/ros2_ws/build/alphabearomega3/build
+creating /home/tx/Documents/Github/Alpha-Bear-Omega-3/control/ros2_ws/build/alphabearomega3/build/lib
+creating /home/tx/Documents/Github/Alpha-Bear-Omega-3/control/ros2_ws/build/alphabearomega3/build/lib/alphabearomega3
+copying alphabearomega3/__init__.py -> /home/tx/Documents/Github/Alpha-Bear-Omega-3/control/ros2_ws/build/alphabearomega3/build/lib/alphabearomega3
+copying alphabearomega3/leg_fr.py -> /home/tx/Documents/Github/Alpha-Bear-Omega-3/control/ros2_ws/build/alphabearomega3/build/lib/alphabearomega3
+running install
+running install_lib
+creating /home/tx/Documents/Github/Alpha-Bear-Omega-3/control/ros2_ws/install/alphabearomega3/lib/python3.11/site-packages/alphabearomega3
+copying /home/tx/Documents/Github/Alpha-Bear-Omega-3/control/ros2_ws/build/alphabearomega3/build/lib/alphabearomega3/__init__.py -> /home/tx/Documents/Github/Alpha-Bear-Omega-3/control/ros2_ws/install/alphabearomega3/lib/python3.11/site-packages/alphabearomega3
+copying /home/tx/Documents/Github/Alpha-Bear-Omega-3/control/ros2_ws/build/alphabearomega3/build/lib/alphabearomega3/leg_fr.py -> /home/tx/Documents/Github/Alpha-Bear-Omega-3/control/ros2_ws/install/alphabearomega3/lib/python3.11/site-packages/alphabearomega3
+byte-compiling /home/tx/Documents/Github/Alpha-Bear-Omega-3/control/ros2_ws/install/alphabearomega3/lib/python3.11/site-packages/alphabearomega3/__init__.py to __init__.cpython-311.pyc
+byte-compiling /home/tx/Documents/Github/Alpha-Bear-Omega-3/control/ros2_ws/install/alphabearomega3/lib/python3.11/site-packages/alphabearomega3/leg_fr.py to leg_fr.cpython-311.pyc
+running install_data
+creating /home/tx/Documents/Github/Alpha-Bear-Omega-3/control/ros2_ws/install/alphabearomega3/share/ament_index
+creating /home/tx/Documents/Github/Alpha-Bear-Omega-3/control/ros2_ws/install/alphabearomega3/share/ament_index/resource_index
+creating /home/tx/Documents/Github/Alpha-Bear-Omega-3/control/ros2_ws/install/alphabearomega3/share/ament_index/resource_index/packages
+copying resource/alphabearomega3 -> /home/tx/Documents/Github/Alpha-Bear-Omega-3/control/ros2_ws/install/alphabearomega3/share/ament_index/resource_index/packages
+copying package.xml -> /home/tx/Documents/Github/Alpha-Bear-Omega-3/control/ros2_ws/install/alphabearomega3/share/alphabearomega3
+running install_egg_info
+Copying ../../build/alphabearomega3/alphabearomega3.egg-info to /home/tx/Documents/Github/Alpha-Bear-Omega-3/control/ros2_ws/install/alphabearomega3/lib/python3.11/site-packages/alphabearomega3-0.0.0-py3.11.egg-info
+running install_scripts
+Installing leg_fr script to /home/tx/Documents/Github/Alpha-Bear-Omega-3/control/ros2_ws/install/alphabearomega3/lib/alphabearomega3
+writing list of installed files to '/home/tx/Documents/Github/Alpha-Bear-Omega-3/control/ros2_ws/build/alphabearomega3/install.log'

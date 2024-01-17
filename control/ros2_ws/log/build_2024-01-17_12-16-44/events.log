@@ -1,0 +1,83 @@
+[0.000000] (-) TimerEvent: {}
+[0.001023] (alphabearomega3) JobQueued: {'identifier': 'alphabearomega3', 'dependencies': OrderedDict()}
+[0.001128] (alphabearomega3) JobStarted: {'identifier': 'alphabearomega3'}
+[0.099888] (-) TimerEvent: {}
+[0.200540] (-) TimerEvent: {}
+[0.300924] (-) TimerEvent: {}
+[0.401294] (-) TimerEvent: {}
+[0.502484] (-) TimerEvent: {}
+[0.602883] (-) TimerEvent: {}
+[0.703182] (-) TimerEvent: {}
+[0.803548] (-) TimerEvent: {}
+[0.903864] (-) TimerEvent: {}
+[1.004203] (-) TimerEvent: {}
+[1.104510] (-) TimerEvent: {}
+[1.204831] (-) TimerEvent: {}
+[1.305175] (-) TimerEvent: {}
+[1.405520] (-) TimerEvent: {}
+[1.505839] (-) TimerEvent: {}
+[1.606145] (-) TimerEvent: {}
+[1.661999] (alphabearomega3) Command: {'cmd': ['/usr/bin/python', 'setup.py', 'egg_info', '--egg-base', '../../build/alphabearomega3', 'build', '--build-base', '/home/tx/Documents/Github/Alpha-Bear-Omega-3/control/ros2_ws/build/alphabearomega3/build', 'install', '--record', '/home/tx/Documents/Github/Alpha-Bear-Omega-3/control/ros2_ws/build/alphabearomega3/install.log', '--single-version-externally-managed'], 'cwd': '/home/tx/Documents/Github/Alpha-Bear-Omega-3/control/ros2_ws/src/alphabearomega3', 'env': {'SHELL': '/bin/bash', 'ROS_VERSION': '2', 'SESSION_MANAGER': 'local/Revixa1:@/tmp/.ICE-unix/1479,unix/Revixa1:/tmp/.ICE-unix/1479', 'COLORTERM': 'truecolor', 'CSF_MDTVTexturesDirectory': '/usr/share/opencascade/resources/Textures', 'XDG_MENU_PREFIX': 'gnome-', 'CSF_DrawPluginDefaults': '/usr/share/opencascade/resources/DrawResources', 'PKG_CONFIG_PATH': '/opt/ros/humble/lib/pkgconfig', 'ROS_PYTHON_VERSION': '3', 'LC_ADDRESS': 'fr_CA.UTF-8', 'CSF_LANGUAGE': 'us', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'CSF_MIGRATION_TYPES': '/usr/share/opencascade/resources/StdResource/MigrationSheet.txt', 'MEMORY_PRESSURE_WRITE': 'c29tZSAyMDAwMDAgMjAwMDAwMAA=', 'DESKTOP_SESSION': 'gnome', 'LC_MONETARY': 'fr_CA.UTF-8', 'CSF_OCCTResourcePath': '/usr/share/opencascade/resources', 'CSF_STEPDefaults': '/usr/share/opencascade/resources/XSTEPResource', 'PWD': '/home/tx/Documents/Github/Alpha-Bear-Omega-3/control/ros2_ws/build/alphabearomega3', 'LOGNAME': 'tx', 'XDG_SESSION_DESKTOP': 'gnome', 'XDG_SESSION_TYPE': 'wayland', 'DRAWHOME': '/usr/share/opencascade/resources/DrawResources', 'SYSTEMD_EXEC_PID': '1504', 'XAUTHORITY': '/run/user/1000/.mutter-Xwaylandauth.YKUIH2', 'CSF_StandardLiteDefaults': '/usr/share/opencascade/resources/StdResource', 'MOTD_SHOWN': 'pam', 'GDM_LANG': 'C.UTF-8', 'HOME': '/home/tx', 'USERNAME': 'tx', 'LANG': 'C.UTF-8', 'LC_PAPER': 'fr_CA.UTF-8', 'XDG_CURRENT_DESKTOP': 'GNOME', 'MEMORY_PRESSURE_WATCH': '/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/session.slice/org.gnome.Shell@wayland.service/memory.pressure', 'VTE_VERSION': '7401', 'WAYLAND_DISPLAY': 'wayland-0', 'AMENT_PREFIX_PATH': '/opt/ros/humble', 'CMAKE_PREFIX_PATH': '/opt/ros/humble', 'GNOME_TERMINAL_SCREEN': '/org/gnome/Terminal/screen/7d70ead0_f186_457c_9e30_77cf0ef745c9', 'COLCON_PREFIX_PATH': '/opt/ros/humble', 'CSF_ShadersDirectory': '/usr/share/opencascade/resources/Shaders', 'CSF_EXCEPTION_PROMPT': '1', 'CSF_XmlOcafResource': '/usr/share/opencascade/resources/XmlOcafResource', 'GNOME_SETUP_DISPLAY': ':1', 'CSF_SHMessage': '/usr/share/opencascade/resources/SHMessage', 'XDG_SESSION_CLASS': 'user', 'PYTHONPATH': '/home/tx/Documents/Github/Alpha-Bear-Omega-3/control/ros2_ws/build/alphabearomega3/prefix_override:/home/tx/Documents/Github/Alpha-Bear-Omega-3/control/ros2_ws/install/alphabearomega3/lib/python3.11/site-packages:/home/tx/.cache/yay/ros2-humble/src/install/lib/python3.11/dist-packages:/opt/ros/humble/lib/python3.11/site-packages', 'COLCON': '1', 'TERM': 'xterm-256color', 'USER': 'tx', 'GNOME_TERMINAL_SERVICE': ':1.82', 'CSF_StandardDefaults': '/usr/share/opencascade/resources/StdResource', 'CSF_IGESDefaults': '/usr/share/opencascade/resources/XSTEPResource', 'DISPLAY': ':0', 'CSF_XCAFDefaults': '/usr/share/opencascade/resources/StdResource', 'SHLVL': '1', 'LC_TELEPHONE': 'fr_CA.UTF-8', 'LC_MEASUREMENT': 'fr_CA.UTF-8', 'CSF_PluginDefaults': '/usr/share/opencascade/resources/StdResource', 'CSF_TObjMessage': '/usr/share/opencascade/resources/TObj', 'CASROOT': '/usr', 'LD_LIBRARY_PATH': '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib', 'XDG_RUNTIME_DIR': '/run/user/1000', 'ROS_LOCALHOST_ONLY': '0', 'DEBUGINFOD_URLS': 'https://debuginfod.archlinux.org', 'LC_TIME': 'fr_CA.UTF-8', 'CSF_XSMessage': '/usr/share/opencascade/resources/XSMessage', 'MMGT_CLEAR': '1', 'XDG_DATA_DIRS': '/home/tx/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share/:/usr/share/', 'PATH': '/opt/ros/humble/bin:/home/tx/Documents/Github/ardupilot/ardupilot/Tools/autotest:/home/tx/.local/bin:/home/tx/Documents/Vamudes/ardupilot/Tools/environment_install/ardupilot/Tools/autotest:/opt/gcc-arm-none-eabi-10-2020-q4-major/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/var/lib/flatpak/exports/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl', 'CSF_TObjDefaults': '/usr/share/opencascade/resources/StdResource', 'GDMSESSION': 'gnome', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'MAIL': '/var/spool/mail/tx', 'DRAWDEFAULT': '/usr/share/opencascade/resources/DrawResources/DrawDefault', 'ROS_DISTRO': 'humble', 'LC_NUMERIC': 'fr_CA.UTF-8', 'OLDPWD': '/home/tx/Documents/Github/Alpha-Bear-Omega-3/control/ros2_ws/src', '_': '/usr/bin/env'}, 'shell': False}
+[1.706284] (-) TimerEvent: {}
+[1.806611] (-) TimerEvent: {}
+[1.906947] (-) TimerEvent: {}
+[2.007266] (-) TimerEvent: {}
+[2.084914] (alphabearomega3) StdoutLine: {'line': b'running egg_info\n'}
+[2.085288] (alphabearomega3) StdoutLine: {'line': b'creating ../../build/alphabearomega3/alphabearomega3.egg-info\n'}
+[2.107399] (-) TimerEvent: {}
+[2.120095] (alphabearomega3) StdoutLine: {'line': b'writing ../../build/alphabearomega3/alphabearomega3.egg-info/PKG-INFO\n'}
+[2.120543] (alphabearomega3) StdoutLine: {'line': b'writing dependency_links to ../../build/alphabearomega3/alphabearomega3.egg-info/dependency_links.txt\n'}
+[2.120850] (alphabearomega3) StdoutLine: {'line': b'writing entry points to ../../build/alphabearomega3/alphabearomega3.egg-info/entry_points.txt\n'}
+[2.121131] (alphabearomega3) StdoutLine: {'line': b'writing requirements to ../../build/alphabearomega3/alphabearomega3.egg-info/requires.txt\n'}
+[2.121295] (alphabearomega3) StdoutLine: {'line': b'writing top-level names to ../../build/alphabearomega3/alphabearomega3.egg-info/top_level.txt\n'}
+[2.121526] (alphabearomega3) StdoutLine: {'line': b"writing manifest file '../../build/alphabearomega3/alphabearomega3.egg-info/SOURCES.txt'\n"}
+[2.193858] (alphabearomega3) StdoutLine: {'line': b"reading manifest file '../../build/alphabearomega3/alphabearomega3.egg-info/SOURCES.txt'\n"}
+[2.194217] (alphabearomega3) StdoutLine: {'line': b"adding license file 'LICENSE'\n"}
+[2.195014] (alphabearomega3) StdoutLine: {'line': b"writing manifest file '../../build/alphabearomega3/alphabearomega3.egg-info/SOURCES.txt'\n"}
+[2.195322] (alphabearomega3) StdoutLine: {'line': b'running build\n'}
+[2.195460] (alphabearomega3) StdoutLine: {'line': b'running build_py\n'}
+[2.195720] (alphabearomega3) StdoutLine: {'line': b'creating /home/tx/Documents/Github/Alpha-Bear-Omega-3/control/ros2_ws/build/alphabearomega3/build\n'}
+[2.195863] (alphabearomega3) StdoutLine: {'line': b'creating /home/tx/Documents/Github/Alpha-Bear-Omega-3/control/ros2_ws/build/alphabearomega3/build/lib\n'}
+[2.195999] (alphabearomega3) StdoutLine: {'line': b'creating /home/tx/Documents/Github/Alpha-Bear-Omega-3/control/ros2_ws/build/alphabearomega3/build/lib/alphabearomega3\n'}
+[2.196186] (alphabearomega3) StdoutLine: {'line': b'copying alphabearomega3/__init__.py -> /home/tx/Documents/Github/Alpha-Bear-Omega-3/control/ros2_ws/build/alphabearomega3/build/lib/alphabearomega3\n'}
+[2.196375] (alphabearomega3) StdoutLine: {'line': b'copying alphabearomega3/leg_fr.py -> /home/tx/Documents/Github/Alpha-Bear-Omega-3/control/ros2_ws/build/alphabearomega3/build/lib/alphabearomega3\n'}
+[2.196545] (alphabearomega3) StdoutLine: {'line': b'running install\n'}
+[2.196987] (alphabearomega3) StderrLine: {'line': b'/usr/lib/python3.11/site-packages/setuptools/_distutils/cmd.py:66: SetuptoolsDeprecationWarning: setup.py install is deprecated.\n'}
+[2.197163] (alphabearomega3) StderrLine: {'line': b'!!\n'}
+[2.197262] (alphabearomega3) StderrLine: {'line': b'\n'}
+[2.197354] (alphabearomega3) StderrLine: {'line': b'        ********************************************************************************\n'}
+[2.197444] (alphabearomega3) StderrLine: {'line': b'        Please avoid running ``setup.py`` directly.\n'}
+[2.197534] (alphabearomega3) StderrLine: {'line': b'        Instead, use pypa/build, pypa/installer or other\n'}
+[2.197626] (alphabearomega3) StderrLine: {'line': b'        standards-based tools.\n'}
+[2.197717] (alphabearomega3) StderrLine: {'line': b'\n'}
+[2.197806] (alphabearomega3) StderrLine: {'line': b'        See https://blog.ganssle.io/articles/2021/10/setup-py-deprecated.html for details.\n'}
+[2.197898] (alphabearomega3) StderrLine: {'line': b'        ********************************************************************************\n'}
+[2.197989] (alphabearomega3) StderrLine: {'line': b'\n'}
+[2.198083] (alphabearomega3) StderrLine: {'line': b'!!\n'}
+[2.198172] (alphabearomega3) StderrLine: {'line': b'  self.initialize_options()\n'}
+[2.205376] (alphabearomega3) StdoutLine: {'line': b'running install_lib\n'}
+[2.207536] (-) TimerEvent: {}
+[2.241626] (alphabearomega3) StdoutLine: {'line': b'creating /home/tx/Documents/Github/Alpha-Bear-Omega-3/control/ros2_ws/install/alphabearomega3/lib/python3.11/site-packages/alphabearomega3\n'}
+[2.241953] (alphabearomega3) StdoutLine: {'line': b'copying /home/tx/Documents/Github/Alpha-Bear-Omega-3/control/ros2_ws/build/alphabearomega3/build/lib/alphabearomega3/__init__.py -> /home/tx/Documents/Github/Alpha-Bear-Omega-3/control/ros2_ws/install/alphabearomega3/lib/python3.11/site-packages/alphabearomega3\n'}
+[2.242168] (alphabearomega3) StdoutLine: {'line': b'copying /home/tx/Documents/Github/Alpha-Bear-Omega-3/control/ros2_ws/build/alphabearomega3/build/lib/alphabearomega3/leg_fr.py -> /home/tx/Documents/Github/Alpha-Bear-Omega-3/control/ros2_ws/install/alphabearomega3/lib/python3.11/site-packages/alphabearomega3\n'}
+[2.242877] (alphabearomega3) StdoutLine: {'line': b'byte-compiling /home/tx/Documents/Github/Alpha-Bear-Omega-3/control/ros2_ws/install/alphabearomega3/lib/python3.11/site-packages/alphabearomega3/__init__.py to __init__.cpython-311.pyc\n'}
+[2.243328] (alphabearomega3) StdoutLine: {'line': b'byte-compiling /home/tx/Documents/Github/Alpha-Bear-Omega-3/control/ros2_ws/install/alphabearomega3/lib/python3.11/site-packages/alphabearomega3/leg_fr.py to leg_fr.cpython-311.pyc\n'}
+[2.243659] (alphabearomega3) StdoutLine: {'line': b'running install_data\n'}
+[2.279501] (alphabearomega3) StdoutLine: {'line': b'creating /home/tx/Documents/Github/Alpha-Bear-Omega-3/control/ros2_ws/install/alphabearomega3/share/ament_index\n'}
+[2.279889] (alphabearomega3) StdoutLine: {'line': b'creating /home/tx/Documents/Github/Alpha-Bear-Omega-3/control/ros2_ws/install/alphabearomega3/share/ament_index/resource_index\n'}
+[2.280041] (alphabearomega3) StdoutLine: {'line': b'creating /home/tx/Documents/Github/Alpha-Bear-Omega-3/control/ros2_ws/install/alphabearomega3/share/ament_index/resource_index/packages\n'}
+[2.280171] (alphabearomega3) StdoutLine: {'line': b'copying resource/alphabearomega3 -> /home/tx/Documents/Github/Alpha-Bear-Omega-3/control/ros2_ws/install/alphabearomega3/share/ament_index/resource_index/packages\n'}
+[2.280416] (alphabearomega3) StdoutLine: {'line': b'copying package.xml -> /home/tx/Documents/Github/Alpha-Bear-Omega-3/control/ros2_ws/install/alphabearomega3/share/alphabearomega3\n'}
+[2.280554] (alphabearomega3) StdoutLine: {'line': b'running install_egg_info\n'}
+[2.307654] (-) TimerEvent: {}
+[2.317510] (alphabearomega3) StdoutLine: {'line': b'Copying ../../build/alphabearomega3/alphabearomega3.egg-info to /home/tx/Documents/Github/Alpha-Bear-Omega-3/control/ros2_ws/install/alphabearomega3/lib/python3.11/site-packages/alphabearomega3-0.0.0-py3.11.egg-info\n'}
+[2.319339] (alphabearomega3) StdoutLine: {'line': b'running install_scripts\n'}
+[2.407794] (-) TimerEvent: {}
+[2.508099] (-) TimerEvent: {}
+[2.584258] (alphabearomega3) StdoutLine: {'line': b'Installing leg_fr script to /home/tx/Documents/Github/Alpha-Bear-Omega-3/control/ros2_ws/install/alphabearomega3/lib/alphabearomega3\n'}
+[2.584625] (alphabearomega3) StdoutLine: {'line': b"writing list of installed files to '/home/tx/Documents/Github/Alpha-Bear-Omega-3/control/ros2_ws/build/alphabearomega3/install.log'\n"}
+[2.608231] (-) TimerEvent: {}
+[2.620511] (alphabearomega3) CommandEnded: {'returncode': 0}
+[2.708457] (-) TimerEvent: {}
+[2.734817] (alphabearomega3) JobEnded: {'identifier': 'alphabearomega3', 'rc': 0}
+[2.736096] (-) EventReactorShutdown: {}
