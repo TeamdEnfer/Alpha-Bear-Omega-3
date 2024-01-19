@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<robot name="Alpha Bear">
+    <webots>
+        <device reference="FR_femur_servo" type="RotationalMotor" />
+       		<ros>
+       			<topicName>/FR_femur_servo_cmd</topicName>
+       		    <alwaysOn>true</alwaysOn>
+       		</ros>
+        <plugin type="alphabearomega3.fr_leg.FRleg" />
+    </webots>
+</robot>

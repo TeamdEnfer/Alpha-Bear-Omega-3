@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # EASY-INSTALL-ENTRY-SCRIPT: 'alphabearomega3==0.0.0','console_scripts','leg_fr'
 import re
 import sys
