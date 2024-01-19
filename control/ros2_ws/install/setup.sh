@@ -7,11 +7,7 @@
 # since a plain shell script can't determine its own path when being sourced
 # either use the provided COLCON_CURRENT_PREFIX
 # or fall back to the build time prefix (if it exists)
-<<<<<<< Updated upstream
 _colcon_prefix_chain_sh_COLCON_CURRENT_PREFIX=/home/tx/Documents/Github/Alpha-Bear-Omega-3/control/ros2_ws/install
-=======
-_colcon_prefix_chain_sh_COLCON_CURRENT_PREFIX=/home/revixa/github/Alpha-Bear-Omega-3/control/ros2_ws/install
->>>>>>> Stashed changes
 if [ ! -z "$COLCON_CURRENT_PREFIX" ]; then
   _colcon_prefix_chain_sh_COLCON_CURRENT_PREFIX="$COLCON_CURRENT_PREFIX"
 elif [ ! -d "$_colcon_prefix_chain_sh_COLCON_CURRENT_PREFIX" ]; then
@@ -33,15 +29,12 @@ _colcon_prefix_chain_sh_source_script() {
   fi
 }
 
-<<<<<<< Updated upstream
 # source chained prefixes
 # setting COLCON_CURRENT_PREFIX avoids relying on the build time prefix of the sourced script
 COLCON_CURRENT_PREFIX="/opt/ros/humble"
 _colcon_prefix_chain_sh_source_script "$COLCON_CURRENT_PREFIX/local_setup.sh"
 
 
-=======
->>>>>>> Stashed changes
 # source this prefix
 # setting COLCON_CURRENT_PREFIX avoids relying on the build time prefix of the sourced script
 COLCON_CURRENT_PREFIX="$_colcon_prefix_chain_sh_COLCON_CURRENT_PREFIX"

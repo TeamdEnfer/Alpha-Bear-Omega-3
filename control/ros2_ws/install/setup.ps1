@@ -21,12 +21,9 @@ function _colcon_prefix_chain_powershell_source_script {
   }
 }
 
-<<<<<<< Updated upstream
 # source chained prefixes
 _colcon_prefix_chain_powershell_source_script "/opt/ros/humble\local_setup.ps1"
 
-=======
->>>>>>> Stashed changes
 # source this prefix
 $env:COLCON_CURRENT_PREFIX=(Split-Path $PSCommandPath -Parent)
 _colcon_prefix_chain_powershell_source_script "$env:COLCON_CURRENT_PREFIX\local_setup.ps1"

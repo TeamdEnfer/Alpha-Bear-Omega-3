@@ -3,21 +3,10 @@
 <package format="3">
   <name>alphabearomega3</name>
   <version>0.0.0</version>
-<<<<<<< Updated upstream
   <description>Package for the omega3 eating Alpha Bear</description>
   <maintainer email="txguimont@gmail.com">tx</maintainer>
   <license>GPL-3.0-only</license>
 
-=======
-  <description>TODO: Package description</description>
-  <maintainer email="7970411+Revixa1@users.noreply.github.com">revixa</maintainer>
-  <license>GPL-3.0-only</license>
-
-  <depend>rclpy</depend>
-  <depend>geometry_msgs</depend>
-  <depend>webots_ros2_driver</depend>
-
->>>>>>> Stashed changes
   <test_depend>ament_copyright</test_depend>
   <test_depend>ament_flake8</test_depend>
   <test_depend>ament_pep257</test_depend>
