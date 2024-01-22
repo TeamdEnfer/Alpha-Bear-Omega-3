@@ -1,0 +1,27 @@
+[0.512s] Invoking command in '/home/revixa/github/Alpha-Bear-Omega-3/control/ros2_ws/src/alphabearomega3': PYTHONPATH=/home/revixa/github/Alpha-Bear-Omega-3/control/ros2_ws/build/alphabearomega3/prefix_override:/home/revixa/github/Alpha-Bear-Omega-3/control/ros2_ws/install/alphabearomega3/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/alphabearomega3 build --build-base /home/revixa/github/Alpha-Bear-Omega-3/control/ros2_ws/build/alphabearomega3/build install --record /home/revixa/github/Alpha-Bear-Omega-3/control/ros2_ws/build/alphabearomega3/install.log --single-version-externally-managed
+[0.680s] running egg_info
+[0.681s] writing ../../build/alphabearomega3/alphabearomega3.egg-info/PKG-INFO
+[0.681s] writing dependency_links to ../../build/alphabearomega3/alphabearomega3.egg-info/dependency_links.txt
+[0.681s] writing entry points to ../../build/alphabearomega3/alphabearomega3.egg-info/entry_points.txt
+[0.681s] writing requirements to ../../build/alphabearomega3/alphabearomega3.egg-info/requires.txt
+[0.681s] writing top-level names to ../../build/alphabearomega3/alphabearomega3.egg-info/top_level.txt
+[0.682s] reading manifest file '../../build/alphabearomega3/alphabearomega3.egg-info/SOURCES.txt'
+[0.682s] adding license file 'LICENSE'
+[0.683s] writing manifest file '../../build/alphabearomega3/alphabearomega3.egg-info/SOURCES.txt'
+[0.683s] running build
+[0.683s] running build_py
+[0.683s] copying alphabearomega3/fr_leg.py -> /home/revixa/github/Alpha-Bear-Omega-3/control/ros2_ws/build/alphabearomega3/build/lib/alphabearomega3
+[0.683s] running install
+[0.684s] /usr/lib/python3/dist-packages/setuptools/command/install.py:34: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
+[0.684s]   warnings.warn(
+[0.684s] running install_lib
+[0.684s] copying /home/revixa/github/Alpha-Bear-Omega-3/control/ros2_ws/build/alphabearomega3/build/lib/alphabearomega3/fr_leg.py -> /home/revixa/github/Alpha-Bear-Omega-3/control/ros2_ws/install/alphabearomega3/lib/python3.10/site-packages/alphabearomega3
+[0.685s] byte-compiling /home/revixa/github/Alpha-Bear-Omega-3/control/ros2_ws/install/alphabearomega3/lib/python3.10/site-packages/alphabearomega3/fr_leg.py to fr_leg.cpython-310.pyc
+[0.685s] running install_data
+[0.685s] running install_egg_info
+[0.686s] removing '/home/revixa/github/Alpha-Bear-Omega-3/control/ros2_ws/install/alphabearomega3/lib/python3.10/site-packages/alphabearomega3-0.0.0-py3.10.egg-info' (and everything under it)
+[0.687s] Copying ../../build/alphabearomega3/alphabearomega3.egg-info to /home/revixa/github/Alpha-Bear-Omega-3/control/ros2_ws/install/alphabearomega3/lib/python3.10/site-packages/alphabearomega3-0.0.0-py3.10.egg-info
+[0.688s] running install_scripts
+[0.702s] Installing leg_fr script to /home/revixa/github/Alpha-Bear-Omega-3/control/ros2_ws/install/alphabearomega3/lib/alphabearomega3
+[0.702s] writing list of installed files to '/home/revixa/github/Alpha-Bear-Omega-3/control/ros2_ws/build/alphabearomega3/install.log'
+[0.720s] Invoked command in '/home/revixa/github/Alpha-Bear-Omega-3/control/ros2_ws/src/alphabearomega3' returned '0': PYTHONPATH=/home/revixa/github/Alpha-Bear-Omega-3/control/ros2_ws/build/alphabearomega3/prefix_override:/home/revixa/github/Alpha-Bear-Omega-3/control/ros2_ws/install/alphabearomega3/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/alphabearomega3 build --build-base /home/revixa/github/Alpha-Bear-Omega-3/control/ros2_ws/build/alphabearomega3/build install --record /home/revixa/github/Alpha-Bear-Omega-3/control/ros2_ws/build/alphabearomega3/install.log --single-version-externally-managed

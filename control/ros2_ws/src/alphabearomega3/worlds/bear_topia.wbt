@@ -13,8 +13,8 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/project
 WorldInfo {
 }
 Viewpoint {
-  orientation 0.05461094859471456 0.07097656710147297 -0.9959819130968571 1.3154737462365822
-  position -0.6914942277792422 1.2993756918754666 0.5038213524508764
+  orientation 0.13668619031874257 0.048062163415765066 -0.9894477822623812 2.4719419449644837
+  position 2.4869325204628074 2.2228743922288983 1.060589333592441
 }
 TexturedBackground {
 }
@@ -50,6 +50,7 @@ Robot {
       device [
         RotationalMotor {
           name "FR_femur_servo"
+          maxTorque 1000
         }
       ]
       endPoint Solid {
@@ -265,4 +266,5 @@ Robot {
   boundingObject USE body
   physics Physics {
   }
+  controller "<extern>"
 }
