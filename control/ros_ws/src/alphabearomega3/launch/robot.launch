@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<launch>
+  <env name="ROSCONSOLE_CONFIG_FILE" value="$(find webots_ros)/config/rosconsole.config"/>
+  
+  <!-- start Webots -->
+  <arg name="no_gui" default="false," doc="Start Webots with minimal GUI"/>
+  <include file="$(find webots_ros)/launch/webots.launch">
+    <arg name="mode" value="realtime"/>
+    <arg name="no_gui" value="$(arg no_gui)"/>
+    <arg name="world" value="$(find alphabearomega3)/worlds/bear_topia.wbt"/>
+  </include>
+
+  <arg name="auto_close" default="false" doc="Startup mode"/>
+  <env name="LD_LIBRARY_PATH" value="$(env LD_LIBRARY_PATH):$(env WEBOTS_HOME)/lib/controller"/>
+  <!--<env name="PYTHONPATH" value="$(env PYTHONPATH):$(env WEBOTS_HOME)/lib/controller/python27" unless="$(eval '1' if env('ROS_DISTRO') == 'noetic' else '0')" />-->
+  <env name="PYTHONPATH" value="$(env PYTHONPATH):$(env WEBOTS_HOME)/lib/controller/python" if="$(eval '1' if env('ROS_DISTRO') == 'noetic' else '0')" />
+   
+  <node name="alpha_bear" pkg="alphabearomega3" type="fr_leg.py"  required="$(arg auto_close)" output="screen"/>
+
+
+</launch>
