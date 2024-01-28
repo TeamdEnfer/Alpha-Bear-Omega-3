@@ -9,7 +9,6 @@
 # modified environment variables
 export CMAKE_PREFIX_PATH="/home/thomas-xavier/github/Alpha-Bear-Omega-3/control/ros_ws/devel:$CMAKE_PREFIX_PATH"
 export LD_LIBRARY_PATH="/home/thomas-xavier/github/Alpha-Bear-Omega-3/control/ros_ws/devel/lib:$LD_LIBRARY_PATH"
-export PATH='/opt/ros/noetic/bin:/usr/local/webots/lib/controller/python:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'
 export PKG_CONFIG_PATH="/home/thomas-xavier/github/Alpha-Bear-Omega-3/control/ros_ws/devel/lib/pkgconfig:$PKG_CONFIG_PATH"
 export PWD='/home/thomas-xavier/github/Alpha-Bear-Omega-3/control/ros_ws/build'
 export ROSLISP_PACKAGE_DIRECTORIES='/home/thomas-xavier/github/Alpha-Bear-Omega-3/control/ros_ws/devel/share/common-lisp'

@@ -161,6 +161,9 @@ include_directories(
    scripts/fr_leg.py
    DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 
+ catkin_install_python(PROGRAMS
+   scripts/leg_cinematic.py
+   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 
  install(DIRECTORY launch
          DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})

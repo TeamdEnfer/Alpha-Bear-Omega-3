@@ -64,7 +64,7 @@ Robot {
             }
             device [
               RotationalMotor {
-                name "FR_tibiat_servo"
+                name "FR_tibia_servo"
               }
             ]
             endPoint Solid {

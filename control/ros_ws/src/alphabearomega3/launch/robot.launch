@@ -16,6 +16,7 @@
   <env name="PYTHONPATH" value="$(env PYTHONPATH):$(env WEBOTS_HOME)/lib/controller/python" if="$(eval '1' if env('ROS_DISTRO') == 'noetic' else '0')" />
    
   <node name="alpha_bear" pkg="alphabearomega3" type="fr_leg.py"  required="$(arg auto_close)" output="screen"/>
+  <node name="alpha_bear_leg_cine" pkg="alphabearomega3" type="leg_cinematic.py"  required="$(arg auto_close)" output="screen"/>
 
 
 </launch>
