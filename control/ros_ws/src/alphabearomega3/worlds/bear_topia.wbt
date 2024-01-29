@@ -65,6 +65,7 @@ Robot {
             device [
               RotationalMotor {
                 name "FR_tibia_servo"
+                maxTorque 1000
               }
             ]
             endPoint Solid {
