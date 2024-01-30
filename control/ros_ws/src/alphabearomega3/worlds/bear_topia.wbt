@@ -13,8 +13,8 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/project
 WorldInfo {
 }
 Viewpoint {
-  orientation 0.13668619031874257 0.048062163415765066 -0.9894477822623812 2.4719419449644837
-  position 2.4869325204628074 2.2228743922288983 1.060589333592441
+  orientation 0.053303331973126915 -0.03601908275908986 -0.9979285447755046 3.372315192564597
+  position 1.4394483686260902 -0.2979303268051127 0.21113482936622882
 }
 TexturedBackground {
 }
@@ -24,7 +24,7 @@ RectangleArena {
   floorSize 5 5
 }
 Robot {
-  translation 0 0 0.3
+  translation 0 0 0.35
   children [
     DEF solid_body Solid {
       children [
@@ -55,12 +55,12 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation 0.25 0.3 -0.1
+        translation 0.25 0.3 -0.075
         rotation 1 0 0 0
         children [
           HingeJoint {
             jointParameters HingeJointParameters {
-              anchor 0 0 -0.1
+              anchor 0 0 -0.075
             }
             device [
               RotationalMotor {
@@ -69,14 +69,14 @@ Robot {
               }
             ]
             endPoint Solid {
-              translation 0 -5.624828165360588e-23 -0.15000000000000002
+              translation 0 -5.62483e-23 -0.16
               rotation 1 0 0 0
               children [
                 DEF foot Shape {
                   appearance VarnishedPine {
                   }
                   geometry Box {
-                    size 0.025 0.025 0.1
+                    size 0.025 0.025 0.17064
                   }
                 }
               ]
@@ -92,7 +92,7 @@ Robot {
             appearance RustyMetal {
             }
             geometry Box {
-              size 0.05 0.05 0.2
+              size 0.05 0.05 0.15
             }
           }
         ]
@@ -107,29 +107,35 @@ Robot {
       }
       device [
         RotationalMotor {
+          name "FL_femur_servo"
+          maxVelocity 50
+          maxTorque 1000
         }
       ]
       endPoint Solid {
-        translation -0.25 0.3 -0.1
+        translation -0.25 0.3 -0.075
         rotation 1 0 0 0
         children [
           HingeJoint {
             jointParameters HingeJointParameters {
-              anchor 0 0 -0.1
+              anchor 0 0 -0.075
             }
             device [
               RotationalMotor {
+                name "FL_tibia_servo"
+                maxVelocity 50
+                maxTorque 1000
               }
             ]
             endPoint Solid {
-              translation 0 1.6601845766184287e-19 -0.14999999999999997
+              translation 0 1.66018e-19 -0.16
               rotation 1 0 0 0
               children [
                 DEF foot Shape {
                   appearance VarnishedPine {
                   }
                   geometry Box {
-                    size 0.025 0.025 0.1
+                    size 0.025 0.025 0.17064
                   }
                 }
               ]
@@ -145,7 +151,7 @@ Robot {
             appearance Pcb {
             }
             geometry Box {
-              size 0.05 0.05 0.2
+              size 0.05 0.05 0.15
             }
           }
         ]
@@ -161,29 +167,35 @@ Robot {
       }
       device [
         RotationalMotor {
+          name "RR_femur_servo"
+          maxVelocity 50
+          maxTorque 1000
         }
       ]
       endPoint Solid {
-        translation 0.25 -0.3 -0.09999999999999995
+        translation 0.25 -0.3 -0.075
         rotation 1 0 0 0
         children [
           HingeJoint {
             jointParameters HingeJointParameters {
-              anchor 0 0 -0.1
+              anchor 0 0 -0.075
             }
             device [
               RotationalMotor {
+                name "RR_tibia_servo"
+                maxVelocity 50
+                maxTorque 1000
               }
             ]
             endPoint Solid {
-              translation 0 3.469446951953614e-18 -0.1500000000000002
+              translation 0 -6.938893903907228e-18 -0.16000000000000003
               rotation 1 0 0 0
               children [
                 DEF foot Shape {
                   appearance VarnishedPine {
                   }
                   geometry Box {
-                    size 0.025 0.025 0.1
+                    size 0.025 0.025 0.17064
                   }
                 }
               ]
@@ -199,7 +211,7 @@ Robot {
             appearance BlanketFabric {
             }
             geometry Box {
-              size 0.05 0.05 0.2
+              size 0.05 0.05 0.15
             }
           }
         ]
@@ -215,29 +227,35 @@ Robot {
       }
       device [
         RotationalMotor {
+          name "RL_femur_servo"
+          maxVelocity 50
+          maxTorque 1000
         }
       ]
       endPoint Solid {
-        translation -0.25 -0.3 -0.1
+        translation -0.25 -0.3 -0.075
         rotation 1 0 0 0
         children [
           HingeJoint {
             jointParameters HingeJointParameters {
-              anchor 0 0 -0.1
+              anchor 0 0 -0.075
             }
             device [
               RotationalMotor {
+                name "RL_tibia_servo"
+                maxVelocity 50
+                maxTorque 1000
               }
             ]
             endPoint Solid {
-              translation 0 2.832114216148857e-16 -0.15000000000000008
+              translation 0 2.83211e-16 -0.16
               rotation 1 0 0 0
               children [
                 DEF foot Shape {
                   appearance VarnishedPine {
                   }
                   geometry Box {
-                    size 0.025 0.025 0.1
+                    size 0.025 0.025 0.17064
                   }
                 }
               ]
@@ -253,7 +271,7 @@ Robot {
             appearance Grass {
             }
             geometry Box {
-              size 0.05 0.05 0.2
+              size 0.05 0.05 0.15
             }
           }
         ]

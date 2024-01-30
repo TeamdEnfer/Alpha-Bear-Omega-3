@@ -5,14 +5,16 @@ from std_msgs.msg import UInt16MultiArray
 
 
 def angleTest():
-    pub= rospy.Publisher('servo',UInt16,queue_size=10)
+    pub= rospy.Publisher('servo',UInt16MultiArray,queue_size=10)
     rospy.init_node('leg_kine',anonymous=True)
     rate1=rospy.Rate(10)
-    cmd_msg=UInt16MultiArray
+    cmd_msg=UInt16MultiArray()
+    cmd_msg.data=[1,0]
+    print(cmd_msg)
 
     while not rospy.is_shutdown():
       
-        cmd_msg.data[0]=1
+        
         pub.publish(cmd_msg)
         rate1.sleep()
 
