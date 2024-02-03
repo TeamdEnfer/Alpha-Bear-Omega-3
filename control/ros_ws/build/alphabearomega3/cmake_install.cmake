@@ -1,8 +1,8 @@
-# Install script for directory: /home/thomas-xavier/github/Alpha-Bear-Omega-3/control/ros_ws/src/alphabearomega3
+# Install script for directory: /home/jonathan/Documents/Alpha-Bear-Omega-3/control/ros_ws/src/alphabearomega3
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/thomas-xavier/github/Alpha-Bear-Omega-3/control/ros_ws/install")
+  set(CMAKE_INSTALL_PREFIX "/home/jonathan/Documents/Alpha-Bear-Omega-3/control/ros_ws/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -38,37 +38,37 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/thomas-xavier/github/Alpha-Bear-Omega-3/control/ros_ws/build/alphabearomega3/catkin_generated/installspace/alphabearomega3.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/jonathan/Documents/Alpha-Bear-Omega-3/control/ros_ws/build/alphabearomega3/catkin_generated/installspace/alphabearomega3.pc")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/alphabearomega3/cmake" TYPE FILE FILES
-    "/home/thomas-xavier/github/Alpha-Bear-Omega-3/control/ros_ws/build/alphabearomega3/catkin_generated/installspace/alphabearomega3Config.cmake"
-    "/home/thomas-xavier/github/Alpha-Bear-Omega-3/control/ros_ws/build/alphabearomega3/catkin_generated/installspace/alphabearomega3Config-version.cmake"
+    "/home/jonathan/Documents/Alpha-Bear-Omega-3/control/ros_ws/build/alphabearomega3/catkin_generated/installspace/alphabearomega3Config.cmake"
+    "/home/jonathan/Documents/Alpha-Bear-Omega-3/control/ros_ws/build/alphabearomega3/catkin_generated/installspace/alphabearomega3Config-version.cmake"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/alphabearomega3" TYPE FILE FILES "/home/thomas-xavier/github/Alpha-Bear-Omega-3/control/ros_ws/src/alphabearomega3/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/alphabearomega3" TYPE FILE FILES "/home/jonathan/Documents/Alpha-Bear-Omega-3/control/ros_ws/src/alphabearomega3/package.xml")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/alphabearomega3" TYPE PROGRAM FILES "/home/thomas-xavier/github/Alpha-Bear-Omega-3/control/ros_ws/build/alphabearomega3/catkin_generated/installspace/sim.py")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/alphabearomega3" TYPE PROGRAM FILES "/home/jonathan/Documents/Alpha-Bear-Omega-3/control/ros_ws/build/alphabearomega3/catkin_generated/installspace/sim.py")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/alphabearomega3" TYPE PROGRAM FILES "/home/thomas-xavier/github/Alpha-Bear-Omega-3/control/ros_ws/build/alphabearomega3/catkin_generated/installspace/leg_kine.py")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/alphabearomega3" TYPE PROGRAM FILES "/home/jonathan/Documents/Alpha-Bear-Omega-3/control/ros_ws/build/alphabearomega3/catkin_generated/installspace/leg_kine.py")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/alphabearomega3" TYPE PROGRAM FILES "/home/thomas-xavier/github/Alpha-Bear-Omega-3/control/ros_ws/build/alphabearomega3/catkin_generated/installspace/sim_leg_kine.py")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/alphabearomega3" TYPE PROGRAM FILES "/home/jonathan/Documents/Alpha-Bear-Omega-3/control/ros_ws/build/alphabearomega3/catkin_generated/installspace/sim_leg_kine.py")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/alphabearomega3" TYPE DIRECTORY FILES "/home/thomas-xavier/github/Alpha-Bear-Omega-3/control/ros_ws/src/alphabearomega3/launch")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/alphabearomega3" TYPE DIRECTORY FILES "/home/jonathan/Documents/Alpha-Bear-Omega-3/control/ros_ws/src/alphabearomega3/launch")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/alphabearomega3" TYPE DIRECTORY FILES "/home/thomas-xavier/github/Alpha-Bear-Omega-3/control/ros_ws/src/alphabearomega3/worlds")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/alphabearomega3" TYPE DIRECTORY FILES "/home/jonathan/Documents/Alpha-Bear-Omega-3/control/ros_ws/src/alphabearomega3/worlds")
 endif()
 

@@ -2,15 +2,17 @@ import rospy
 import os
 from controller import Robot
 import math
-from geometry_msgs.msg import Vector3
+from sensor_msgs.msg import JointState
+
 
 
        
 def twistCallback(BiData):
-    for oneBiData,onemotor in BiData,Motor_List:
+    for i in range(0,len(BiData.position)):
     
-        onemotor.setPosition(oneBiData.x)
-        onemotor.setVelocity(oneBiData.y)
+        Motor_List[i].setPosition(BiData.position[i])
+        Motor_List[i].setVelocity(BiData.velocity[i])
+        #print(oneBiData.x)
     
     
 
@@ -34,7 +36,7 @@ for motor in Motor_List:
 
 
 rospy.init_node('sim', anonymous=True)
-sub= rospy.Subscriber('leg_poses',[Vector3],twistCallback)
+sub= rospy.Subscriber('leg_poses',JointState,twistCallback)
 
         
 

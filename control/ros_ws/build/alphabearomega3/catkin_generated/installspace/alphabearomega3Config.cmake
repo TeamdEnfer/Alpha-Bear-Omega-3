@@ -67,14 +67,14 @@ set(alphabearomega3_CONFIG_INCLUDED TRUE)
 
 # set variables for source/devel/install prefixes
 if("FALSE" STREQUAL "TRUE")
-  set(alphabearomega3_SOURCE_PREFIX /home/thomas-xavier/github/Alpha-Bear-Omega-3/control/ros_ws/src/alphabearomega3)
-  set(alphabearomega3_DEVEL_PREFIX /home/thomas-xavier/github/Alpha-Bear-Omega-3/control/ros_ws/devel)
+  set(alphabearomega3_SOURCE_PREFIX /home/jonathan/Documents/Alpha-Bear-Omega-3/control/ros_ws/src/alphabearomega3)
+  set(alphabearomega3_DEVEL_PREFIX /home/jonathan/Documents/Alpha-Bear-Omega-3/control/ros_ws/devel)
   set(alphabearomega3_INSTALL_PREFIX "")
   set(alphabearomega3_PREFIX ${alphabearomega3_DEVEL_PREFIX})
 else()
   set(alphabearomega3_SOURCE_PREFIX "")
   set(alphabearomega3_DEVEL_PREFIX "")
-  set(alphabearomega3_INSTALL_PREFIX /home/thomas-xavier/github/Alpha-Bear-Omega-3/control/ros_ws/install)
+  set(alphabearomega3_INSTALL_PREFIX /home/jonathan/Documents/Alpha-Bear-Omega-3/control/ros_ws/install)
   set(alphabearomega3_PREFIX ${alphabearomega3_INSTALL_PREFIX})
 endif()
 
@@ -154,7 +154,7 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
-    foreach(path /home/thomas-xavier/github/Alpha-Bear-Omega-3/control/ros_ws/install/lib;/home/thomas-xavier/github/Alpha-Bear-Omega-3/control/ros_ws/devel/lib;/opt/ros/noetic/lib)
+    foreach(path /home/jonathan/Documents/Alpha-Bear-Omega-3/control/ros_ws/install/lib;/home/jonathan/Documents/Alpha-Bear-Omega-3/control/ros_ws/devel/lib;/opt/ros/noetic/lib)
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)

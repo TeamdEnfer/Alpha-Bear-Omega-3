@@ -1,0 +1,20 @@
+<launch>
+    
+  <rosparam file="$(find controls)/config/controller.yaml" command="load"/>
+  <rosparam file="$(find controls)/config/joint_limits.yaml" command="load"/>
+
+
+  <node name="Hardware_Interface" pkg="controls" type="hardware_interface" output="screen"/>
+
+
+  <!--<node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher"/> -->
+    
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen"
+        args="
+            /Bear/joints_update
+            /Bear/Femur_FR_PositionController
+            /Bear/Tibia_FR_PositionController
+        "/> 
+
+
+</launch>

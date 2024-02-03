@@ -7,4 +7,6 @@
 # new environment variables
 
 # modified environment variables
-export PWD='/home/thomas-xavier/github/Alpha-Bear-Omega-3/control/ros_ws/build'
+export LD_LIBRARY_PATH='/opt/ros/noetic/lib'
+export PKG_CONFIG_PATH='/opt/ros/noetic/lib/pkgconfig'
+export PWD='/home/jonathan/Documents/Alpha-Bear-Omega-3/control/ros_ws/build'
