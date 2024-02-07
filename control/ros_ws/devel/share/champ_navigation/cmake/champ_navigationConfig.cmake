@@ -66,6 +66,7 @@ endif()
 set(champ_navigation_CONFIG_INCLUDED TRUE)
 
 # set variables for source/devel/install prefixes
+<<<<<<< HEAD:control/ros_ws/devel/share/champ_navigation/cmake/champ_navigationConfig.cmake
 if("TRUE" STREQUAL "TRUE")
   set(champ_navigation_SOURCE_PREFIX /home/jonathan/Documents/Alpha-Bear-Omega-3/control/ros_ws/src/champ/champ_navigation)
   set(champ_navigation_DEVEL_PREFIX /home/jonathan/Documents/Alpha-Bear-Omega-3/control/ros_ws/devel)
@@ -76,6 +77,18 @@ else()
   set(champ_navigation_DEVEL_PREFIX "")
   set(champ_navigation_INSTALL_PREFIX /home/jonathan/Documents/Alpha-Bear-Omega-3/control/ros_ws/install)
   set(champ_navigation_PREFIX ${champ_navigation_INSTALL_PREFIX})
+=======
+if("FALSE" STREQUAL "TRUE")
+  set(alphabearomega3_SOURCE_PREFIX /home/thomas-xavier/github/Alpha-Bear-Omega-3/control/ros_ws/src/alphabearomega3)
+  set(alphabearomega3_DEVEL_PREFIX /home/thomas-xavier/github/Alpha-Bear-Omega-3/control/ros_ws/devel)
+  set(alphabearomega3_INSTALL_PREFIX "")
+  set(alphabearomega3_PREFIX ${alphabearomega3_DEVEL_PREFIX})
+else()
+  set(alphabearomega3_SOURCE_PREFIX "")
+  set(alphabearomega3_DEVEL_PREFIX "")
+  set(alphabearomega3_INSTALL_PREFIX /home/thomas-xavier/github/Alpha-Bear-Omega-3/control/ros_ws/install)
+  set(alphabearomega3_PREFIX ${alphabearomega3_INSTALL_PREFIX})
+>>>>>>> e7f074de03b63b50cf0e8ff8696453ed440c99d9:control/ros_ws/build/alphabearomega3/catkin_generated/installspace/alphabearomega3Config.cmake
 endif()
 
 # warn when using a deprecated package
@@ -154,7 +167,11 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
+<<<<<<< HEAD:control/ros_ws/devel/share/champ_navigation/cmake/champ_navigationConfig.cmake
     foreach(path /home/jonathan/Documents/Alpha-Bear-Omega-3/control/ros_ws/devel/lib;/opt/ros/noetic/lib)
+=======
+    foreach(path /home/thomas-xavier/github/Alpha-Bear-Omega-3/control/ros_ws/install/lib;/home/thomas-xavier/github/Alpha-Bear-Omega-3/control/ros_ws/devel/lib;/opt/ros/noetic/lib)
+>>>>>>> e7f074de03b63b50cf0e8ff8696453ed440c99d9:control/ros_ws/build/alphabearomega3/catkin_generated/installspace/alphabearomega3Config.cmake
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)

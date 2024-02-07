@@ -1,4 +1,8 @@
+<<<<<<< HEAD:control/ros_ws/devel/lib/pkgconfig/champ_config.pc
 prefix=/home/jonathan/Documents/Alpha-Bear-Omega-3/control/ros_ws/devel
+=======
+prefix=/home/thomas-xavier/github/Alpha-Bear-Omega-3/control/ros_ws/install
+>>>>>>> e7f074de03b63b50cf0e8ff8696453ed440c99d9:control/ros_ws/build/controls/catkin_generated/installspace/controls.pc
 
 Name: champ_config
 Description: Description of champ_config

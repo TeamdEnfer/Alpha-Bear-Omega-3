@@ -2,19 +2,23 @@ import rospy
 import os
 from controller import Robot
 import math
-from sensor_msgs.msg import JointState
-
-
+from trajectory_msgs.msg import JointTrajectory
+from std_msgs.msg import Float64
+from threading import Lock
+mutex=Lock()
 
        
-def twistCallback(BiData):
-    for i in range(0,len(BiData.position)):
+def twistCallback(BiData):    
+        with mutex:
+            Motor_List[4].setPosition(BiData.data)
+            Motor_List[4].setVelocity(10)
+            print(BiData.data)
+        
+        
+        
+        
     
-        Motor_List[i].setPosition(BiData.position[i])
-        Motor_List[i].setVelocity(BiData.velocity[i])
-        #print(oneBiData.x)
-    
-    
+
 
 robot= Robot()
 timeStep = int(robot.getBasicTimeStep())
@@ -26,25 +30,44 @@ FR_tibia_motor= robot.getDevice('FR_tibia_servo')
 FL_tibia_motor= robot.getDevice('FL_tibia_servo')
 RR_tibia_motor= robot.getDevice('RR_tibia_servo')
 RL_tibia_motor= robot.getDevice('RL_tibia_servo')
+FR_shoulder_motor = robot.getDevice('FR_shoulder_servo')
+FL_shoulder_motor = robot.getDevice('FL_shoulder_servo')
+RR_shoulder_motor = robot.getDevice('RR_shoulder_servo')
+RL_shoulder_motor = robot.getDevice('RL_shoulder_servo')
 
+Motor_List=[FL_shoulder_motor,FL_femur_motor,FL_tibia_motor,FR_shoulder_motor,FR_femur_motor,FR_tibia_motor,RL_shoulder_motor,RL_femur_motor,RL_tibia_motor,RR_shoulder_motor,RR_femur_motor,RR_tibia_motor]
+motor_IDs=[]
 
-Motor_List=[FR_femur_motor,FR_tibia_motor,FL_femur_motor,FL_tibia_motor,RR_femur_motor,RR_tibia_motor,RL_femur_motor,RL_tibia_motor]
-
-for motor in Motor_List:
+for i,motor in enumerate(Motor_List):
     motor.setPosition(float('inf'))
     motor.setVelocity(0)
+    motor_IDs.append(i)
+
+
 
 
 rospy.init_node('sim', anonymous=True)
-sub= rospy.Subscriber('leg_poses',JointState,twistCallback)
+sub= rospy.Subscriber('/Bear/Femur_FR_PositionController/command',Float64,twistCallback)
 
         
 
 while robot.step(timeStep) != -1:
-    pass
+    with mutex:
+        pass
+        
     
 
     
+	
+
+
+
+        
+
+
+
+
+
 	
 
 

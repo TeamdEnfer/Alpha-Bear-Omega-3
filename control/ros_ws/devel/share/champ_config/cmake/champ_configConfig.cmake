@@ -66,6 +66,7 @@ endif()
 set(champ_config_CONFIG_INCLUDED TRUE)
 
 # set variables for source/devel/install prefixes
+<<<<<<< HEAD:control/ros_ws/devel/share/champ_config/cmake/champ_configConfig.cmake
 if("TRUE" STREQUAL "TRUE")
   set(champ_config_SOURCE_PREFIX /home/jonathan/Documents/Alpha-Bear-Omega-3/control/ros_ws/src/champ/champ_config)
   set(champ_config_DEVEL_PREFIX /home/jonathan/Documents/Alpha-Bear-Omega-3/control/ros_ws/devel)
@@ -76,6 +77,18 @@ else()
   set(champ_config_DEVEL_PREFIX "")
   set(champ_config_INSTALL_PREFIX /home/jonathan/Documents/Alpha-Bear-Omega-3/control/ros_ws/install)
   set(champ_config_PREFIX ${champ_config_INSTALL_PREFIX})
+=======
+if("FALSE" STREQUAL "TRUE")
+  set(controls_SOURCE_PREFIX /home/thomas-xavier/github/Alpha-Bear-Omega-3/control/ros_ws/src/controls)
+  set(controls_DEVEL_PREFIX /home/thomas-xavier/github/Alpha-Bear-Omega-3/control/ros_ws/devel)
+  set(controls_INSTALL_PREFIX "")
+  set(controls_PREFIX ${controls_DEVEL_PREFIX})
+else()
+  set(controls_SOURCE_PREFIX "")
+  set(controls_DEVEL_PREFIX "")
+  set(controls_INSTALL_PREFIX /home/thomas-xavier/github/Alpha-Bear-Omega-3/control/ros_ws/install)
+  set(controls_PREFIX ${controls_INSTALL_PREFIX})
+>>>>>>> e7f074de03b63b50cf0e8ff8696453ed440c99d9:control/ros_ws/build/controls/catkin_generated/installspace/controlsConfig.cmake
 endif()
 
 # warn when using a deprecated package
@@ -154,7 +167,11 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
+<<<<<<< HEAD:control/ros_ws/devel/share/champ_config/cmake/champ_configConfig.cmake
     foreach(path /home/jonathan/Documents/Alpha-Bear-Omega-3/control/ros_ws/devel/lib;/opt/ros/noetic/lib)
+=======
+    foreach(path /home/thomas-xavier/github/Alpha-Bear-Omega-3/control/ros_ws/install/lib;/home/thomas-xavier/github/Alpha-Bear-Omega-3/control/ros_ws/devel/lib;/opt/ros/noetic/lib)
+>>>>>>> e7f074de03b63b50cf0e8ff8696453ed440c99d9:control/ros_ws/build/controls/catkin_generated/installspace/controlsConfig.cmake
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)
