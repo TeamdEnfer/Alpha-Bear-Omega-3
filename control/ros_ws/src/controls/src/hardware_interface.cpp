@@ -18,6 +18,11 @@ Bear::Bear(ros::NodeHandle& nh) : nh_(nh) {
     
 //Run the control loop
     my_control_loop_ = nh_.createTimer(update_freq, &Bear::update, this);
+
+//Inform master that the node will be publishing to topic /command with queue size 10
+    commandPublisher = nh_.advertise<std_msgs::Float64MultiArray>("Command", 10);
+
+    //ros::Subscriber<std_msgs::Float64MultiArray> sub("Feedback" , read);
 }
 
 
@@ -81,6 +86,9 @@ void Bear::init() {
     registerInterface(&joint_state_interface_);
     registerInterface(&position_joint_interface_);
     //registerInterface(&positionJointSaturationInterface);    
+
+    ros::Subscriber sub = nh_.subscribe("Feedback", 10 ,&Bear::fetchFeedback, this);// <std_msgs::Float64MultiArray>
+    
 }
 
 
@@ -96,25 +104,39 @@ void Bear::update(const ros::TimerEvent& e) {
 
 
 void Bear::read(){
-  // Write the protocol (I2C/CAN/ros_serial/ros_industrial)used to get the current joint position and/or velocity and/or effort       
+
+
 
   //from robot.
   // and fill JointStateHandle variables joint_position_[i], joint_velocity_[i] and joint_effort_[i]
 
 }
 
+void Bear::fetchFeedback(const std_msgs::Float64MultiArray& feedback_message)
+{
+    //On s'attend a recevoir des lectures de IMU de la part du arduino via rosserial
+    //On prend les lecture et on les met dans le JointStateHandle (jsHandle[i]) du joint approrier.
+
+    
+    for(int i = 0 ; i < Nb_Of_Joints ; i++)
+    {
+        pos[i] = feedback_message.data[i];
+    }
+}
+
 
 
 void Bear::write(ros::Duration elapsed_time) {
-  // Safety
 
-  //positionJointSaturationInterface.enforceLimits(elapsed_time); // enforce limits for JointC
+    //On prend les messages d ecommande du controller, et on les mets dans un float64multiplearray, puis on les publish
 
+    messageCommand.data.clear();
+    for(int i = 0 ; i < Nb_Of_Joints ; i++)
+    {
+        messageCommand.data.push_back(cmd[i]);
+    }
 
-  // Write the protocol (I2C/CAN/ros_serial/ros_industrial)used to send the commands to the robot's actuators.
-  // the output commands need to send are joint_effort_command_[0] for JointA, joint_effort_command_[1] for JointB and 
-
-  //joint_position_command_ for JointC.
+    commandPublisher.publish(messageCommand);
 
 }
 

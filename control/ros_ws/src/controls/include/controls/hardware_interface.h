@@ -22,6 +22,7 @@ class Bear : public hardware_interface::RobotHW
         void init();
         void update(const ros::TimerEvent& e);
         void read();
+         void fetchFeedback(const std_msgs::Float64MultiArray& feedback_message);
         void write(ros::Duration elapsed_time);
         
     protected:
@@ -44,6 +45,10 @@ class Bear : public hardware_interface::RobotHW
         double cmd[Nb_Of_Joints];
         double joint_position_command_;
         
+        ros::Subscriber Feedback;
+        ros::Publisher commandPublisher;
+        std_msgs::Float64MultiArray messageCommand;
+
         ros::NodeHandle nh_;
         ros::Timer my_control_loop_;
         ros::Duration elapsed_time_;
