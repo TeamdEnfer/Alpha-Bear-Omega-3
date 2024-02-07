@@ -67,14 +67,14 @@ set(controls_CONFIG_INCLUDED TRUE)
 
 # set variables for source/devel/install prefixes
 if("FALSE" STREQUAL "TRUE")
-  set(controls_SOURCE_PREFIX /home/jonathan/Documents/Alpha-Bear-Omega-3/control/ros_ws/src/controls)
-  set(controls_DEVEL_PREFIX /home/jonathan/Documents/Alpha-Bear-Omega-3/control/ros_ws/devel)
+  set(controls_SOURCE_PREFIX /home/thomas-xavier/github/Alpha-Bear-Omega-3/control/ros_ws/src/controls)
+  set(controls_DEVEL_PREFIX /home/thomas-xavier/github/Alpha-Bear-Omega-3/control/ros_ws/devel)
   set(controls_INSTALL_PREFIX "")
   set(controls_PREFIX ${controls_DEVEL_PREFIX})
 else()
   set(controls_SOURCE_PREFIX "")
   set(controls_DEVEL_PREFIX "")
-  set(controls_INSTALL_PREFIX /home/jonathan/Documents/Alpha-Bear-Omega-3/control/ros_ws/install)
+  set(controls_INSTALL_PREFIX /home/thomas-xavier/github/Alpha-Bear-Omega-3/control/ros_ws/install)
   set(controls_PREFIX ${controls_INSTALL_PREFIX})
 endif()
 
@@ -154,7 +154,7 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
-    foreach(path /home/jonathan/Documents/Alpha-Bear-Omega-3/control/ros_ws/install/lib;/home/jonathan/Documents/Alpha-Bear-Omega-3/control/ros_ws/devel/lib;/opt/ros/noetic/lib)
+    foreach(path /home/thomas-xavier/github/Alpha-Bear-Omega-3/control/ros_ws/install/lib;/home/thomas-xavier/github/Alpha-Bear-Omega-3/control/ros_ws/devel/lib;/opt/ros/noetic/lib)
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)

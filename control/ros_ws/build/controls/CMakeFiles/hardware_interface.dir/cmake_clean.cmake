@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "/home/jonathan/Documents/Alpha-Bear-Omega-3/control/ros_ws/devel/lib/controls/hardware_interface"
-  "/home/jonathan/Documents/Alpha-Bear-Omega-3/control/ros_ws/devel/lib/controls/hardware_interface.pdb"
+  "/home/thomas-xavier/github/Alpha-Bear-Omega-3/control/ros_ws/devel/lib/controls/hardware_interface"
+  "/home/thomas-xavier/github/Alpha-Bear-Omega-3/control/ros_ws/devel/lib/controls/hardware_interface.pdb"
   "CMakeFiles/hardware_interface.dir/src/hardware_interface.cpp.o"
 )
 

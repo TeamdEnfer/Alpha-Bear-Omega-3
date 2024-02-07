@@ -1,4 +1,4 @@
-prefix=/home/jonathan/Documents/Alpha-Bear-Omega-3/control/ros_ws/devel
+prefix=/home/thomas-xavier/github/Alpha-Bear-Omega-3/control/ros_ws/devel
 
 Name: controls
 Description: Description of controls

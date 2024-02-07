@@ -1,8 +1,8 @@
-# Install script for directory: /home/jonathan/Documents/Alpha-Bear-Omega-3/control/ros_ws/src/controls
+# Install script for directory: /home/thomas-xavier/github/Alpha-Bear-Omega-3/control/ros_ws/src/controls
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/jonathan/Documents/Alpha-Bear-Omega-3/control/ros_ws/install")
+  set(CMAKE_INSTALL_PREFIX "/home/thomas-xavier/github/Alpha-Bear-Omega-3/control/ros_ws/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -38,17 +38,17 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/jonathan/Documents/Alpha-Bear-Omega-3/control/ros_ws/build/controls/catkin_generated/installspace/controls.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/thomas-xavier/github/Alpha-Bear-Omega-3/control/ros_ws/build/controls/catkin_generated/installspace/controls.pc")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/controls/cmake" TYPE FILE FILES
-    "/home/jonathan/Documents/Alpha-Bear-Omega-3/control/ros_ws/build/controls/catkin_generated/installspace/controlsConfig.cmake"
-    "/home/jonathan/Documents/Alpha-Bear-Omega-3/control/ros_ws/build/controls/catkin_generated/installspace/controlsConfig-version.cmake"
+    "/home/thomas-xavier/github/Alpha-Bear-Omega-3/control/ros_ws/build/controls/catkin_generated/installspace/controlsConfig.cmake"
+    "/home/thomas-xavier/github/Alpha-Bear-Omega-3/control/ros_ws/build/controls/catkin_generated/installspace/controlsConfig-version.cmake"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/controls" TYPE FILE FILES "/home/jonathan/Documents/Alpha-Bear-Omega-3/control/ros_ws/src/controls/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/controls" TYPE FILE FILES "/home/thomas-xavier/github/Alpha-Bear-Omega-3/control/ros_ws/src/controls/package.xml")
 endif()
 
