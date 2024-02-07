@@ -1,6 +1,0 @@
-<?xml version="1.0" ?>
-<robot name="Alpha Bear">
-    <webots>
-        <plugin type="alphabearomega3.fr_leg.FRleg" />
-    </webots>
-</robot>
