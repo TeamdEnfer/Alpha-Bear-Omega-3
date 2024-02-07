@@ -1,2 +1,2 @@
-alphabearomega3
+alphabear_config:alphabearomega3:champ/champ:champ/champ_base:champ/champ_bringup:champ/champ_config:champ/champ_description:champ/champ_gazebo:champ/champ_msgs:champ/champ_navigation:champ_setup_assistant:champ_teleop:robot_state_plugin:yocs_velocity_smoother
 -DCATKIN_DEVEL_PREFIX=/home/thomas-xavier/github/Alpha-Bear-Omega-3/control/ros_ws/devel -DCMAKE_INSTALL_PREFIX=/home/thomas-xavier/github/Alpha-Bear-Omega-3/control/ros_ws/install -G Unix Makefiles

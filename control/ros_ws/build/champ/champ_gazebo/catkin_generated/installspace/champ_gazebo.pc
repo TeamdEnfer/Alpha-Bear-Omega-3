@@ -1,0 +1,8 @@
+prefix=/home/thomas-xavier/github/Alpha-Bear-Omega-3/control/ros_ws/install
+
+Name: champ_gazebo
+Description: Description of champ_gazebo
+Version: 0.1.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: roscpp

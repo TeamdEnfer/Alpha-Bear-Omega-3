@@ -1,0 +1,479 @@
+#VRML_SIM R2023b utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/appearances/protos/DamascusSteel.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/appearances/protos/VarnishedPine.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/appearances/protos/Pcb.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/appearances/protos/DryMud.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/appearances/protos/BlanketFabric.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  orientation -0.0725201337531397 0.1097674408940594 -0.9913081958301343 1.6601852041970508
+  position 0.3033173497602694 1.764645536696935 0.28950535346979683
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  floorSize 5 5
+}
+Robot {
+  translation 0 0 0.35
+  children [
+    DEF FR_shoulder HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 1 0
+        anchor 0.25 0.3 0
+      }
+      device [
+        RotationalMotor {
+          name "FR_shoulder_servo"
+          maxVelocity 50
+          maxTorque 1000
+        }
+      ]
+      endPoint Solid {
+        translation 0.25 0.3 0
+        rotation 0 1 0 0
+        children [
+          HingeJoint {
+            jointParameters HingeJointParameters {
+              anchor 0.05 0 0
+            }
+            device [
+              RotationalMotor {
+                name "FR_femur_servo"
+                maxVelocity 50
+                maxTorque 1000
+              }
+            ]
+            endPoint Solid {
+              translation 0.05 0 -0.075
+              rotation 1 0 0 0
+              children [
+                HingeJoint {
+                  jointParameters HingeJointParameters {
+                    anchor 0 0 -0.075
+                  }
+                  device [
+                    RotationalMotor {
+                      name "FR_tibia_servo"
+                      maxVelocity 50
+                      maxTorque 1000
+                    }
+                  ]
+                  endPoint Solid {
+                    translation 0 1.66018e-19 -0.16
+                    rotation 1 0 0 0
+                    children [
+                      Solid {
+                        translation 0 0 -0.08
+                        children [
+                          DEF Foot_ball Shape {
+                            appearance BlanketFabric {
+                            }
+                            geometry Sphere {
+                              radius 0.02
+                            }
+                          }
+                        ]
+                        name "FR_foot_ball"
+                        boundingObject USE Foot_ball
+                        physics Physics {
+                        }
+                      }
+                      DEF foot Shape {
+                        appearance VarnishedPine {
+                        }
+                        geometry Box {
+                          size 0.025 0.025 0.17064
+                        }
+                      }
+                    ]
+                    name "FR_tibia"
+                    boundingObject USE foot
+                    physics Physics {
+                      centerOfMass [
+                        0 0 0
+                      ]
+                    }
+                  }
+                }
+                DEF femur Shape {
+                  appearance Pcb {
+                  }
+                  geometry Box {
+                    size 0.05 0.05 0.15
+                  }
+                }
+              ]
+              name "FR_femur"
+              boundingObject USE femur
+              physics Physics {
+              }
+            }
+          }
+          DEF soulder Shape {
+            appearance DryMud {
+            }
+            geometry Box {
+              size 0.05 0.05 0.05
+            }
+          }
+        ]
+        name "FR_shoulder"
+        boundingObject USE soulder
+        physics Physics {
+        }
+      }
+    }
+    DEF FL_shoulder HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 1 0
+        anchor -0.25 0.3 0
+      }
+      device [
+        RotationalMotor {
+          name "FL_shoulder_servo"
+          maxVelocity 50
+          maxTorque 1000
+        }
+      ]
+      endPoint Solid {
+        translation -0.25 0.3 0
+        rotation 0 1 0 0
+        children [
+          HingeJoint {
+            jointParameters HingeJointParameters {
+              anchor -0.05 0 0
+            }
+            device [
+              RotationalMotor {
+                name "FL_femur_servo"
+                maxVelocity 50
+                maxTorque 1000
+              }
+            ]
+            endPoint Solid {
+              translation -0.05 0 -0.075
+              rotation 1 0 0 0
+              children [
+                HingeJoint {
+                  jointParameters HingeJointParameters {
+                    anchor 0 0 -0.075
+                  }
+                  device [
+                    RotationalMotor {
+                      name "FL_tibia_servo"
+                      maxVelocity 50
+                      maxTorque 1000
+                    }
+                  ]
+                  endPoint Solid {
+                    translation 0 1.66018e-19 -0.16
+                    rotation 1 0 0 0
+                    children [
+                      Solid {
+                        translation 0 0 -0.08
+                        children [
+                          DEF Foot_ball Shape {
+                            appearance BlanketFabric {
+                            }
+                            geometry Sphere {
+                              radius 0.02
+                            }
+                          }
+                        ]
+                        name "FL_foot_ball"
+                        boundingObject USE Foot_ball
+                        physics Physics {
+                        }
+                      }
+                      DEF foot Shape {
+                        appearance VarnishedPine {
+                        }
+                        geometry Box {
+                          size 0.025 0.025 0.17064
+                        }
+                      }
+                    ]
+                    name "FL_tibia"
+                    boundingObject USE foot
+                    physics Physics {
+                      centerOfMass [
+                        0 0 0
+                      ]
+                    }
+                  }
+                }
+                DEF femur Shape {
+                  appearance Pcb {
+                  }
+                  geometry Box {
+                    size 0.05 0.05 0.15
+                  }
+                }
+              ]
+              name "FL_femur"
+              boundingObject USE femur
+              physics Physics {
+              }
+            }
+          }
+          DEF soulder Shape {
+            appearance DryMud {
+            }
+            geometry Box {
+              size 0.05 0.05 0.05
+            }
+          }
+        ]
+        name "FL_shoulder"
+        boundingObject USE soulder
+        physics Physics {
+        }
+      }
+    }
+    DEF RR_shoulder HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 1 0
+        anchor 0.25 -0.3 0
+      }
+      device [
+        RotationalMotor {
+          name "RR_shoulder_servo"
+          maxVelocity 50
+          maxTorque 1000
+        }
+      ]
+      endPoint Solid {
+        translation 0.25 -0.3 0
+        rotation 0 1 0 0
+        children [
+          HingeJoint {
+            jointParameters HingeJointParameters {
+              anchor 0.05 0 0
+            }
+            device [
+              RotationalMotor {
+                name "RR_femur_servo"
+                maxVelocity 50
+                maxTorque 1000
+              }
+            ]
+            endPoint Solid {
+              translation 0.05 0 -0.075
+              rotation 1 0 0 0
+              children [
+                HingeJoint {
+                  jointParameters HingeJointParameters {
+                    anchor 0 0 -0.075
+                  }
+                  device [
+                    RotationalMotor {
+                      name "RR_tibia_servo"
+                      maxVelocity 50
+                      maxTorque 1000
+                    }
+                  ]
+                  endPoint Solid {
+                    translation 0 1.66018e-19 -0.16
+                    rotation 1 0 0 0
+                    children [
+                      Solid {
+                        translation 0 0 -0.08
+                        children [
+                          DEF Foot_ball Shape {
+                            appearance BlanketFabric {
+                            }
+                            geometry Sphere {
+                              radius 0.02
+                            }
+                          }
+                        ]
+                        name "RR_foot_ball"
+                        boundingObject USE Foot_ball
+                        physics Physics {
+                        }
+                      }
+                      DEF foot Shape {
+                        appearance VarnishedPine {
+                        }
+                        geometry Box {
+                          size 0.025 0.025 0.17064
+                        }
+                      }
+                    ]
+                    name "RR_tibia"
+                    boundingObject USE foot
+                    physics Physics {
+                      centerOfMass [
+                        0 0 0
+                      ]
+                    }
+                  }
+                }
+                DEF femur Shape {
+                  appearance Pcb {
+                  }
+                  geometry Box {
+                    size 0.05 0.05 0.15
+                  }
+                }
+              ]
+              name "RR_femur"
+              boundingObject USE femur
+              physics Physics {
+              }
+            }
+          }
+          DEF soulder Shape {
+            appearance DryMud {
+            }
+            geometry Box {
+              size 0.05 0.05 0.05
+            }
+          }
+        ]
+        name "RR_shoulder"
+        boundingObject USE soulder
+        physics Physics {
+        }
+      }
+    }
+    DEF RL_shoulder HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 1 0
+        anchor -0.25 -0.3 0
+      }
+      device [
+        RotationalMotor {
+          name "RL_shoulder_servo"
+          maxVelocity 50
+          maxTorque 1000
+        }
+      ]
+      endPoint Solid {
+        translation -0.25 -0.3 0
+        rotation 0 1 0 0
+        children [
+          HingeJoint {
+            jointParameters HingeJointParameters {
+              anchor -0.05 0 0
+            }
+            device [
+              RotationalMotor {
+                name "RL_femur_servo"
+                maxVelocity 50
+                maxTorque 1000
+              }
+            ]
+            endPoint Solid {
+              translation -0.05 0 -0.075
+              rotation 1 0 0 0
+              children [
+                HingeJoint {
+                  jointParameters HingeJointParameters {
+                    anchor 0 0 -0.075
+                  }
+                  device [
+                    RotationalMotor {
+                      name "RL_tibia_servo"
+                      maxVelocity 50
+                      maxTorque 1000
+                    }
+                  ]
+                  endPoint Solid {
+                    translation 0 1.66018e-19 -0.16
+                    rotation 1 0 0 0
+                    children [
+                      Solid {
+                        translation 0 0 -0.08
+                        children [
+                          DEF Foot_ball Shape {
+                            appearance BlanketFabric {
+                            }
+                            geometry Sphere {
+                              radius 0.02
+                            }
+                          }
+                        ]
+                        name "RL_foot_ball"
+                        boundingObject USE Foot_ball
+                        physics Physics {
+                        }
+                      }
+                      DEF foot Shape {
+                        appearance VarnishedPine {
+                        }
+                        geometry Box {
+                          size 0.025 0.025 0.17064
+                        }
+                      }
+                    ]
+                    name "RL_tibia"
+                    boundingObject USE foot
+                    physics Physics {
+                      centerOfMass [
+                        0 0 0
+                      ]
+                    }
+                  }
+                }
+                DEF femur Shape {
+                  appearance Pcb {
+                  }
+                  geometry Box {
+                    size 0.05 0.05 0.15
+                  }
+                }
+              ]
+              name "RL_femur"
+              boundingObject USE femur
+              physics Physics {
+              }
+            }
+          }
+          DEF soulder Shape {
+            appearance DryMud {
+            }
+            geometry Box {
+              size 0.05 0.05 0.05
+            }
+          }
+        ]
+        name "RL_shoulder"
+        boundingObject USE soulder
+        physics Physics {
+        }
+      }
+    }
+    DEF solid_body Solid {
+      children [
+        DEF body Shape {
+          appearance DamascusSteel {
+          }
+          geometry Box {
+            size 0.5 0.8 0.1
+          }
+        }
+      ]
+      name "Body"
+      boundingObject Box {
+        size 0.04 0.05 0.01
+      }
+      physics Physics {
+      }
+    }
+  ]
+  name "alpha_bear"
+  boundingObject USE body
+  physics Physics {
+  }
+  controller "<extern>"
+}

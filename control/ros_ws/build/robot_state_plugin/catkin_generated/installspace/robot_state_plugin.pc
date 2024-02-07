@@ -1,0 +1,8 @@
+prefix=/home/thomas-xavier/github/Alpha-Bear-Omega-3/control/ros_ws/install
+
+Name: robot_state_plugin
+Description: Description of robot_state_plugin
+Version: 0.9.17
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib -lmoveit_rviz_plugin_render_tools -lmoveit_robot_state_rviz_plugin_core -lmoveit_planning_scene_rviz_plugin_core
+Requires: moveit_ros_planning_interface

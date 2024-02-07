@@ -1,0 +1,8 @@
+prefix=/home/thomas-xavier/github/Alpha-Bear-Omega-3/control/ros_ws/install
+
+Name: champ_navigation
+Description: Description of champ_navigation
+Version: 0.1.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

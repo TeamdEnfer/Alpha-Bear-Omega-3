@@ -1,0 +1,8 @@
+prefix=/home/thomas-xavier/github/Alpha-Bear-Omega-3/control/ros_ws/install
+
+Name: champ_teleop
+Description: Description of champ_teleop
+Version: 0.6.2
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
