@@ -1,8 +1,0 @@
-prefix=/home/ubuntu/Downloads/Projet S4/Alpha-Bear-Omega-3-Ros_control/control/ros_ws/devel
-
-Name: alphabearomega3
-Description: Description of alphabearomega3
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 
