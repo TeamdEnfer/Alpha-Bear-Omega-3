@@ -1,2 +1,0 @@
-alphabearomega3:controls
--DCATKIN_DEVEL_PREFIX=/home/jonathan/Documents/Alpha-Bear-Omega-3/control/ros_ws/devel -DCMAKE_INSTALL_PREFIX=/home/jonathan/Documents/Alpha-Bear-Omega-3/control/ros_ws/install -G Unix Makefiles

@@ -1,0 +1,2 @@
+alphabearomega3:controls
+-DCATKIN_DEVEL_PREFIX=/home/ubuntu/Downloads/Projet S4/Alpha-Bear-Omega-3-Ros_control/control/ros_ws/devel -DCMAKE_INSTALL_PREFIX=/home/ubuntu/Downloads/Projet S4/Alpha-Bear-Omega-3-Ros_control/control/ros_ws/install -G Unix Makefiles

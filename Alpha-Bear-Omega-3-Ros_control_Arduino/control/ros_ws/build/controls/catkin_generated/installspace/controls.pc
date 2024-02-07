@@ -1,0 +1,8 @@
+prefix=/home/ubuntu/Downloads/Projet S4/Alpha-Bear-Omega-3-Ros_control/control/ros_ws/install
+
+Name: controls
+Description: Description of controls
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
