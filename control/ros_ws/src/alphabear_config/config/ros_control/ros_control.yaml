@@ -1,0 +1,34 @@
+"":
+  joint_states_controller:
+      type: joint_state_controller/JointStateController
+      publish_rate: 50
+
+  joint_group_position_controller:
+      type: effort_controllers/JointTrajectoryController
+      joints:
+          - RL_shoulder_servo
+          - RL_femur_servo
+          - RL_tibia_servo
+          - FR_shoulder_servo
+          - FR_femur_servo
+          - FR_tibia_servo
+          - RL_shoulder_servo
+          - RL_femur_servo
+          - RL_tibia_servo
+          - RR_shoulder_servo
+          - RR_femur_servo
+          - RR_tibia_servo
+
+      gains:
+        RL_shoulder_servo : {p: 180, d: 0.9, i: 20}
+        RL_femur_servo : {p: 180, d: 0.9, i: 20}
+        RL_tibia_servo : {p: 180, d: 0.9, i: 20}
+        FR_shoulder_servo : {p: 180, d: 0.9, i: 20}
+        FR_femur_servo : {p: 180, d: 0.9, i: 20}
+        FR_tibia_servo : {p: 180, d: 0.9, i: 20}
+        RL_shoulder_servo : {p: 180, d: 0.9, i: 20}
+        RL_femur_servo : {p: 180, d: 0.9, i: 20}
+        RL_tibia_servo : {p: 180, d: 0.9, i: 20}
+        RR_shoulder_servo : {p: 180, d: 0.9, i: 20}
+        RR_femur_servo : {p: 180, d: 0.9, i: 20}
+        RR_tibia_servo : {p: 180, d: 0.9, i: 20}
