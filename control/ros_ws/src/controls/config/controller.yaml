@@ -1,6 +1,5 @@
 Bear:
 
-
     # Publish all joint states
     joints_update:
       type: joint_state_controller/JointStateController

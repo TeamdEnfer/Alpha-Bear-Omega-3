@@ -34,51 +34,18 @@ Bear::~Bear() {
 
 void Bear::init() {
         
-// // Create joint_state_interface for JointA
-//     hardware_interface::JointStateHandle jointStateHandleA("Femur_FR", &joint_position_[0]);
-//     joint_state_interface_.registerHandle(jointStateHandleA);
-// // Create effort joint interface as JointA accepts effort command.
-//     hardware_interface::JointHandle jointPositionHandleA(jointStateHandleA, &joint_position_command_[0]);
-//     position_joint_interface_.registerHandle(jointPositionHandleA); 
-// // Create Joint Limit interface for JointA
-//     joint_limits_interface::getJointLimits("Femur_FR", nh_, limits);
-//     joint_limits_interface::PositionJointSaturationHandle jointLimitsHandleA(jointPositionHandleA, limits);
-//     positionJointSaturationInterface.registerHandle(jointLimitsHandleA);    
 
-    
+    jsHandle[0] = hardware_interface::JointStateHandle(("Femur_FR"), &pos[0], &vel[0], &eff[0]);
+    joint_state_interface_.registerHandle(jsHandle[0]);
 
-// // Create joint_state_interface for JointC
-//     hardware_interface::JointStateHandle jointStateHandleC("Tibia_FR", &joint_position_[2]);
-//     joint_state_interface_.registerHandle(jointStateHandleC);
+    jpHandle[0] = hardware_interface::JointHandle(joint_state_interface_.getHandle(("Femur_FR")), &cmd[0]);
+    position_joint_interface_.registerHandle(jpHandle[0]);
 
-// // Create position joint interface as JointC accepts position command.
-//     hardware_interface::JointHandle jointPositionHandleC(jointStateHandleC, &joint_position_command_);
-//     position_joint_interface_.registerHandle(jointPositionHandleC);
-// // Create Joint Limit interface for JointC
-//     joint_limits_interface::getJointLimits("Tibia_FR", nh_, limits);
-//     joint_limits_interface::PositionJointSaturationHandle jointLimitsHandleC(jointPositionHandleC, limits);
-//     positionJointSaturationInterface.registerHandle(jointLimitsHandleC);    
-    // for(int i = 0 ; i < Nb_Of_Joints ; i++)
-    // {
+    jsHandle[1] = hardware_interface::JointStateHandle(("Tibia_FR"), &pos[1], &vel[1], &eff[1]);
+    joint_state_interface_.registerHandle(jsHandle[1]);
 
-    //     jsHandle[i] = hardware_interface::JointStateHandle(("J" + std::to_string(i+1)), &pos[i], &vel[i], &eff[i]);
-    //     joint_state_interface_.registerHandle(jsHandle[i]);
-
-    //     jpHandle[i] = hardware_interface::JointHandle(joint_state_interface_.getHandle(("J" + std::to_string(i+1))), &cmd[i]);
-    //     position_joint_interface_.registerHandle(jpHandle[i]);
-
-    // }
-        jsHandle[0] = hardware_interface::JointStateHandle(("Femur_FR"), &pos[0], &vel[0], &eff[0]);
-        joint_state_interface_.registerHandle(jsHandle[0]);
-
-        jpHandle[0] = hardware_interface::JointHandle(joint_state_interface_.getHandle(("Femur_FR")), &cmd[0]);
-        position_joint_interface_.registerHandle(jpHandle[0]);
-
-        jsHandle[1] = hardware_interface::JointStateHandle(("Tibia_FR"), &pos[1], &vel[1], &eff[1]);
-        joint_state_interface_.registerHandle(jsHandle[1]);
-
-        jpHandle[1] = hardware_interface::JointHandle(joint_state_interface_.getHandle(("Tibia_FR")), &cmd[1]);
-        position_joint_interface_.registerHandle(jpHandle[1]);
+    jpHandle[1] = hardware_interface::JointHandle(joint_state_interface_.getHandle(("Tibia_FR")), &cmd[1]);
+    position_joint_interface_.registerHandle(jpHandle[1]);
 
 
 

@@ -1,0 +1,15 @@
+ <robot name="test_robot">
+   <link name="link1" />
+   <link name="link2" />
+   <link name="link3" />
+ 
+   <joint name="Femur_FR" type="continuous">
+     <parent link="link1"/>
+     <child link="link2"/>
+   </joint>
+ 
+   <joint name="Tibia_FR" type="continuous">
+     <parent link="link1"/>
+     <child link="link3"/>
+   </joint>
+ </robot>
