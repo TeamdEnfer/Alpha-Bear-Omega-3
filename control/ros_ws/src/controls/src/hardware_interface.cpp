@@ -72,8 +72,9 @@ void Bear::update(const ros::TimerEvent& e) {
 
 void Bear::read(){
 
-
-
+    //pos[0] = 69;
+    //pos[1] = 420;
+    
   //from robot.
   // and fill JointStateHandle variables joint_position_[i], joint_velocity_[i] and joint_effort_[i]
 
@@ -95,7 +96,7 @@ void Bear::fetchFeedback(const std_msgs::Float64MultiArray& feedback_message)
 
 void Bear::write(ros::Duration elapsed_time) {
 
-    //On prend les messages d ecommande du controller, et on les mets dans un float64multiplearray, puis on les publish
+    //On prend les messages de commande du controller, et on les mets dans un float64multiplearray, puis on les publish
 
     messageCommand.data.clear();
     for(int i = 0 ; i < Nb_Of_Joints ; i++)

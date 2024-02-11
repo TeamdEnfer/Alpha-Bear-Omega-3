@@ -1,10 +1,10 @@
-Bear:
+Alpha_Bear:
   joints_update:
     type: joint_state_controller/JointStateController
     publish_rate: 50
 
   front_right_leg_controller:
-    type: "position_controllers/JointTrajectoryController"
+    type: position_controllers/JointTrajectoryController
     joints:
       - Femur_FR
       - Tibia_FR
