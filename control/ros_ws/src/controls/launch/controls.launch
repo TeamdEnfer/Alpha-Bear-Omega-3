@@ -6,7 +6,7 @@
 
   <node name="Hardware_Interface" pkg="controls" type="hardware_interface" output="screen"/>
 
-  <node name="TrajectoryInterface" pkg="controls" type="demo_trajectory.py"/>
+  <node name="TrajectoryInterface" pkg="controls" type="trajectory_interface.py"/>
     
   <!--Load the controllers-->
   <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen"
