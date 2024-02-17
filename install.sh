@@ -11,16 +11,18 @@ do
 		echo "installing git_submodules"
 		git submodule init
 		git submodule update
-		cd ./control/ros_ws/src/champ
+		pushd ./control/ros_ws/src/champ
 		git submodule init
-		git submodule update;;&
+		git submodule update
+		popd;;&
 	
 	all | webots)  
 		
 		echo "installing webots"
 		pushd ~/Downloads/
-		curl "https://github.com/cyberbotics/webots/releases/download/R2023b/webots_2023b_amd64.deb"
-		sudo apt install ./webots_2023b_amd64.deb ros-noetic-webots-ros -y
+		wget https://github.com/cyberbotics/webots/releases/download/R2023b/webots_2023b_amd64.deb
+		sudo apt install ./webots_2023b_amd64.deb -y
+		sudo apt install ros-noetic-webots-ros -y
 		rm -Rf ./webots_2023b_amd64.deb
 		popd;;&
 
