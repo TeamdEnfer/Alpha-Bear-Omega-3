@@ -2,7 +2,7 @@
 
 
 echo "Choose what to install"
-select mode in all git_submodules webots champ build;
+select mode in all git_submodules webots champ build source_ros_ws;
 do
 	case $mode in
 
@@ -42,6 +42,13 @@ do
 		echo "building the ros packages"
 		pushd control/ros_ws
 		catkin_make
+		popd;;&
+
+	all | source_ros_ws)
+	
+		echo "sourcing the ros workspace"
+		pushd control/ros_ws
+		source devel/setup.bash
 		popd;;&
 		
 	
