@@ -1,8 +1,8 @@
 left_front:
-  - RL_shoulder_servo
-  - RL_femur_servo
-  - RL_tibia_servo
-  - RL_tibia_RL_foot_ball_joint
+  - FL_shoulder_servo
+  - FL_femur_servo
+  - FL_tibia_servo
+  - FL_tibia_FL_foot_ball_joint
 
 right_front:
   - FR_shoulder_servo

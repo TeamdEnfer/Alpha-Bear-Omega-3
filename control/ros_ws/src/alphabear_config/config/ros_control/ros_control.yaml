@@ -6,9 +6,9 @@
   joint_group_position_controller:
       type: effort_controllers/JointTrajectoryController
       joints:
-          - RL_shoulder_servo
-          - RL_femur_servo
-          - RL_tibia_servo
+          - FL_shoulder_servo
+          - FL_femur_servo
+          - FL_tibia_servo
           - FR_shoulder_servo
           - FR_femur_servo
           - FR_tibia_servo
@@ -20,9 +20,9 @@
           - RR_tibia_servo
 
       gains:
-        RL_shoulder_servo : {p: 180, d: 0.9, i: 20}
-        RL_femur_servo : {p: 180, d: 0.9, i: 20}
-        RL_tibia_servo : {p: 180, d: 0.9, i: 20}
+        FL_shoulder_servo : {p: 180, d: 0.9, i: 20}
+        FL_femur_servo : {p: 180, d: 0.9, i: 20}
+        FL_tibia_servo : {p: 180, d: 0.9, i: 20}
         FR_shoulder_servo : {p: 180, d: 0.9, i: 20}
         FR_femur_servo : {p: 180, d: 0.9, i: 20}
         FR_tibia_servo : {p: 180, d: 0.9, i: 20}

@@ -1,9 +1,9 @@
 base: base_link
 left_front:
-  - RL_shoulder
-  - RL_femur
-  - RL_tibia
-  - RL_foot_ball
+  - FL_shoulder
+  - FL_femur
+  - FL_tibia
+  - FL_foot_ball
 
 right_front:
   - FR_shoulder

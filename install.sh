@@ -14,6 +14,9 @@ do
 		pushd ./control/ros_ws/src/champ
 		git submodule init
 		git submodule update
+		popd
+		pushd ./control/ros_ws/src/champ_setup_assistant
+		git checkout ubuntu2004python3
 		popd;;&
 	
 	all | webots)  
