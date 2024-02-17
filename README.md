@@ -2,12 +2,12 @@
 Λ𝛃34ℝΩπ (Alpha Bear Omega-3)🐻
 
 
-#installation:
-git submodules init
-git submodules update --recursive
+#for installation use:
+git clone --recursive https://github.com/TeamdEnfer/Alpha-Bear-Omega-3.git
+cd Alpha-Bear-Omega-3
+./install.sh
+#you will then have to choose what you want to install (use all option is recommended for first install)
 
-#go into the champ package(./control/ros_ws/src/champ):
-git submodules init
-git submodules update
 
-#then you can catkin_make in the ros_ws directory
+
+#Each time you modify code in the ros package you can catkin_make in the ros_ws directory to update the executables
