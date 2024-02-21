@@ -27,6 +27,9 @@ do
 		sudo apt install ./webots_2023b_amd64.deb -y
 		sudo apt install ros-noetic-webots-ros -y
 		rm -Rf ./webots_2023b_amd64.deb
+		popd
+		pushd ~
+		echo "export WEBOTS_HOME=/usr/local/webots">>.bashrc
 		popd;;&
 
 	all | champ)
