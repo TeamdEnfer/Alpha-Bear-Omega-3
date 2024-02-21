@@ -169,6 +169,10 @@ include_directories(
    scripts/sim_leg_kine.py
    DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 
+ catkin_install_python(PROGRAMS
+   scripts/HWIFace.py
+   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
+
  install(DIRECTORY launch
          DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
 

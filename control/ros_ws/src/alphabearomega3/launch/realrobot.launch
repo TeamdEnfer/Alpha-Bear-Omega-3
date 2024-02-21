@@ -7,6 +7,11 @@
       <param name="port" value="/dev/ttyACM0"/>
       <param name="baud" value="57600"/>
    </node>
-  <node name="leg_kine" pkg="alphabearomega3" type="leg_kine.py"  required="$(arg auto_close)" output="screen"/>
+
+   <node pkg="alphabearomega3" type="HWIFace.py" name="sigma_words"/>
+
+
+  <include file="$(find alphabear_config)/launch/bringup.launch">
+    </include>
 
 </launch>
