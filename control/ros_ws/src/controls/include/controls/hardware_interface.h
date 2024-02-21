@@ -12,7 +12,7 @@
 #include <string.h>
 
 
-#define Nb_Of_Joints 2
+#define Nb_Of_Joints 12
 
 class Bear : public hardware_interface::RobotHW 
 {

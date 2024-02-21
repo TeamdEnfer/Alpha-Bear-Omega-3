@@ -2,7 +2,7 @@
     
   <rosparam file="$(find controls)/config/trajectory_controller.yaml" command="load"/>
   <rosparam file="$(find controls)/config/joint_limits.yaml" command="load"/>
-  <param name="robot_description" command="cat $(find controls)/config/dawg_leg.urdf"/>
+  <param name="robot_description" command="cat $(find controls)/config/Robot.urdf"/>
 
   <node name="Hardware_Interface" pkg="controls" type="hardware_interface" output="screen"/>
 
@@ -12,7 +12,7 @@
   <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen"
          args="
             /Alpha_Bear/joints_update
-            /Alpha_Bear/front_right_leg_controller
+            /Alpha_Bear/leg_controller
         "/> 
 
 
