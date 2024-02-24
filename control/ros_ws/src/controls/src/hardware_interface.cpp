@@ -1,6 +1,8 @@
 #include <controls/hardware_interface.h>
 
-
+#define PI 3.141592653
+#define RAD2DEG 180/PI
+#define DEG2RAD PI/180
 
 Bear::Bear(ros::NodeHandle& nh) : nh_(nh) {
 
@@ -117,7 +119,7 @@ void Bear::init() {
     //registerInterface(&positionJointSaturationInterface);    
 
     ros::Subscriber sub = nh_.subscribe("Feedback", 10 ,&Bear::fetchFeedback, this);// <std_msgs::Float64MultiArray>
-    
+    ros::Subscriber Arduino_joint_position_subsriber = nh_.subscribe("feedback", <std_msgs::Float64MultiArray>, 12, &Bear::read, this);
 }
 
 
@@ -132,13 +134,12 @@ void Bear::update(const ros::TimerEvent& e) {
 
 
 
-void Bear::read(){
+void Bear::read(std_msgs::Float64MultiArray Arduino_joint_position_topic){
+    // Lecture des messages de commandes du controleur
 
-    //pos[0] = 69;
-    //pos[1] = 420;
-    
-  //from robot.
-  // and fill JointStateHandle variables joint_position_[i], joint_velocity_[i] and joint_effort_[i]
+    for (int i = 0; i < Nb_Of_Joints; i++) {
+        joint_position[i] = Arduino_joint_position_topic.data[i]*DEG2RAD;
+    }
 
 }
 
@@ -163,7 +164,7 @@ void Bear::write(ros::Duration elapsed_time) {
     messageCommand.data.clear();
     for(int i = 0 ; i < Nb_Of_Joints ; i++)
     {
-        messageCommand.data.push_back(cmd[i]);
+        messageCommand.data.push_back(cmd[i]*RAD2DEG);
     }
 
     commandPublisher.publish(messageCommand);
