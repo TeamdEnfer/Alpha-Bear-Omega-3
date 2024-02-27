@@ -12,7 +12,7 @@ from std_msgs.msg import Float64MultiArray
 from control_msgs.msg import JointTrajectoryAction , JointTrajectoryGoal , FollowJointTrajectoryAction , FollowJointTrajectoryGoal
 
 cmd_msg = Float64MultiArray(data=[0]*12)
-
+pi = 3.141592
 def JTM_to_F64(Data):
 
     cmd_msg.data = Data.points[0].positions
@@ -20,6 +20,7 @@ def JTM_to_F64(Data):
 
 
 def trajectory_goal(TrajectoryAction , angles = cmd_msg): #les angles sont en radians
+#def trajectory_goal(TrajectoryAction , angles): #Pour hard code un trajectoire de test
 
     #On utilise des JointTrajectory points transformer les angles du topic en points de trajectoire
     points = JointTrajectoryPoint()
@@ -51,4 +52,11 @@ if __name__ == '__main__':
 
     #rospy.Subscriber('joint_group_position_controller/command' , JointTrajectory , JTM_to_F64 , TrajectoryAction , queue_size=10)
     rospy.Subscriber('joint_group_position_controller/command' , JointTrajectory , JTM_to_F64 , queue_size=10)
+
+    #while(True):
+    #    trajectory_goal(TrajectoryAction , [pi/2,pi,pi,pi/2,0,0,pi/2,pi/pi,pi/2,0,0])
+    #    time.sleep(3)
+        #trajectory_goal(TrajectoryAction, [1,1])
+        #time.sleep(3)
+
     rospy.spin()
