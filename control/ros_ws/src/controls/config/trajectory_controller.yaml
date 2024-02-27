@@ -1,7 +1,7 @@
 Alpha_Bear:
   joints_update:
     type: joint_state_controller/JointStateController
-    publish_rate: 100
+    publish_rate: 10
 
   leg_controller:
     type: position_controllers/JointTrajectoryController

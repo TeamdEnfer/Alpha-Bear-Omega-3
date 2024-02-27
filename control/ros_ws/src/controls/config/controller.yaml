@@ -3,7 +3,7 @@ Bear:
     # Publish all joint states
     joints_update:
       type: joint_state_controller/JointStateController
-      publish_rate: 50
+      publish_rate: 10
     
     Femur_FR_PositionController:                                               # Name of the controller
       type: position_controllers/JointPositionController         # Since JointA uses effort interface this controller type is  used      

@@ -1,8 +1,10 @@
 #include <controls/hardware_interface.h>
 
+
 #define PI 3.141592653
 #define RAD2DEG 180/PI
 #define DEG2RAD PI/180
+
 
 Bear::Bear(ros::NodeHandle& nh) : nh_(nh) {
 
@@ -15,7 +17,7 @@ Bear::Bear(ros::NodeHandle& nh) : nh_(nh) {
     controller_manager_.reset(new controller_manager::ControllerManager(this, nh_));
     
 //Set the frequency of the control loop.
-    loop_hz_= 200;
+    loop_hz_= 10;
     ros::Duration update_freq = ros::Duration(1.0/loop_hz_);
     
 //Run the control loop
@@ -24,7 +26,9 @@ Bear::Bear(ros::NodeHandle& nh) : nh_(nh) {
 //Inform master that the node will be publishing to topic /command with queue size 10
     commandPublisher = nh_.advertise<std_msgs::Float64MultiArray>("Command", 10);
 
-    //ros::Subscriber<std_msgs::Float64MultiArray> sub("Feedback" , read);
+//On subscribe au ArduiNode
+    //Arduino_joint_position_subsriber = nh_.subscribe("Feedback" , 10 , &Bear::read , this);
+
 }
 
 
@@ -118,8 +122,8 @@ void Bear::init() {
     registerInterface(&position_joint_interface_);
     //registerInterface(&positionJointSaturationInterface);    
 
-    ros::Subscriber sub = nh_.subscribe("Feedback", 10 ,&Bear::fetchFeedback, this);// <std_msgs::Float64MultiArray>
-    ros::Subscriber Arduino_joint_position_subsriber = nh_.subscribe("feedback", <std_msgs::Float64MultiArray>, 12, &Bear::read, this);
+    //ros::Subscriber sub = nh_.subscribe("Feedback", 10 ,&Bear::fetchFeedback, this);// <std_msgs::Float64MultiArray>
+    
 }
 
 
@@ -127,18 +131,19 @@ void Bear::init() {
 //This is the control loop
 void Bear::update(const ros::TimerEvent& e) {
     elapsed_time_ = ros::Duration(e.current_real - e.last_real);
-    read();
+    //read();
     controller_manager_->update(ros::Time::now(), elapsed_time_);
     write(elapsed_time_);
 }
 
 
 
-void Bear::read(std_msgs::Float64MultiArray Arduino_joint_position_topic){
+void Bear::read(const std_msgs::Float64MultiArray& Arduino_joint_position_topic){
     // Lecture des messages de commandes du controleur
 
+
     for (int i = 0; i < Nb_Of_Joints; i++) {
-        joint_position[i] = Arduino_joint_position_topic.data[i]*DEG2RAD;
+        pos[i] = Arduino_joint_position_topic.data[i]*DEG2RAD;
     }
 
 }

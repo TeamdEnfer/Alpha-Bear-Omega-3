@@ -21,7 +21,7 @@ class Bear : public hardware_interface::RobotHW
         ~Bear();
         void init();
         void update(const ros::TimerEvent& e);
-        void read();
+        void read(const std_msgs::Float64MultiArray& Arduino_joint_position_subsriber);
          void fetchFeedback(const std_msgs::Float64MultiArray& feedback_message);
         void write(ros::Duration elapsed_time);
         
@@ -45,7 +45,7 @@ class Bear : public hardware_interface::RobotHW
         double cmd[Nb_Of_Joints];
         double joint_position_command_;
         
-        ros::Subscriber Feedback;
+        ros::Subscriber Arduino_joint_position_subsriber;
         ros::Publisher commandPublisher;
         std_msgs::Float64MultiArray messageCommand;
 
