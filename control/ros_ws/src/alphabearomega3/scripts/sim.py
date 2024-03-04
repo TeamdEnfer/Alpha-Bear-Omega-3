@@ -2,15 +2,16 @@ import rospy
 import os
 from controller import Robot
 import math
-from trajectory_msgs.msg import JointTrajectory
+from std_msgs.msg import Float64MultiArray
 from threading import Lock
 mutex=Lock()
 
        
 def twistCallback(BiData):    
         with mutex:
-            for i in range(0,len(BiData.points[0].positions)):
-                Motor_List[motor_IDs[i]].setPosition(BiData.points[0].positions[motor_IDs[i]])
+            for i in range(len(BiData.data)):
+                print(round(BiData.data[motor_IDs[i]]/360*(2*math.pi),4))
+                Motor_List[motor_IDs[i]].setPosition(round(BiData.data[motor_IDs[i]]/360*(2*math.pi),4))
                 Motor_List[motor_IDs[i]].setVelocity(10)
                 #print()
         
@@ -47,8 +48,8 @@ for i,motor in enumerate(Motor_List):
 
 
 rospy.init_node('sim', anonymous=True)
-sub= rospy.Subscriber('joint_group_position_controller/command',JointTrajectory,twistCallback)
-
+sub= rospy.Subscriber('/Command',Float64MultiArray,twistCallback)
+pup= rospy.Publisher('/Feedback',Float64MultiArray,queue_size=10)
         
 
 while robot.step(timeStep) != -1:
