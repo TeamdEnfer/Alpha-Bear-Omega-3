@@ -27,7 +27,7 @@ Bear::Bear(ros::NodeHandle& nh) : nh_(nh) {
     commandPublisher = nh_.advertise<std_msgs::Float64MultiArray>("Command", 10);
 
 //On subscribe au ArduiNode
-    /rduino_joint_position_subsriber = nh_.subscribe("Feedback" , 10 , &Bear::read , this);
+    Arduino_joint_position_subsriber = nh_.subscribe("Feedback" , 10 , &Bear::read , this);
 
 }
 
