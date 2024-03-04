@@ -62,9 +62,8 @@ std_msgs::Float64MultiArray data_imu;
 
 void servo_cb(const std_msgs::UInt16 &cmd_msg);
 void TCA9548A(uint8_t bus);
-void readXYangles(std_msgs::Float64MultiArray* data_imu);
-float getXangles(uint8_t imu_num, MPU6050 imu_type);
-float getYangles(uint8_t imu_num, MPU6050 imu_type);
+void readXangles(std_msgs::Float64MultiArray* data_imu);
+float getXangle(uint8_t imu_num, MPU6050 imu_type);
 void imu_init();
 void servo_init();
 

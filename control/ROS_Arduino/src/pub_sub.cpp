@@ -21,7 +21,6 @@ void servo_cmd( const std_msgs::Float64MultiArray &cmd_msg){
 void TCA9548A(uint8_t bus){
   Wire.beginTransmission(0x70);  // TCA9548A address
   Wire.write(1 << bus);          // send byte to select bus
-  Wire.endTransmission();
 }
 
 ros::Publisher feedback("Feedback", &data_imu);
@@ -41,37 +40,37 @@ void setup(){
 
 }
 
-void readXYangles(std_msgs::Float64MultiArray* data_imu){
-    float data_FEM_AV_D;
-    float data_TIB_AV_D = 0;
-    float data_FEM_AV_G;
-    float data_TIB_AV_G;
-    float data_FEM_AR_D;
-    float data_TIB_AR_D;
-    float data_FEM_AR_G;
-    float data_TIB_AR_G;
+void readXangles(std_msgs::Float64MultiArray* data_imu){
+    //double data_FEM_AV_D = 0;
+    //double data_TIB_AV_D = 0;
+    //double data_FEM_AV_G;
+    //double data_TIB_AV_G;
+    //double data_FEM_AR_D = 0;
+    //double data_TIB_AR_D = 0;
+    //double data_FEM_AR_G = 0;
+    //double data_TIB_AR_G = 0;
 
-    data_FEM_AV_D = getXangles(IMU_FEM_AV_D, mpu_FEM_AV_D);
-   // data_TIB_AV_D = getXangles(IMU_TIB_AV_D, mpu_TIB_AV_D);  //IMU manquant
-    data_FEM_AV_G = getXangles(IMU_FEM_AV_G, mpu_FEM_AV_G);
-    data_TIB_AV_G = getXangles(IMU_TIB_AV_G, mpu_TIB_AV_G);
-    data_FEM_AR_D = getXangles(IMU_FEM_AR_D, mpu_FEM_AR_D);
-    data_TIB_AR_D = getXangles(IMU_TIB_AR_D, mpu_TIB_AR_D);
-    data_FEM_AR_G = getXangles(IMU_FEM_AR_G, mpu_FEM_AR_G);
-    data_TIB_AR_G = getXangles(IMU_TIB_AR_G, mpu_TIB_AR_G);
+    //data_FEM_AV_D = getXangle(IMU_FEM_AV_D, mpu_FEM_AV_D);
+    //data_TIB_AV_D = getXangle(IMU_TIB_AV_D, mpu_TIB_AV_D);  //IMU manquant
+    //data_FEM_AV_G = getXangle(IMU_FEM_AV_G, mpu_FEM_AV_G);
+    //data_TIB_AV_G = getXangle(IMU_TIB_AV_G, mpu_TIB_AV_G);
+    //data_TIB_AR_D = getXangle(IMU_TIB_AR_D, mpu_TIB_AR_D);
+    //data_FEM_AR_G = getXangle(IMU_FEM_AR_G, mpu_FEM_AR_G);
+    //data_TIB_AR_G = getXangle(IMU_TIB_AR_G, mpu_TIB_AR_G);
+    //data_FEM_AR_D = getXangle(IMU_FEM_AR_D, mpu_FEM_AR_D);
 
-    data_imu->data[0] = data_FEM_AV_D;
-    data_imu->data[1] = data_TIB_AV_D;
-    data_imu->data[2] = data_FEM_AV_G;
-    data_imu->data[3] = data_TIB_AV_G;
-    data_imu->data[4] = data_FEM_AR_D;
-    data_imu->data[5] = data_TIB_AR_D;
-    data_imu->data[6] = data_FEM_AR_G;
-    data_imu->data[7] = data_TIB_AR_G;
+    //data_imu->data[0] = data_FEM_AV_D;
+    //data_imu->data[1] = data_TIB_AV_D;
+    //data_imu->data[2] = data_FEM_AV_G;
+    //data_imu->data[3] = data_TIB_AV_G;
+    //data_imu->data[4] = data_FEM_AR_D;
+    //data_imu->data[5] = data_TIB_AR_D;
+    //data_imu->data[6] = data_FEM_AR_G;
+    //data_imu->data[7] = data_TIB_AR_G;
 }
 
 void loop(){
-  readXYangles(&data_imu);
+  readXangles(&data_imu);
 
   feedback.publish(&data_imu);
 
@@ -82,7 +81,7 @@ void loop(){
   
 
   nh.spinOnce();
-  delay(10);
+  delay(250);
 }
 
 void imu_init(){
@@ -154,18 +153,10 @@ void servo_init(){
   ABD_AR_G.attach(MOT_ABD_AR_G);
 }
 
-float getXangles(uint8_t imu_num, MPU6050 imu_type){
-  double data;
+float getXangle(uint8_t imu_num, MPU6050 imu_type){
   TCA9548A(imu_num);
   imu_type.update();
-  data = imu_type.getAngleX();
-  return data;
-}
-
-float getYangles(uint8_t imu_num, MPU6050 imu_type){
-  float data;
-  TCA9548A(imu_num);
-  imu_type.update();
-  data = imu_type.getAngleY();
+  float data = imu_type.getAngleX();
+  Wire.endTransmission();
   return data;
 }
