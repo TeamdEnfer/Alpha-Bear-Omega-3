@@ -3,18 +3,19 @@
 ros::NodeHandle  nh;
 
 void servo_cmd( const std_msgs::Float64MultiArray &cmd_msg){
-    FEM_AV_D.write(cmd_msg.data[0]*(180/PI));
-    TIB_AV_D.write(cmd_msg.data[1]*(180/PI));
-    //ABD_AV_D.write(cmd_msg.data[2]*(180/PI));
-    FEM_AV_G.write(cmd_msg.data[3]*(180/PI));
-    TIB_AV_G.write(cmd_msg.data[4]*(180/PI));
-    //ABD_AV_G.write(cmd_msg.data[5]*(180/PI));
-    FEM_AR_D.write(cmd_msg.data[6]*(180/PI));
-    TIB_AR_D.write(cmd_msg.data[7]*(180/PI));
-    //ABD_AR_D.write(cmd_msg.data[8]*(180/PI));
-    FEM_AR_G.write(cmd_msg.data[9]*(180/PI));
-    TIB_AR_G.write(cmd_msg.data[10]*(180/PI));
-    //ABD_AR_G.write(cmd_msg.data[11]*(180/PI));
+
+
+    FEM_AV_G.writeMicroseconds(cmd_msg.data[1]*2000/270+500);
+    TIB_AV_G.writeMicroseconds(cmd_msg.data[2]*2000/270+500);
+    ABD_AV_D.writeMicroseconds(cmd_msg.data[3]*2000/270+500);
+    FEM_AV_D.writeMicroseconds(cmd_msg.data[4]*2000/270+500);
+    TIB_AV_D.writeMicroseconds(cmd_msg.data[5]*2000/270+500);
+    ABD_AR_G.writeMicroseconds(cmd_msg.data[6]*2000/270+500);
+    FEM_AR_G.writeMicroseconds(cmd_msg.data[7]*2000/270+500);
+    TIB_AR_G.writeMicroseconds(cmd_msg.data[8]*2000/270+500);
+    ABD_AR_D.writeMicroseconds(cmd_msg.data[9]*2000/270+500);
+    FEM_AR_D.writeMicroseconds(cmd_msg.data[10]*2000/270+500);
+    TIB_AR_D.writeMicroseconds(cmd_msg.data[11]*2000/270+500);
 }
 
 void TCA9548A(uint8_t bus){
@@ -23,10 +24,11 @@ void TCA9548A(uint8_t bus){
   Wire.endTransmission();
 }
 
-ros::Publisher feedback("feedback", &data_imu);
-ros::Subscriber<std_msgs::Float64MultiArray> command("command", servo_cmd);
+ros::Publisher feedback("Feedback", &data_imu);
+ros::Subscriber<std_msgs::Float64MultiArray> command("Command", servo_cmd);
 
 void setup(){ 
+
   nh.initNode();
 
   Serial.begin(115200);
@@ -41,7 +43,7 @@ void setup(){
 
 void readXYangles(std_msgs::Float64MultiArray* data_imu){
     float data_FEM_AV_D;
-    float data_TIB_AV_D;
+    float data_TIB_AV_D = 0;
     float data_FEM_AV_G;
     float data_TIB_AV_G;
     float data_FEM_AR_D;
@@ -50,7 +52,7 @@ void readXYangles(std_msgs::Float64MultiArray* data_imu){
     float data_TIB_AR_G;
 
     data_FEM_AV_D = getXangles(IMU_FEM_AV_D, mpu_FEM_AV_D);
-    data_TIB_AV_D = getXangles(IMU_TIB_AV_D, mpu_TIB_AV_D);
+   // data_TIB_AV_D = getXangles(IMU_TIB_AV_D, mpu_TIB_AV_D);  //IMU manquant
     data_FEM_AV_G = getXangles(IMU_FEM_AV_G, mpu_FEM_AV_G);
     data_TIB_AV_G = getXangles(IMU_TIB_AV_G, mpu_TIB_AV_G);
     data_FEM_AR_D = getXangles(IMU_FEM_AR_D, mpu_FEM_AR_D);
@@ -70,12 +72,17 @@ void readXYangles(std_msgs::Float64MultiArray* data_imu){
 
 void loop(){
   readXYangles(&data_imu);
+
   feedback.publish(&data_imu);
+
+  
   free(data_imu.data);
 
   data_imu.data = (float*)malloc(sizeof(float) * data_imu.data_length);
+  
 
   nh.spinOnce();
+  delay(10);
 }
 
 void imu_init(){
@@ -83,34 +90,50 @@ void imu_init(){
   TCA9548A(IMU_FEM_AV_D);  
   Wire.begin();
   mpu_FEM_AV_D.begin();
+  mpu_FEM_AV_D.calcGyroOffsets();
+  delay(100);
 
   TCA9548A(IMU_TIB_AV_D);  
   Wire.begin();
-  mpu_TIB_AV_D.begin();
+  //mpu_TIB_AV_D.begin();
+  //mpu_TIB_AV_D.calcGyroOffsets();
+  //delay(100);
 
   TCA9548A(IMU_FEM_AV_G);  
   Wire.begin();
   mpu_FEM_AV_G.begin();
+  mpu_FEM_AV_G.calcGyroOffsets();
+  delay(100);
 
   TCA9548A(IMU_TIB_AV_G);  
   Wire.begin();
   mpu_TIB_AV_G.begin();
+  mpu_TIB_AV_G.calcGyroOffsets();
+  delay(100);
 
   TCA9548A(IMU_FEM_AR_D);  
   Wire.begin();
   mpu_FEM_AR_D.begin();
+  mpu_FEM_AR_D.calcGyroOffsets();
+  delay(100);
 
   TCA9548A(IMU_TIB_AR_D);  
   Wire.begin();
   mpu_TIB_AR_D.begin();
+  mpu_TIB_AR_D.calcGyroOffsets();
+  delay(100);
 
   TCA9548A(IMU_FEM_AR_G);  
   Wire.begin();
   mpu_FEM_AR_G.begin();
+  mpu_FEM_AR_G.calcGyroOffsets();
+  delay(100);
 
   TCA9548A(IMU_TIB_AR_G);  
   Wire.begin();
   mpu_TIB_AR_G.begin();
+  mpu_TIB_AR_G.calcGyroOffsets();
+  delay(100);
 
   data_imu.data_length = DATA_IMU_LENGTH;
   data_imu.data = (float*)malloc(sizeof(float) * data_imu.data_length);
@@ -119,21 +142,22 @@ void imu_init(){
 void servo_init(){
   FEM_AV_D.attach(MOT_FEM_AV_D);
   TIB_AV_D.attach(MOT_TIB_AV_D);
-  //ABD_AV_D.attach(MOT_ABD_AV_D);
+  ABD_AV_D.attach(MOT_ABD_AV_D);
   FEM_AV_G.attach(MOT_FEM_AV_G);
   TIB_AV_G.attach(MOT_TIB_AV_G);
-  //ABD_AV_G.attach(MOT_ABD_AV_G);
+  ABD_AV_G.attach(MOT_ABD_AV_G);
   FEM_AR_D.attach(MOT_FEM_AR_D);
   TIB_AR_D.attach(MOT_TIB_AR_D);
-  //ABD_AR_D.attach(MOT_ABD_AR_D);
+  ABD_AR_D.attach(MOT_ABD_AR_D);
   FEM_AR_G.attach(MOT_FEM_AR_G);
   TIB_AR_G.attach(MOT_TIB_AR_G);
-  //ABD_AR_G.attach(MOT_ABD_AR_G);
+  ABD_AR_G.attach(MOT_ABD_AR_G);
 }
 
 float getXangles(uint8_t imu_num, MPU6050 imu_type){
-  float data;
+  double data;
   TCA9548A(imu_num);
+  imu_type.update();
   data = imu_type.getAngleX();
   return data;
 }
@@ -141,6 +165,7 @@ float getXangles(uint8_t imu_num, MPU6050 imu_type){
 float getYangles(uint8_t imu_num, MPU6050 imu_type){
   float data;
   TCA9548A(imu_num);
+  imu_type.update();
   data = imu_type.getAngleY();
   return data;
 }
