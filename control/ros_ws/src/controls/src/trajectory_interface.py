@@ -24,14 +24,17 @@ def trajectory_goal(TrajectoryAction , angles): #Pour hard code un trajectoire d
 
     #On utilise des JointTrajectory points transformer les angles du topic en points de trajectoire
     points = JointTrajectoryPoint()
-    points.positions = angles
+    points.positions = angles.data
     #On done un temps voulu pour l'execution
     points.time_from_start = rospy.Duration(0.1)
 
     #On creer un goal a suivre qui va dicter la commande
     goal = FollowJointTrajectoryGoal()
     #On assigne les joints aux points de la trajectoire
-    goal.trajectory.joint_names = ['FL_shoulder_servo','FL_femur_servo','FL_tibia_servo','FR_shoulder_servo','FR_femur_servo','FR_tibia_servo','RL_shoulder_servo','RL_femur_servo','RL_tibia_servo','RR_shoulder_servo','RR_femur_servo','RR_tibia_servo']
+    goal.trajectory.joint_names = ['FL_shoulder_servo','FL_femur_servo','FL_tibia_servo',
+                                   'FR_shoulder_servo','FR_femur_servo','FR_tibia_servo',
+                                   'RL_shoulder_servo','RL_femur_servo','RL_tibia_servo',
+                                   'RR_shoulder_servo','RR_femur_servo','RR_tibia_servo']
     #On met les points dans la trajectoire goal
     goal.trajectory.points.append(points)
 
@@ -71,23 +74,6 @@ if __name__ == '__main__':
     TrajectoryAction.wait_for_server()
 
     #rospy.Subscriber('joint_group_position_controller/command' , JointTrajectory , JTM_to_F64 , TrajectoryAction , queue_size=10)
-    #rospy.Subscriber('joint_group_position_controller/command' , JointTrajectory , JTM_to_F64 , queue_size=10)
-
-    while(True):
-        #trajectory_goal_hardcode(TrajectoryAction , [0,0,0,0,0,0,0,0,0,0,0,0])
-        #time.sleep(3)
-        #Zero machine
-        trajectory_goal_hardcode(TrajectoryAction , [pi/2,pi,pi,
-                                                     3*pi/4,0,0,
-                                                     0,pi,pi,
-                                                     0,0,0]) 
-        time.sleep(3)
-        trajectory_goal_hardcode(TrajectoryAction , [pi/2,pi,pi-pi/2,
-                                                     pi/2,0,pi/2,
-                                                     pi/2 - 0.15,pi,pi-pi/2,
-                                                     pi/2,0,pi/2]) 
-        time.sleep(3)
-        #trajectory_goal(TrajectoryAction, [1,1])
-        #time.sleep(3)
+    rospy.Subscriber('joint_group_position_controller/command' , JointTrajectory , JTM_to_F64 , queue_size=10)
 
     rospy.spin()
