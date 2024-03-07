@@ -14,8 +14,10 @@ WorldInfo {
   ERP 0.8
 }
 Viewpoint {
-  orientation -0.2956904745727447 -0.18245848662786346 0.9376972026749439 3.467254242411797
-  position 2.4909141215297637 0.5329405288574924 1.8396160029895965
+  orientation -0.19610013381075134 0.22200335242073702 0.9551226355988846 1.492724224717996
+  position -0.18955133549955472 -2.034494798127468 1.2245971775293591
+  follow "alpha_bear:Body"
+  followType "Pan and Tilt Shot"
 }
 TexturedBackground {
 }
@@ -27,20 +29,31 @@ RectangleArena {
 Robot {
   translation 0 0 0.35
   children [
+    Gyro {
+      name "alpha_gyro"
+      boundingObject Box {
+        size 0.2 0.4 0.058
+      }
+      physics Physics {
+        mass 0.01
+      }
+    }
     DEF FR_shoulder HingeJoint {
       jointParameters HingeJointParameters {
         axis 0 1 0
         anchor 0.25 0.3 0
       }
       device [
+        PositionSensor {
+          name "FR_shoulder_feedback"
+        }
         RotationalMotor {
           name "FR_shoulder_servo"
           maxVelocity 50
-          maxTorque 3
         }
       ]
       endPoint Solid {
-        translation 0.25 0.3 0
+        translation 0.08 0.16 0
         rotation 0 1 0 0
         children [
           HingeJoint {
@@ -48,10 +61,12 @@ Robot {
               anchor 0.05 0 0
             }
             device [
+              PositionSensor {
+                name "FR_femur_feedback"
+              }
               RotationalMotor {
                 name "FR_femur_servo"
                 maxVelocity 50
-                maxTorque 3
               }
             ]
             endPoint Solid {
@@ -63,45 +78,61 @@ Robot {
                     anchor 0 0 -0.075
                   }
                   device [
+                    PositionSensor {
+                      name "FR_tibia_feedback"
+                    }
                     RotationalMotor {
                       name "FR_tibia_servo"
                       maxVelocity 50
-                      maxTorque 3
                     }
                   ]
                   endPoint Solid {
-                    translation 0 1.66018e-19 -0.16
+                    translation 0 1.66018e-19 -0.167
                     rotation 1 0 0 0
                     children [
                       Solid {
                         translation 0 0 -0.08
                         children [
-                          DEF Foot_ball Shape {
-                            appearance BlanketFabric {
-                            }
-                            geometry Sphere {
-                              radius 0.02
-                            }
+                          TouchSensor {
+                            children [
+                              DEF Foot_ball Shape {
+                                appearance BlanketFabric {
+                                }
+                                geometry Sphere {
+                                  radius 0.02
+                                }
+                              }
+                            ]
+                            name "FR_touch_sensor"
+                            boundingObject USE Foot_ball
                           }
                         ]
                         name "FR_foot_ball"
-                        boundingObject USE Foot_ball
+                        boundingObject DEF Foot_ball Shape {
+                          appearance BlanketFabric {
+                          }
+                          geometry Sphere {
+                            radius 0.02
+                          }
+                        }
                         physics Physics {
                           mass 0.001
+                          damping Damping {
+                          }
                         }
                       }
                       DEF foot Shape {
                         appearance VarnishedPine {
                         }
                         geometry Box {
-                          size 0.025 0.025 0.17064
+                          size 0.025 0.025 0.18369
                         }
                       }
                     ]
                     name "FR_tibia"
                     boundingObject USE foot
                     physics Physics {
-                      mass 0.1
+                      mass 0.001
                       centerOfMass [
                         0 0 0
                       ]
@@ -112,14 +143,14 @@ Robot {
                   appearance Pcb {
                   }
                   geometry Box {
-                    size 0.05 0.05 0.15
+                    size 0.03 0.03 0.15
                   }
                 }
               ]
               name "FR_femur"
               boundingObject USE femur
               physics Physics {
-                density 0.25
+                mass 0.01
               }
             }
           }
@@ -144,14 +175,16 @@ Robot {
         anchor -0.25 0.3 0
       }
       device [
+        PositionSensor {
+          name "FL_shoulder_feedback"
+        }
         RotationalMotor {
           name "FL_shoulder_servo"
           maxVelocity 50
-          maxTorque 3
         }
       ]
       endPoint Solid {
-        translation -0.25 0.3 0
+        translation -0.08 0.16 0
         rotation 0 1 0 0
         children [
           HingeJoint {
@@ -159,10 +192,12 @@ Robot {
               anchor -0.05 0 0
             }
             device [
+              PositionSensor {
+                name "FL_femur_feedback"
+              }
               RotationalMotor {
                 name "FL_femur_servo"
                 maxVelocity 50
-                maxTorque 3
               }
             ]
             endPoint Solid {
@@ -174,45 +209,55 @@ Robot {
                     anchor 0 0 -0.075
                   }
                   device [
+                    PositionSensor {
+                      name "FL_tibia_feedback"
+                    }
                     RotationalMotor {
                       name "FL_tibia_servo"
                       maxVelocity 50
-                      maxTorque 3
                     }
                   ]
                   endPoint Solid {
-                    translation 0 1.66018e-19 -0.16
+                    translation 0 1.66018e-19 -0.167
                     rotation 1 0 0 0
                     children [
                       Solid {
                         translation 0 0 -0.08
                         children [
-                          DEF Foot_ball Shape {
-                            appearance BlanketFabric {
-                            }
-                            geometry Sphere {
-                              radius 0.02
-                            }
+                          TouchSensor {
+                            children [
+                              DEF Foot_ball Shape {
+                                appearance BlanketFabric {
+                                }
+                                geometry Sphere {
+                                  radius 0.02
+                                }
+                              }
+                            ]
+                            name "FL_touch_sensor"
+                            boundingObject USE Foot_ball
                           }
                         ]
                         name "FL_foot_ball"
                         boundingObject USE Foot_ball
                         physics Physics {
                           mass 0.001
+                          damping Damping {
+                          }
                         }
                       }
                       DEF foot Shape {
                         appearance VarnishedPine {
                         }
                         geometry Box {
-                          size 0.025 0.025 0.17064
+                          size 0.025 0.025 0.18369
                         }
                       }
                     ]
                     name "FL_tibia"
                     boundingObject USE foot
                     physics Physics {
-                      mass 0.1
+                      mass 0.001
                       centerOfMass [
                         0 0 0
                       ]
@@ -223,14 +268,14 @@ Robot {
                   appearance Pcb {
                   }
                   geometry Box {
-                    size 0.05 0.05 0.15
+                    size 0.03 0.03 0.15
                   }
                 }
               ]
               name "FL_femur"
               boundingObject USE femur
               physics Physics {
-                mass 0.25
+                mass 0.01
               }
             }
           }
@@ -255,14 +300,16 @@ Robot {
         anchor 0.25 -0.3 0
       }
       device [
+        PositionSensor {
+          name "RR_shoulder_feedback"
+        }
         RotationalMotor {
           name "RR_shoulder_servo"
           maxVelocity 50
-          maxTorque 3
         }
       ]
       endPoint Solid {
-        translation 0.25 -0.3 0
+        translation 0.08 -0.16 0
         rotation 0 1 0 0
         children [
           HingeJoint {
@@ -270,10 +317,12 @@ Robot {
               anchor 0.05 0 0
             }
             device [
+              PositionSensor {
+                name "RR_femur_feedback"
+              }
               RotationalMotor {
                 name "RR_femur_servo"
                 maxVelocity 50
-                maxTorque 3
               }
             ]
             endPoint Solid {
@@ -285,45 +334,55 @@ Robot {
                     anchor 0 0 -0.075
                   }
                   device [
+                    PositionSensor {
+                      name "RR_tibia_feedback"
+                    }
                     RotationalMotor {
                       name "RR_tibia_servo"
                       maxVelocity 50
-                      maxTorque 3
                     }
                   ]
                   endPoint Solid {
-                    translation 0 1.66018e-19 -0.16
+                    translation 0 1.66018e-19 -0.167
                     rotation 1 0 0 0
                     children [
                       Solid {
                         translation 0 0 -0.08
                         children [
-                          DEF Foot_ball Shape {
-                            appearance BlanketFabric {
-                            }
-                            geometry Sphere {
-                              radius 0.02
-                            }
+                          TouchSensor {
+                            children [
+                              DEF Foot_ball Shape {
+                                appearance BlanketFabric {
+                                }
+                                geometry Sphere {
+                                  radius 0.02
+                                }
+                              }
+                            ]
+                            name "RR_touch_sensor"
+                            boundingObject USE Foot_ball
                           }
                         ]
                         name "RR_foot_ball"
                         boundingObject USE Foot_ball
                         physics Physics {
                           mass 0.001
+                          damping Damping {
+                          }
                         }
                       }
                       DEF foot Shape {
                         appearance VarnishedPine {
                         }
                         geometry Box {
-                          size 0.025 0.025 0.17064
+                          size 0.025 0.025 0.18369
                         }
                       }
                     ]
                     name "RR_tibia"
                     boundingObject USE foot
                     physics Physics {
-                      mass 0.1
+                      mass 0.001
                       centerOfMass [
                         0 0 0
                       ]
@@ -334,14 +393,14 @@ Robot {
                   appearance Pcb {
                   }
                   geometry Box {
-                    size 0.05 0.05 0.15
+                    size 0.03 0.03 0.15
                   }
                 }
               ]
               name "RR_femur"
               boundingObject USE femur
               physics Physics {
-                mass 0.25
+                mass 0.01
               }
             }
           }
@@ -366,14 +425,16 @@ Robot {
         anchor -0.25 -0.3 0
       }
       device [
+        PositionSensor {
+          name "RL_shoulder_feedback"
+        }
         RotationalMotor {
           name "RL_shoulder_servo"
           maxVelocity 50
-          maxTorque 3
         }
       ]
       endPoint Solid {
-        translation -0.25 -0.3 0
+        translation -0.08 -0.16 0
         rotation 0 1 0 0
         children [
           HingeJoint {
@@ -381,10 +442,12 @@ Robot {
               anchor -0.05 0 0
             }
             device [
+              PositionSensor {
+                name "RL_femur_feedback"
+              }
               RotationalMotor {
                 name "RL_femur_servo"
                 maxVelocity 50
-                maxTorque 3
               }
             ]
             endPoint Solid {
@@ -396,45 +459,55 @@ Robot {
                     anchor 0 0 -0.075
                   }
                   device [
+                    PositionSensor {
+                      name "RL_tibia_feedback"
+                    }
                     RotationalMotor {
                       name "RL_tibia_servo"
                       maxVelocity 50
-                      maxTorque 3
                     }
                   ]
                   endPoint Solid {
-                    translation 0 1.66018e-19 -0.16
+                    translation 0 1.66018e-19 -0.167
                     rotation 1 0 0 0
                     children [
                       Solid {
                         translation 0 0 -0.08
                         children [
-                          DEF Foot_ball Shape {
-                            appearance BlanketFabric {
-                            }
-                            geometry Sphere {
-                              radius 0.02
-                            }
+                          TouchSensor {
+                            children [
+                              DEF Foot_ball Shape {
+                                appearance BlanketFabric {
+                                }
+                                geometry Sphere {
+                                  radius 0.02
+                                }
+                              }
+                            ]
+                            name "RL_touch_sensor"
+                            boundingObject USE Foot_ball
                           }
                         ]
                         name "RL_foot_ball"
                         boundingObject USE Foot_ball
                         physics Physics {
                           mass 0.001
+                          damping Damping {
+                          }
                         }
                       }
                       DEF foot Shape {
                         appearance VarnishedPine {
                         }
                         geometry Box {
-                          size 0.025 0.025 0.17064
+                          size 0.025 0.025 0.18369
                         }
                       }
                     ]
                     name "RL_tibia"
                     boundingObject USE foot
                     physics Physics {
-                      mass 0.1
+                      mass 0.001
                       centerOfMass [
                         0 0 0
                       ]
@@ -445,14 +518,14 @@ Robot {
                   appearance Pcb {
                   }
                   geometry Box {
-                    size 0.05 0.05 0.15
+                    size 0.03 0.03 0.15
                   }
                 }
               ]
               name "RL_femur"
               boundingObject USE femur
               physics Physics {
-                mass 0.25
+                mass 0.01
               }
             }
           }
@@ -473,11 +546,20 @@ Robot {
     }
     DEF solid_body Solid {
       children [
+        Accelerometer {
+          name "alpha_accel"
+          boundingObject Box {
+            size 0.2 0.4 0.058
+          }
+          physics Physics {
+            mass 0.01
+          }
+        }
         DEF body Shape {
           appearance DamascusSteel {
           }
           geometry Box {
-            size 0.5 0.8 0.1
+            size 0.2 0.4 0.0508
           }
         }
       ]
@@ -486,6 +568,15 @@ Robot {
         size 0.04 0.05 0.01
       }
       physics Physics {
+        damping Damping {
+        }
+      }
+    }
+    InertialUnit {
+      name "alpha_imu"
+      boundingObject USE body
+      physics Physics {
+        mass 0.01
       }
     }
   ]
