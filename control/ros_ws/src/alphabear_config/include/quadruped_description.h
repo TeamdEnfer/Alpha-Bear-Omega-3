@@ -9,7 +9,7 @@ namespace champ
     {
         void loadFromHeader(champ::QuadrupedBase &base)
         {
-      base.lf.hip.setOrigin(0.25, 0.3, 0.0, 0.0, 0.0, 0.0);
+      base.lf.hip.setOrigin(0.25, 0.3, 0.0, -M_PI/2, M_PI, M_PI);
 base.lf.upper_leg.setOrigin(-0.05, 0.0, -0.0, 0.0, 0.0, 0.0);
 base.lf.lower_leg.setOrigin(0.0, 0.0, -0.15, 0.0, 0.0, 0.0);
      base.lf.foot.setOrigin(0.0, 0.0, -0.085, 0.0, 0.0, 0.0);

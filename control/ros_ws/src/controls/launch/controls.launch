@@ -16,7 +16,9 @@
   <node name="TrajectoryInterface" pkg="controls" type="trajectory_interface.py"/>
 
   <!--Load CHAMP-->
-  <include file="$(find alphabear_config)/launch/bringup.launch"/>
+  <include file="$(find alphabear_config)/launch/bringup.launch">
+    <arg name="hardware_connected" value="true"/>
+  </include>
     
   <!--Load the controllers-->
   <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen"
@@ -30,8 +32,5 @@
       <param name="port" value="/dev/ttyACM0"/>
       <param name="baud" value="115200"/>
   </node>
-
-  <!--Load le debugger-->
-  <node name="debugger" pkg="controls" type="debugger.py" output="screen"/> 
 
 </launch>

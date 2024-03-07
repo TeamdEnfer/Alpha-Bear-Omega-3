@@ -77,15 +77,15 @@ if __name__ == '__main__':
         #trajectory_goal_hardcode(TrajectoryAction , [0,0,0,0,0,0,0,0,0,0,0,0])
         #time.sleep(3)
         #Zero machine
-        #trajectory_goal_hardcode(TrajectoryAction , [pi/2,pi,pi,
-        #                                             3*pi/4,0,0,
-        #                                             0,pi,pi,
-        #                                             0,0,0]) 
-        #time.sleep(3)
-        #trajectory_goal_hardcode(TrajectoryAction , [pi/2,pi,pi-pi/2,
-        #                                             pi/2,0,pi/2,
-        #                                             pi/2 - 0.15,pi,pi-pi/2,
-        #                                             pi/2,0,pi/2]) 
+        ##trajectory_goal_hardcode(TrajectoryAction , [pi/2,pi,pi,
+        ##                                             pi/2,0,0,
+        ##                                             pi/2,pi,pi,
+        ##                                             pi,0,0]) 
+        ##time.sleep(3)
+        #trajectory_goal_hardcode(TrajectoryAction , [2.38,-3*pi/2,0,
+        #                                             2.38,0,pi/2,0,
+        #                                             2.38,-3*pi/2,0,
+        #                                             2.38,0,0]) 
         #time.sleep(3)
         #trajectory_goal(TrajectoryAction, [1,1])
         #time.sleep(3)

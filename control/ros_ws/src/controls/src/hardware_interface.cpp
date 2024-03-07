@@ -1,6 +1,5 @@
 #include <controls/hardware_interface.h>
 
-
 #define PI 3.141592653
 #define RAD2DEG 180/PI
 #define DEG2RAD PI/180
@@ -17,7 +16,7 @@ Bear::Bear(ros::NodeHandle& nh) : nh_(nh) {
     controller_manager_.reset(new controller_manager::ControllerManager(this, nh_));
     
 //Set the frequency of the control loop.
-    loop_hz_= 50;
+    loop_hz_= 20;
     ros::Duration update_freq = ros::Duration(1.0/loop_hz_);
     
 //Run the control loop
@@ -29,6 +28,9 @@ Bear::Bear(ros::NodeHandle& nh) : nh_(nh) {
 
 //On subscribe au ArduiNode
     Arduino_joint_position_subsriber = nh_.subscribe("Feedback" , 10 , &Bear::read , this);
+
+//on subscribe au controller champ
+    champ_cmd = nh_.subscribe("/joint_group_position_controller/command" , 10 , &Bear::write , this);
 
 }
 
@@ -134,7 +136,7 @@ void Bear::update(const ros::TimerEvent& e) {
     elapsed_time_ = ros::Duration(e.current_real - e.last_real);
     //read();
     controller_manager_->update(ros::Time::now(), elapsed_time_);
-    write(elapsed_time_);
+    //write(elapsed_time_);
 }
 
 
@@ -161,19 +163,44 @@ void Bear::fetchFeedback(const std_msgs::Float64MultiArray& feedback_message)
         pos[i] = feedback_message.data[i];
     }
 }
+/*
+float conversion(int joint_index ,trajectory_msgs::JointTrajectory cmd)
+{
 
+    float converted_cmd = 0;
 
+    converted_cmd = 1/(1.2823*exp(0.3685*cmd.points[0].positions[joint_index]) 
 
-void Bear::write(ros::Duration elapsed_time) {
+    return converted_cmd;
+}*/
+
+void Bear::write(trajectory_msgs::JointTrajectory champ_cmd) {
 
     //On prend les messages de commande du controller, et on les mets dans un float64multiplearray, puis on les publish
 
-    //messageCommand.data.clear();
-    for(int i = 0 ; i < Nb_Of_Joints ; i++)
-    {
-        //messageCommand.data.push_back(cmd[i]*RAD2DEG);
-        messageCommand.data[i]=(cmd[i]*RAD2DEG);
-    }
+   
+
+
+        float OFFSET_03 = 3*PI/4;
+        float OFFSET_69 = -3*PI/4;
+
+        messageCommand.data[0]=(abs((champ_cmd.points[0].positions[0]+OFFSET_03)*RAD2DEG));
+        //messageCommand.data[1]=abs(1/(1.2823*exp(0.3685*champ_cmd.points[0].positions[1]))*RAD2DEG);  
+        messageCommand.data[1]=abs(1/(1.2823*exp(0.3685*PI/2))*RAD2DEG);
+        messageCommand.data[2]=abs((1/0.5555)*champ_cmd.points[0].positions[2]*RAD2DEG);
+
+        messageCommand.data[3]=(abs((champ_cmd.points[0].positions[3]+OFFSET_03)*RAD2DEG));
+        messageCommand.data[4]=abs(((1/(1.2823*exp(0.3685*abs(PI/2)))))*RAD2DEG);  
+        messageCommand.data[5]=abs((1/0.5555)*champ_cmd.points[0].positions[5]*RAD2DEG);
+
+        messageCommand.data[6]=(abs((champ_cmd.points[0].positions[6]+OFFSET_69)*RAD2DEG));
+        messageCommand.data[7]=((1/((1.2823)*exp(0.3685*abs(champ_cmd.points[0].positions[7])))+3*PI/2)*RAD2DEG); 
+        messageCommand.data[8]=abs((1/0.5555)*champ_cmd.points[0].positions[8]*RAD2DEG);
+
+        messageCommand.data[9]=(abs((champ_cmd.points[0].positions[9]+OFFSET_69)*RAD2DEG));
+        messageCommand.data[10]=abs(((1/(1.2823*exp(0.3685*abs(champ_cmd.points[0].positions[10]))))-PI/5)*RAD2DEG);  
+        messageCommand.data[11]=abs((1/0.5555)*champ_cmd.points[0].positions[11]*RAD2DEG);
+   
 
     commandPublisher.publish(messageCommand);
 
