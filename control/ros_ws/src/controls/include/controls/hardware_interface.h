@@ -9,7 +9,10 @@
 #include <ros/console.h>
 #include <std_msgs/String.h>
 #include <std_msgs/Float64MultiArray.h>
+#include <std_msgs/Float32MultiArray.h>
+#include <std_msgs/Int8MultiArray.h>
 #include <string.h>
+#include <controls/Servo_cmd.h>
 
 
 #define Nb_Of_Joints 12
@@ -21,8 +24,9 @@ class Bear : public hardware_interface::RobotHW
         ~Bear();
         void init();
         void update(const ros::TimerEvent& e);
-        void read(const std_msgs::Float64MultiArray& Arduino_joint_position_subsriber);
-         void fetchFeedback(const std_msgs::Float64MultiArray& feedback_message);
+        //void read(const std_msgs::Float64MultiArray& Arduino_joint_position_subsriber);
+        void read(const std_msgs::Int8MultiArray& Arduino_joint_position_subsriber);
+        void fetchFeedback(const std_msgs::Float64MultiArray& feedback_message);
         void write(ros::Duration elapsed_time);
         
     protected:
@@ -47,7 +51,9 @@ class Bear : public hardware_interface::RobotHW
         
         ros::Subscriber Arduino_joint_position_subsriber;
         ros::Publisher commandPublisher;
-        std_msgs::Float64MultiArray messageCommand;
+        //std_msgs::Float32MultiArray messageCommand;
+        controls::Servo_cmd messageCommand;
+
 
         ros::NodeHandle nh_;
         ros::Timer my_control_loop_;

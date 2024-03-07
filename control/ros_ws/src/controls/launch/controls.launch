@@ -5,8 +5,6 @@
   <rosparam file="$(find controls)/config/trajectory_controller.yaml" command="load"/>
   <rosparam file="$(find controls)/config/joint_limits.yaml" command="load"/>
   
-  <!--Load CHAMP-->
-  <include file="$(find alphabear_config)/launch/bringup.launch"/>
 
   <!--Load le URDF du robot, requis pour le trajectory interface-->
   <param name="robot_description" command="cat $(find controls)/config/Robot.urdf"/>
@@ -16,6 +14,9 @@
 
   <!--Load le trajectory interface de test-->
   <node name="TrajectoryInterface" pkg="controls" type="trajectory_interface.py"/>
+
+  <!--Load CHAMP-->
+  <include file="$(find alphabear_config)/launch/bringup.launch"/>
     
   <!--Load the controllers-->
   <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen"
@@ -30,5 +31,7 @@
       <param name="baud" value="115200"/>
   </node>
 
+  <!--Load le debugger-->
+  <node name="debugger" pkg="controls" type="debugger.py" output="screen"/> 
 
 </launch>

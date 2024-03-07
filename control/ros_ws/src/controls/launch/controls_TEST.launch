@@ -8,6 +8,9 @@
   <!--Load le URDF du robot, requis pour le trajectory interface-->
   <param name="robot_description" command="cat $(find controls)/config/Robot.urdf"/>
 
+  <!--Load le debugger-->
+  <node name="debugger" pkg="controls" type="debugger.py" output="screen"/> 
+
   <!--Load le hardware interface-->
   <node name="Hardware_Interface" pkg="controls" type="hardware_interface" output="screen"/>
 

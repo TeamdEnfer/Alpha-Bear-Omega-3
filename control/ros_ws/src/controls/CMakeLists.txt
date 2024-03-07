@@ -14,6 +14,7 @@ find_package(catkin REQUIRED COMPONENTS
   controller_manager
   joint_state_controller
   robot_state_publisher
+  message_generation
 )
 
 ## System dependencies are found with CMake's conventions
@@ -50,11 +51,10 @@ find_package(catkin REQUIRED COMPONENTS
 ##   * add every package in MSG_DEP_SET to generate_messages(DEPENDENCIES ...)
 
 ## Generate messages in the 'msg' folder
-# add_message_files(
-#   FILES
-#   Message1.msg
-#   Message2.msg
-# )
+ add_message_files(
+   FILES
+   Servo_cmd.msg
+ )
 
 ## Generate services in the 'srv' folder
 # add_service_files(
@@ -71,10 +71,10 @@ find_package(catkin REQUIRED COMPONENTS
 # )
 
 ## Generate added messages and services with any dependencies listed here
-# generate_messages(
-#   DEPENDENCIES
-#   std_msgs
-# )
+ generate_messages(
+   DEPENDENCIES
+   std_msgs
+ )
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
@@ -108,14 +108,13 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES controls
-#  CATKIN_DEPENDS roscpp rospy std_msgs
+  CATKIN_DEPENDS roscpp rospy std_msgs message_runtime
 #  DEPENDS system_lib
 )
 
 ###########
 ## Build ##
 ###########
-
 
 add_executable(hardware_interface src/hardware_interface.cpp)
 target_link_libraries(hardware_interface ${catkin_LIBRARIES})

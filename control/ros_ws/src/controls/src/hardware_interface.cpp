@@ -17,14 +17,15 @@ Bear::Bear(ros::NodeHandle& nh) : nh_(nh) {
     controller_manager_.reset(new controller_manager::ControllerManager(this, nh_));
     
 //Set the frequency of the control loop.
-    loop_hz_= 10;
+    loop_hz_= 50;
     ros::Duration update_freq = ros::Duration(1.0/loop_hz_);
     
 //Run the control loop
     my_control_loop_ = nh_.createTimer(update_freq, &Bear::update, this);
 
 //Inform master that the node will be publishing to topic /command with queue size 10
-    commandPublisher = nh_.advertise<std_msgs::Float64MultiArray>("Command", 10);
+    //commandPublisher = nh_.advertise<std_msgs::Float32MultiArray>("Command", 10);
+    commandPublisher = nh_.advertise<controls::Servo_cmd>("Command", 10);
 
 //On subscribe au ArduiNode
     Arduino_joint_position_subsriber = nh_.subscribe("Feedback" , 10 , &Bear::read , this);
@@ -138,7 +139,8 @@ void Bear::update(const ros::TimerEvent& e) {
 
 
 
-void Bear::read(const std_msgs::Float64MultiArray& Arduino_joint_position_topic){
+//void Bear::read(const std_msgs::Float64MultiArray& Arduino_joint_position_topic){
+void Bear::read(const std_msgs::Int8MultiArray& Arduino_joint_position_topic){
     // Lecture des messages de commandes du controleur
 
 
@@ -166,10 +168,11 @@ void Bear::write(ros::Duration elapsed_time) {
 
     //On prend les messages de commande du controller, et on les mets dans un float64multiplearray, puis on les publish
 
-    messageCommand.data.clear();
+    //messageCommand.data.clear();
     for(int i = 0 ; i < Nb_Of_Joints ; i++)
     {
-        messageCommand.data.push_back(cmd[i]*RAD2DEG);
+        //messageCommand.data.push_back(cmd[i]*RAD2DEG);
+        messageCommand.data[i]=(cmd[i]*RAD2DEG);
     }
 
     commandPublisher.publish(messageCommand);
