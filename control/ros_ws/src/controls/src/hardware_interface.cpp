@@ -16,7 +16,7 @@ Bear::Bear(ros::NodeHandle& nh) : nh_(nh) {
     controller_manager_.reset(new controller_manager::ControllerManager(this, nh_));
     
 //Set the frequency of the control loop.
-    loop_hz_= 20;
+    loop_hz_= 50;
     ros::Duration update_freq = ros::Duration(1.0/loop_hz_);
     
 //Run the control loop
@@ -190,16 +190,18 @@ void Bear::write(trajectory_msgs::JointTrajectory champ_cmd) {
         messageCommand.data[2]=abs((1/0.5555)*champ_cmd.points[0].positions[2]*RAD2DEG);
 
         messageCommand.data[3]=(abs((champ_cmd.points[0].positions[3]+OFFSET_03)*RAD2DEG));
-        messageCommand.data[4]=abs(((1/(1.2823*exp(0.3685*abs(PI/2)))))*RAD2DEG);  
+        messageCommand.data[4]=abs((-0.3593*pow(champ_cmd.points[0].positions[4],2)-0.6064*(abs(champ_cmd.points[0].positions[4]))+2.375-(PI/20))*RAD2DEG); 
+        
         messageCommand.data[5]=abs((1/0.5555)*champ_cmd.points[0].positions[5]*RAD2DEG);
 
         messageCommand.data[6]=(abs((champ_cmd.points[0].positions[6]+OFFSET_69)*RAD2DEG));
-        messageCommand.data[7]=((1/((1.2823)*exp(0.3685*abs(champ_cmd.points[0].positions[7])))+3*PI/2)*RAD2DEG); 
+        messageCommand.data[7]=abs((0.3408*pow(champ_cmd.points[0].positions[7],2)+0.6434*(abs(champ_cmd.points[0].positions[7]))+0.0095)*RAD2DEG); 
+        
         messageCommand.data[8]=abs((1/0.5555)*champ_cmd.points[0].positions[8]*RAD2DEG);
 
         messageCommand.data[9]=(abs((champ_cmd.points[0].positions[9]+OFFSET_69)*RAD2DEG));
-        messageCommand.data[10]=abs(((1/(1.2823*exp(0.3685*abs(champ_cmd.points[0].positions[10]))))-PI/5)*RAD2DEG);  
-        messageCommand.data[11]=abs((1/0.5555)*champ_cmd.points[0].positions[11]*RAD2DEG);
+        messageCommand.data[10]=abs((-0.3593*pow(champ_cmd.points[0].positions[10],2)-0.6064*(abs(champ_cmd.points[0].positions[10]))+2.375-PI/5)*RAD2DEG);  
+        messageCommand.data[11]=0*abs((1/0.5555)*champ_cmd.points[0].positions[11]*RAD2DEG);
    
 
     commandPublisher.publish(messageCommand);
