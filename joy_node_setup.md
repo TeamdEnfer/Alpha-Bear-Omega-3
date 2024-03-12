@@ -26,16 +26,40 @@ Button maps for other controllers can be found [here](http://wiki.ros.org/joy#Ap
 4: Bumper gauche  
 5: Bumper droit  
 6: Select  
-7: Menu  
-8: Media/share (non-fonctionnel)  
+7: Start  
+8: Power/Menu  
 9: Joystick gauche: appui  
-10: Joystick droit: appui  
+10: Joystick droit: appui
 
 ## PlayStation 3 controller
 
 ### Axes
+0: Joystick gauche: gauche <-> droite \[-32767, 32767\]  
+1: gauche: haut <-> bas \[-32767, 32767\]  
+2: Trigger (analog) gauche \[-32767, 32767\]  
+3: Joystick droite: gauche <-> droite \[-32767, 32767\]  
+4: Joystick droit: haut <-> bas \[-32767, 32767\]  
+5: Trigger (analog) droite \[-32767, 32767\]
 
 ### Boutons
+
+0: X  
+1: O  
+2: 🔺  
+3: 🟥  
+4: Bumper gauche  
+5: Bumper droit  
+6: Trigger gauche (bool)  
+7: Trigger droit (bool)  
+8: Select  
+9: Start  
+10: Power/Menu  
+11: Trigger gauche: appui  
+12: Trigger droit: appui  
+13: D-pad Up  
+14: D-pad Down  
+15: D-pad Left  
+16: D-pad Right
 
 # Making the controller accessible by ROS joy node
 
