@@ -1,36 +1,47 @@
 <launch>
+    <arg name="joystick" default="false"/>
+    <arg name="input_id"  default="/dev/input/js0"/>
+    <arg name="auto_close" default="false" doc="Startup mode"/>
 
-  <arg name="auto_close" default="false" doc="Startup mode"/>  
-  
-  <rosparam file="$(find controls)/config/trajectory_controller.yaml" command="load"/>
-  <rosparam file="$(find controls)/config/joint_limits.yaml" command="load"/>
-  
+    <rosparam file="$(find controls)/config/trajectory_controller.yaml" command="load"/>
+    <rosparam file="$(find controls)/config/joint_limits.yaml" command="load"/>
 
-  <!--Load le URDF du robot, requis pour le trajectory interface-->
-  <param name="robot_description" command="cat $(find controls)/config/Robot.urdf"/>
 
-  <!--Load le hardware interface-->
-  <node name="Hardware_Interface" pkg="controls" type="hardware_interface" output="screen"/>
+    <!--Load le URDF du robot, requis pour le trajectory interface-->
+    <param name="robot_description" command="cat $(find controls)/config/Robot.urdf"/>
 
-  <!--Load le trajectory interface de test-->
-  <node name="TrajectoryInterface" pkg="controls" type="trajectory_interface.py"/>
+    <!--Load le hardware interface-->
+    <node name="Hardware_Interface" pkg="controls" type="hardware_interface" output="screen"/>
 
-  <!--Load CHAMP-->
-  <include file="$(find alphabear_config)/launch/bringup.launch">
-    <arg name="hardware_connected" value="true"/>
-  </include>
-    
-  <!--Load the controllers-->
-  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen"
-         args="
+    <!--Load le trajectory interface de test-->
+    <node name="TrajectoryInterface" pkg="controls" type="trajectory_interface.py"/>
+
+    <!--Load CHAMP-->
+    <include file="$(find alphabear_config)/launch/bringup.launch">
+        <arg name="hardware_connected" value="true"/>
+    </include>
+
+    <!--Load the controllers-->
+    <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="
             /Alpha_Bear/joints_update
             /Alpha_Bear/leg_controller
-        "/> 
+        "/>
 
-  <!--Initialisation de la communication serial avec le arduino-->
-  <node pkg="rosserial_python" type="serial_node.py" name="ArduiNode">
-      <param name="port" value="/dev/ttyACM0"/>
-      <param name="baud" value="115200"/>
-  </node>
+    <!-- Load CHAMP teleoperation node and joy_node -->
+    <include file="$(find champ)/champ_teleop/teleop.launch">
+        <arg if="$(arg joystick)" name="joy" value="true"/>
+    </include>
+
+    <node if="$(arg joystick)" name="joy_node" pkg="joy" type="joy_node" required="true" >
+        <param name="autorepeat_rate" value="5" />
+        <param name="dev" value="$(arg input_id)" />
+    </node>
+
+
+    <!--Initialisation de la communication serial avec le arduino-->
+    <node pkg="rosserial_python" type="serial_node.py" name="ArduiNode">
+        <param name="port" value="/dev/ttyACM0"/>
+        <param name="baud" value="115200"/>
+    </node>
 
 </launch>

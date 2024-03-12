@@ -65,14 +65,6 @@ If the core hasn't been started yet, type:
 $ roscore
 ```
 
-### Champ teleop
-
-If the champ teleop hasn't been launched, type in a new terminal:
-
-```console
-$ roslaunch champ_teleop teleop.launch joy:=true
-```
-
 ## Parameters
 
 Below are examples of parameters that can be changed before running the node. For a complete list of parameters, see [the source documentation](http://wiki.ros.org/joy#Parameters).
@@ -89,8 +81,10 @@ $ rosparam set joy_node/deadzone 0.25
 In a new terminal, type:
 
 ```console
-$ rosrun joy joy_node
+$ roslaunch champ_teleop teleop.launch joy:=true
 ```
+
+The champ_teleop node launches the joy node when the argument *joy* is set to true, so there is no need for *rosrun*.
 
 To observe the commands read from the controller, in a new terminal, type:
 
