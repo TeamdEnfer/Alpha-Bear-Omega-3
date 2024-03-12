@@ -15,7 +15,7 @@ Button maps for other controllers can be found [here](http://wiki.ros.org/joy#Ap
 6: D-pad gauche <-> droite {-32767, 32767}  
 7: D-pad haut <-> bas {-32767, 32767}
 
-	N.B. ROS: \[-1.0, 1.0\], {-1.0, 1.0}
+	N.B. ROS: [-1.0, 1.0], {-1.0, 1.0}
 
 ### Boutons
 
