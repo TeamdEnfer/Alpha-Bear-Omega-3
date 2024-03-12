@@ -1,6 +1,10 @@
-# Xbox One Controller button mapping
+# Button mapping for controllers
 
-## Axes
+Button maps for other controllers can be found [here](http://wiki.ros.org/joy#Application)
+
+## Xbox One controller
+
+### Axes
 
 0: Joystick gauche: gauche <-> droite \[-32767, 32767\]
 1: gauche: haut <-> bas \[-32767, 32767\]
@@ -13,7 +17,7 @@
 
 	N.B. ROS: \[-1.0, 1.0\], {-1.0, 1.0}
 
-## Boutons
+### Boutons
 
 0: A
 1: B
@@ -26,6 +30,12 @@
 8: Media/share (non-fonctionnel)
 9: Joystick gauche: appui
 10: Joystick droit: appui
+
+## PlayStation 3 controller
+
+### Axes
+
+### Boutons
 
 # Making the controller accessible by ROS joy node
 
