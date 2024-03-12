@@ -13,7 +13,7 @@
 
 	N.B. ROS: \[-1.0, 1.0\], {-1.0, 1.0}
 
-# Boutons
+## Boutons
 
 0: A
 1: B
@@ -41,4 +41,31 @@ if XX is -- or r-, you need to:
 
 ```console
 $ sudo chmod a+rw /dev/input/jsX
+```
+
+# Running the node
+
+If the core hasn't been started yet, type:
+
+```console
+$ roscore
+```
+
+If the core has been started (through *roscore* or *roslaunch*), in a new terminal, set the parameters of the node:
+
+```console
+$ rosparam set joy_node/dev "/dev/input/jsX"
+$ rosparam set joy_node/deadzone 0.25
+```
+
+Then start the node:
+
+```console
+$ rosrun joy joy_node
+```
+
+To observe the commands read from the controller, in a new terminal, type:
+
+```console
+$ rostopic echo joy
 ```
