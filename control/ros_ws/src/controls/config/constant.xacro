@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:property name="body_size" value="0.5 0.8 0.1" />
+
+    <xacro:property name="shoulder_sketch_size" value="0.5 0.8 0.1" />
+
+    <xacro:property name="femur_sketch_size" value="0.5 0.8 0.1" />
+
+    <xacro:property name="tibia_sketch_size" value="0.5 0.8 0.1" />
+
+    <xacro:property name="shoulder_axis" value="0.5 0.8 0.1" />
+
+    <xacro:property name="leg_axis" value="0.5 0.8 0.1" />
+
+</robot>
