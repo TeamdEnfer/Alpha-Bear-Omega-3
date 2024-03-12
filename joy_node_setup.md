@@ -55,13 +55,27 @@ $ sudo chmod a+rw /dev/input/jsX
 
 # Running the node
 
+## prerequisites
+
+### roscore
+
 If the core hasn't been started yet, type:
 
 ```console
 $ roscore
 ```
 
-If the core has been started (through *roscore* or *roslaunch*), in a new terminal, set the parameters of the node:
+### Champ teleop
+
+If the champ teleop hasn't been launched, type in a new terminal:
+
+```console
+$ roslaunch champ_teleop teleop.launch joy:=true
+```
+
+## Parameters
+
+Below are examples of parameters that can be changed before running the node. For a complete list of parameters, see [the source documentation](http://wiki.ros.org/joy#Parameters).
 
 ```console
 $ rosparam set joy_node/dev "/dev/input/jsX"
@@ -70,7 +84,9 @@ $ rosparam set joy_node/deadzone 0.25
 
     N.B. the deadzone parameter defaults to 0.05, but I find it too sensitive at that value. Value range: [0, 1]
 
-Then start the node:
+## Starting the node
+
+In a new terminal, type:
 
 ```console
 $ rosrun joy joy_node
