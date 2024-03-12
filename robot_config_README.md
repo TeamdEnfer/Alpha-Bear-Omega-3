@@ -2,11 +2,11 @@ Fichiers à modifier pour champ
 
 # Chemin des fichiers de configuration du robot
 
-**URDF:** control/ros_ws/src/alphabearomega3/worlds/Robot.urdf
-**Joints:** control/ros_ws/src/alphabear_config/config/joints/joints.yaml
-**Links:** control/ros_ws/src/alphabear_config/config/links/links.yaml
-**Gait:** control/ros_ws/src/alphabear_config/config/gait/gait.yaml
-**Référence des paramètres du gait:** control/ros_ws/src/champ_setup_assistant/docs/images/gait_parameters.png
+**URDF:** control/ros_ws/src/alphabearomega3/worlds/Robot  
+**Joints:** control/ros_ws/src/alphabear_config/config/joints/joints.yaml  
+**Links:** control/ros_ws/src/alphabear_config/config/links/links.yaml  
+**Gait:** control/ros_ws/src/alphabear_config/config/gait/gait.yaml  
+**Référence des paramètres du gait:** control/ros_ws/src/champ_setup_assistant/docs/images/gait_parameters.png  
 
 # Paramètres du gait
 
