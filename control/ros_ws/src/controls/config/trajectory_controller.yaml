@@ -1,7 +1,7 @@
 Alpha_Bear:
   joints_update:
     type: joint_state_controller/JointStateController
-    publish_rate: 10
+    publish_rate: 50
 
   leg_controller:
     type: position_controllers/JointTrajectoryController
@@ -19,19 +19,21 @@ Alpha_Bear:
       - RR_femur_servo
       - RR_tibia_servo
 
-    constaints:
-      goal_time: 0.5
-      FL_shoulder_servo: {goal: 1}
-      FL_femur_servo: {goal: 1}
-      FL_tibia_servo: {goal: 1}
-      FR_shoulder_servo: {goal: 1}
-      FR_femur_servo: {goal: 1}
-      FR_tibia_servo: {goal: 1}
-      RL_shoulder_servo: {goal: 1}
-      RL_femur_servo: {goal: 1}
-      RL_tibia_servo: {goal: 1}
-      RR_shoulder_servo: {goal: 1}
-      RR_femur_servo: {goal: 1}
-      RR_tibia_servo: {goal: 1}
-    stop_trajectory_duration: 0.2
-    state_publish_rate: 100
+    constraints:
+      goal_time: 0.02
+      FL_shoulder_servo: {goal: 0.05}
+      FL_femur_servo: {goal: 0.05}
+      FL_tibia_servo: {goal: 0.05}
+      FR_shoulder_servo: {goal: 0.05}
+      FR_femur_servo: {goal: 0.05}
+      FR_tibia_servo: {goal: 0.05}
+      RL_shoulder_servo: {goal: 0.05}
+      RL_femur_servo: {goal: 0.05}
+      RL_tibia_servo: {goal: 0.05}
+      RR_shoulder_servo: {goal: 0.05}
+      RR_femur_servo: {goal: 0.05}
+      RR_tibia_servo: {goal: 0.05}
+
+    action_monitor_rate: 20
+    stop_trajectory_duration: 0
+    state_publish_rate: 25

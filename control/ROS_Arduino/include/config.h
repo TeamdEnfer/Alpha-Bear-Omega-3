@@ -6,6 +6,10 @@
 #include <std_msgs/UInt16.h>
 #include <std_msgs/Float64.h>
 #include <std_msgs/Float64MultiArray.h>
+#include <std_msgs/Float32MultiArray.h>
+#include <std_msgs/Int8MultiArray.h>
+#include <std_msgs/String.h>
+#include <controls/Servo_cmd.h>
 
 #include <MPU6050_light.h>
 
@@ -59,12 +63,15 @@ Servo TIB_AR_G;
 Servo ABD_AR_G;
 
 std_msgs::Float64MultiArray data_imu;
+std_msgs::Int8MultiArray test_array;
+std_msgs::String msg;
 
-void servo_cb(const std_msgs::UInt16 &cmd_msg);
+//void servo_cb(const std_msgs::UInt16 &cmd_msg);
 void TCA9548A(uint8_t bus);
 void readXangles(std_msgs::Float64MultiArray* data_imu);
 float getXangle(uint8_t imu_num, MPU6050 imu_type);
 void imu_init();
 void servo_init();
+void test_feedback(const std_msgs::Int8MultiArray *test_array);
 
 #endif

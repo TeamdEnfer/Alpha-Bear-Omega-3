@@ -8,10 +8,10 @@ import trajectory_msgs.msg
 from trajectory_msgs.msg import JointTrajectory , JointTrajectoryPoint
 import actionlib
 import control_msgs.msg
-from std_msgs.msg import Float64MultiArray
+from std_msgs.msg import Float32MultiArray
 from control_msgs.msg import JointTrajectoryAction , JointTrajectoryGoal , FollowJointTrajectoryAction , FollowJointTrajectoryGoal
 
-cmd_msg = Float64MultiArray(data=[0]*12)
+cmd_msg = Float32MultiArray(data=[0]*12)
 pi = 3.141592
 def JTM_to_F64(Data):
 
@@ -26,34 +26,13 @@ def trajectory_goal(TrajectoryAction , angles): #Pour hard code un trajectoire d
     points = JointTrajectoryPoint()
     points.positions = angles.data
     #On done un temps voulu pour l'execution
-    points.time_from_start = rospy.Duration(0.1)
+    points.time_from_start = rospy.Duration(0.2)
 
     #On creer un goal a suivre qui va dicter la commande
     goal = FollowJointTrajectoryGoal()
     #On assigne les joints aux points de la trajectoire
     goal.trajectory.joint_names = ['FL_shoulder_servo','FL_femur_servo','FL_tibia_servo',
                                    'FR_shoulder_servo','FR_femur_servo','FR_tibia_servo',
-                                   'RL_shoulder_servo','RL_femur_servo','RL_tibia_servo',
-                                   'RR_shoulder_servo','RR_femur_servo','RR_tibia_servo']
-    #On met les points dans la trajectoire goal
-    goal.trajectory.points.append(points)
-
-    #Enfin, on envoie le goal via le action client
-    TrajectoryAction.send_goal(goal)
-
-def trajectory_goal_hardcode(TrajectoryAction , angles): #les angles sont en radians
-
-    #On utilise des JointTrajectory points transformer les angles du topic en points de trajectoire
-    points = JointTrajectoryPoint()
-    points.positions = angles
-    #On done un temps voulu pour l'execution
-    points.time_from_start = rospy.Duration(0.2)
-
-    #On creer un goal a suivre qui va dicter la commande
-    goal = FollowJointTrajectoryGoal()
-    #On assigne les joints aux points de la trajectoire
-    goal.trajectory.joint_names = ['FL_shoulder_servo','FL_femur_servo','FL_tibia_servo'
-                                   ,'FR_shoulder_servo','FR_femur_servo','FR_tibia_servo',
                                    'RL_shoulder_servo','RL_femur_servo','RL_tibia_servo',
                                    'RR_shoulder_servo','RR_femur_servo','RR_tibia_servo']
     #On met les points dans la trajectoire goal

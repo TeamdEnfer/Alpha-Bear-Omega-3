@@ -7,10 +7,7 @@
   <include file="$(find webots_ros)/launch/webots.launch">
     <arg name="mode" value="realtime"/>
     <arg name="no_gui" value="$(arg no_gui)"/>
-    <arg name="world" value="$(find alphabearomega3)/worlds/bear_twin.wbt"/>
-  </include>
-
-  <include file="$(find alphabear_config)/launch/bringup.launch">
+    <arg name="world" value="$(find alphabearomega3)/worlds/bear_topia.wbt"/>
   </include>
 
   <arg name="auto_close" default="false" doc="Startup mode"/>
@@ -18,10 +15,26 @@
   <!--<env name="PYTHONPATH" value="$(env PYTHONPATH):$(env WEBOTS_HOME)/lib/controller/python27" unless="$(eval '1' if env('ROS_DISTRO') == 'noetic' else '0')" />-->
   <env name="PYTHONPATH" value="$(env PYTHONPATH):$(env WEBOTS_HOME)/lib/controller/python" if="$(eval '1' if env('ROS_DISTRO') == 'noetic' else '0')" />
 
-  <include file="$(find controls)/launch/controls.launch"/>
+  <!--<include file="$(find controls)/launch/controls.launch"/>-->
+
+
+  <node name="sim" pkg="alphabearomega3" type="sim.py"  required="$(arg auto_close)" output="screen"/>
+  
+  
+  
+  <include file="$(find alphabear_config)/launch/bringup.launch">
+  	<arg name="hardware_connected" value="true"/>
+  	<arg name="publish_foot_contacts" value="false"/>
+  	<arg name="rviz" value="false"/>
+  	<arg name="has_imu" value="false"/>
+  	<arg name="close_loop_odom"        value="true" />
+  </include>
+  
+
+
 
   
-  <node name="sim" pkg="alphabearomega3" type="sim.py"  required="$(arg auto_close)" output="screen"/>
+
   
 
 
