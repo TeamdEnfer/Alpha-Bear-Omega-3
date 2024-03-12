@@ -68,6 +68,8 @@ $ rosparam set joy_node/dev "/dev/input/jsX"
 $ rosparam set joy_node/deadzone 0.25
 ```
 
+    N.B. the deadzone parameter defaults to 0.05, but I find it too sensitive at that value. Value range: [0, 1]
+
 Then start the node:
 
 ```console
