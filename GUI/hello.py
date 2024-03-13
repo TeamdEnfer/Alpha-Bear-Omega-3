@@ -5,15 +5,15 @@ class MainWindow(qtw.QWidget):
     def __init__(self):
         super().__init__()
         # Add a title
-        self.setWindowTitle("Alpha-Bear-Omega-3 GUI")
+        self.setWindowTitle("PyQt5-example-GUI")
 
-        # Set layout
+        # Set (vertical) layout
         self.setLayout(qtw.QVBoxLayout())
 
         # Create a label
         my_label = qtw.QLabel("Hello World!")
         # Change font size of label
-        my_label.setFont(qtgui.QFont('Fira Code', 18))
+        my_label.setFont(qtgui.QFont('Times', 18))
         self.layout().addWidget(my_label)
 
         # Create an entry box
@@ -28,10 +28,45 @@ class MainWindow(qtw.QWidget):
         self.layout().addWidget(my_button)
 
         # Create a combo box
-        my_combo = qtw.QComboBox(self)
+        my_combo = qtw.QComboBox(self,
+            editable=True,
+            insertPolicy=qtw.QComboBox.InsertAtBottom)
         # Add items to the combo box
         my_combo.addItems(["Xbox One", "PS3"])
         self.layout().addWidget(my_combo)
+
+        # Create a spin box
+        my_spin = qtw.QSpinBox(self,
+            value=10,
+            maximum=100,
+            minimum=0,
+            singleStep=5,
+            suffix="%")
+        # Change font size of spin box
+        my_spin.setFont(qtgui.QFont('Helvetica', 24))
+        self.layout().addWidget(my_spin)
+
+        # Create a double spin box
+        my_spin_double = qtw.QDoubleSpinBox(self,
+            value=12.5,
+            maximum=84.3,
+            minimum=0.25,
+            singleStep=2.34,
+            suffix="%")
+        my_spin_double.setFont(qtgui.QFont('Helvetica', 24))
+        self.layout().addWidget(my_spin_double)
+
+        # Create a text box
+        my_text = qtw.QTextEdit(self,
+            #plainText="This text won't disappear automatically",
+            acceptRichText=False,
+            #html="<center><em><h2>Heading 2 text</h2></em></center>",
+            lineWrapMode=qtw.QTextEdit.FixedColumnWidth,
+            lineWrapColumnOrWidth=20,
+            placeholderText="Hello World!",
+            readOnly=False)
+        my_text.setFont(qtgui.QFont('Times', 18))
+        self.layout().addWidget(my_text)
 
         # Show the app
         self.show()
