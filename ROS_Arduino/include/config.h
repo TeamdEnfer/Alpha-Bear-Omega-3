@@ -10,6 +10,7 @@
 #include <MPU6050_light.h>
 
 #include <Servo.h> 
+#include <ros/time.h>
 #include "Wire.h"
 
 #define DATA_IMU_LENGTH 8
