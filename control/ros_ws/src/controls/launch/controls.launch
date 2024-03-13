@@ -28,7 +28,7 @@
         "/>
 
     <!-- Load CHAMP teleoperation node and joy_node -->
-    <include file="$(find champ)/champ_teleop/teleop.launch">
+    <include file="$(find champ_teleop)/launch/teleop.launch">
         <arg if="$(arg joystick)" name="joy" value="true"/>
     </include>
 
