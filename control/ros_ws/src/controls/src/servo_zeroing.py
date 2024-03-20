@@ -3,7 +3,7 @@
 from PyQt5 import QtCore as qtc
 from PyQt5 import QtGui as qtgui
 from PyQt5 import QtWidgets as qtw
-import qdarktheme
+#import qdarktheme
 import rospy
 from std_msgs.msg import Bool, Int8, Float32
 import QFloatSlider, QFloatSliderEntryBox
@@ -231,7 +231,7 @@ if __name__ == "__main__":
     import sys
     app = qtw.QApplication(sys.argv)
     # Apply the dark theme
-    qdarktheme.setup_theme()
+    #qdarktheme.setup_theme()
 
     # Create a publisher for control switching flag
     control_switch_flag_pub = rospy.Publisher('control_switch_flag', Bool, queue_size=1)

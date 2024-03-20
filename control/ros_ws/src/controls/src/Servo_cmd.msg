@@ -1,1 +1,1 @@
-float32[12] dataS
+float32[12] data
