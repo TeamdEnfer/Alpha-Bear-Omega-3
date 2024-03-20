@@ -126,6 +126,8 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 
+
+
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
 #   src/${PROJECT_NAME}/controls.cpp
@@ -169,6 +171,10 @@ include_directories(
 #   scripts/my_python_script
 #   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 # )
+
+ catkin_install_python(PROGRAMS
+   src/calibration.py
+   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 
 ## Mark executables for installation
 ## See http://docs.ros.org/melodic/api/catkin/html/howto/format1/building_executables.html
