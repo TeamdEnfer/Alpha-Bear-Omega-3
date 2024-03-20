@@ -172,6 +172,7 @@ class Ui_MainWindow(object):
         else:
             self.control_switch_button.setText("Controller: CHAMP")
         
+        control_switch_flag = self.control_switch_button.isChecked()
         control_switch_flag_pub.publish(control_switch_flag)
 
         # Clear the warning label
@@ -242,9 +243,6 @@ if __name__ == "__main__":
     MainWindow = qtw.QMainWindow()
     ui = Ui_MainWindow()
     ui.setupUi(MainWindow)
-
-    # Create a boolean flag for control switching
-    control_switch_flag = ui.control_switch_button.isChecked()
 
     # Create an array for servo IDs
     servo_id = [[0,1,2], [3,4,5], [6,7,8], [9,10,11]]
