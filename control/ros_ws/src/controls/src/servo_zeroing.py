@@ -1,3 +1,5 @@
+#! /usr/bin/env python3
+
 from PyQt5 import QtCore as qtc
 from PyQt5 import QtGui as qtgui
 from PyQt5 import QtWidgets as qtw
@@ -212,7 +214,8 @@ class Ui_MainWindow(object):
         self.warning_label.setText("Error: Controller must be set to 'Manual'!")
     
     def update_leg_id(self):
-        self._legID = self.leg_selection_box.currentIndex()
+        if self.control_switch_button.isChecked():
+            self._legID = self.leg_selection_box.currentIndex()
     
     def update_servo_id(self, joint_id: int) -> int:
         return servo_id[self._legID][joint_id]
