@@ -4,6 +4,9 @@
 #define RAD2DEG 180/PI
 #define DEG2RAD PI/180
 
+bool ctrl_selector = false;
+int leg_id = 0;
+float leg_cmd = 0.0;
 
 Bear::Bear(ros::NodeHandle& nh) : nh_(nh) {
 
@@ -31,6 +34,11 @@ Bear::Bear(ros::NodeHandle& nh) : nh_(nh) {
 
 //on subscribe au controller champ
     champ_cmd = nh_.subscribe("/joint_group_position_controller/command" , 10 , &Bear::write , this);
+
+//on subscribe au topics du GUI pour pouvoir controller manuellement, et changer de controlleur
+    GUI_cmd = nh_.subscribe("/servo_cmd_topic" , 10 , &Bear::GUI_CMD , this);
+    GUI_id = nh_.subscribe("/servo_id_topic" , 10 , &Bear::GUI_ID , this);
+    controller_selector = nh_.subscribe("/control_switch_flag" , 1 , &Bear::Selector , this);
 
 }
 
@@ -139,7 +147,26 @@ void Bear::update(const ros::TimerEvent& e) {
     //write(elapsed_time_);
 }
 
+void Bear::Selector(const std_msgs::Bool& controller_selector)
+{
 
+    ctrl_selector = controller_selector.data;
+
+}
+
+void Bear::GUI_ID(const std_msgs::Int8& GUI_id)
+{
+
+    leg_id = GUI_id.data;
+
+}
+
+void Bear::GUI_CMD(const std_msgs::Float32& GUI_cmd)
+{
+
+    leg_cmd = GUI_cmd.data;
+
+}
 
 //void Bear::read(const std_msgs::Float64MultiArray& Arduino_joint_position_topic){
 void Bear::read(const std_msgs::Int8MultiArray& Arduino_joint_position_topic){
@@ -184,6 +211,8 @@ void Bear::write(trajectory_msgs::JointTrajectory champ_cmd) {
         float OFFSET_03 = 3*PI/4;
         float OFFSET_69 = -3*PI/4;
 
+    if(ctrl_selector == false)
+    {
 
         //JAMBE AVANT GAUCHE: ABD -- FEMUR -- TIBIA
         messageCommand.data[0]=(abs((champ_cmd.points[0].positions[0]+OFFSET_03)*RAD2DEG));
@@ -205,7 +234,16 @@ void Bear::write(trajectory_msgs::JointTrajectory champ_cmd) {
         messageCommand.data[9]=(abs((champ_cmd.points[0].positions[9]+OFFSET_69-(PI/24))*RAD2DEG));
         messageCommand.data[10]=abs((-0.3593*pow(champ_cmd.points[0].positions[10],2)-0.6064*(abs(champ_cmd.points[0].positions[10]))+2.375-PI/5)*RAD2DEG);  
         messageCommand.data[11]=abs(((champ_cmd.points[0].positions[11])-(champ_cmd.points[0].positions[10])*ratio_pulleys_tibia+(champ_cmd.points[0].positions[10]))/ratio_pulleys_tibia)*RAD2DEG;
-   
+
+    }
+
+    else if (ctrl_selector == true)
+    {
+
+        messageCommand.data[leg_id] = leg_cmd;
+
+    }
+
 
     commandPublisher.publish(messageCommand);
 
