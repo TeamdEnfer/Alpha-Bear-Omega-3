@@ -3,7 +3,7 @@ import QFloatSlider
 
 class QFloatSliderEntryBox(QtWidgets.QWidget):
     def __init__(self, slider_orientation=QtCore.Qt.Horizontal, 
-                 invert_layout=False, decimals=2, regex=".*", *args, **kargs):
+                 invert_layout=False, id: int = None, decimals=2, regex=".*", *args, **kargs):
         super(QFloatSliderEntryBox, self).__init__(*args, **kargs)
 
         # Set (vertical) layout
@@ -13,7 +13,7 @@ class QFloatSliderEntryBox(QtWidgets.QWidget):
             self.layout = QtWidgets.QHBoxLayout()
 
         # Create a QFloatSlider
-        self._slider = QFloatSlider.QFloatSlider(slider_orientation, decimals, *args, **kargs,
+        self._slider = QFloatSlider.QFloatSlider(slider_orientation, id, decimals, *args, **kargs,
             valueChanged = lambda: self.slider_value_changed())
 
         # Create a validator
