@@ -16,7 +16,3 @@
 [submodule "control/ros_ws/control/ros_ws/src/rplidar_ros"]
 	path = control/ros_ws/control/ros_ws/src/rplidar_ros
 	url = https://github.com/Slamtec/rplidar_ros.git
-[submodule "champ"]
-	path = champ
-	url = https://github.com/chvmp/champ
-	branch = Ros_lidar
