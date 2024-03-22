@@ -11,6 +11,9 @@
 #include <std_msgs/Float64MultiArray.h>
 #include <std_msgs/Float32MultiArray.h>
 #include <std_msgs/Int8MultiArray.h>
+#include <std_msgs/Float32.h>
+#include <std_msgs/Int8.h>
+#include <std_msgs/Bool.h>
 #include <string.h>
 #include <controls/Servo_cmd.h>
 #include <math.h>
@@ -29,7 +32,11 @@ class Bear : public hardware_interface::RobotHW
         //void read(const std_msgs::Float64MultiArray& Arduino_joint_position_subsriber);
         void read(const std_msgs::Int8MultiArray& Arduino_joint_position_subsriber);
         void fetchFeedback(const std_msgs::Float64MultiArray& feedback_message);
-        void write( trajectory_msgs::JointTrajectory);
+        void write( trajectory_msgs::JointTrajectory );
+        void Selector(const std_msgs::Bool& controller_selector);
+        void GUI_ID(const std_msgs::Int8& GUI_id);
+        void GUI_CMD(const std_msgs::Float32& GUI_cmd);
+
         
     protected:
 
@@ -44,7 +51,6 @@ class Bear : public hardware_interface::RobotHW
         hardware_interface::JointStateHandle jsHandle[Nb_Of_Joints];
         hardware_interface::JointHandle jpHandle[Nb_Of_Joints];
 
-
         double pos[Nb_Of_Joints];
         double vel[Nb_Of_Joints];
         double eff[Nb_Of_Joints];
@@ -52,6 +58,9 @@ class Bear : public hardware_interface::RobotHW
         double joint_position_command_;
         
         ros::Subscriber champ_cmd;
+        ros::Subscriber GUI_cmd;
+        ros::Subscriber GUI_id;
+        ros::Subscriber controller_selector;
 
         ros::Subscriber Arduino_joint_position_subsriber;
         ros::Publisher commandPublisher;

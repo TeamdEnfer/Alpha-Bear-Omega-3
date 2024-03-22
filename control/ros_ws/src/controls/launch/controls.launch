@@ -32,6 +32,9 @@
         <arg if="$(arg joystick)" name="joy" value="true"/>
     </include>
 
+    <!-- Load GUI -->
+    <node name="GUI" pkg="controls" type="servo_zeroing.py" output="screen"/>
+
     <node if="$(arg joystick)" name="joy_node" pkg="joy" type="joy_node" required="true" >
         <param name="autorepeat_rate" value="5" />
         <param name="dev" value="$(arg input_id)" />
