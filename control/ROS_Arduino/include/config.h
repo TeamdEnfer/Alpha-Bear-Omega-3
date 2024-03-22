@@ -10,22 +10,32 @@
 #include <std_msgs/Int8MultiArray.h>
 #include <std_msgs/String.h>
 #include <controls/Servo_cmd.h>
-
-#include <MPU6050_light.h>
+#include <controls/BNO.h>
+#include <Adafruit_Sensor.h>
+#include <Adafruit_BNO055.h>
 
 #include <Servo.h> 
 #include "Wire.h"
 
-#define DATA_IMU_LENGTH 8
+#define NUMBER_OF_POTS 12
 
-#define IMU_FEM_AV_D 0
-#define IMU_TIB_AV_D 1
-#define IMU_FEM_AV_G 2
-#define IMU_TIB_AV_G 3
-#define IMU_FEM_AR_D 4
-#define IMU_TIB_AR_D 5
-#define IMU_FEM_AR_G 6
-#define IMU_TIB_AR_G 7
+#define POT_MIN_ANGLE 0
+#define POT_MAX_ANGLE 343
+
+#define POT_ABD_AV_G 0
+#define POT_FEM_AV_G 1
+#define POT_TIB_AV_G 2
+#define POT_ABD_AV_D 3
+#define POT_FEM_AV_D 4
+#define POT_TIB_AV_D 5
+#define POT_ABD_AR_G 6
+#define POT_FEM_AR_G 7
+#define POT_TIB_AR_G 8
+#define POT_ABD_AR_D 9
+#define POT_FEM_AR_D 10
+#define POT_TIB_AR_D 11
+
+#define NUMBER_OF_SERVOS 12
 
 #define MOT_FEM_AV_D 2
 #define MOT_TIB_AV_D 3
@@ -40,38 +50,29 @@
 #define MOT_TIB_AR_G 12
 #define MOT_ABD_AR_G 13
 
-MPU6050 mpu_FEM_AV_D(Wire);
-MPU6050 mpu_TIB_AV_D(Wire);
-MPU6050 mpu_FEM_AV_G(Wire);
-MPU6050 mpu_TIB_AV_G(Wire);
-MPU6050 mpu_FEM_AR_D(Wire);
-MPU6050 mpu_TIB_AR_D(Wire);
-MPU6050 mpu_FEM_AR_G(Wire);
-MPU6050 mpu_TIB_AR_G(Wire);
-
-Servo FEM_AV_D;
-Servo TIB_AV_D;
-Servo ABD_AV_D;
+Servo ABD_AV_G;
 Servo FEM_AV_G;
 Servo TIB_AV_G;
-Servo ABD_AV_G;
-Servo FEM_AR_D;
-Servo TIB_AR_D;
-Servo ABD_AR_D;
+Servo ABD_AV_D;
+Servo FEM_AV_D;
+Servo TIB_AV_D;
+Servo ABD_AR_G;
 Servo FEM_AR_G;
 Servo TIB_AR_G;
-Servo ABD_AR_G;
+Servo ABD_AR_D;
+Servo FEM_AR_D;
+Servo TIB_AR_D;
 
-std_msgs::Float64MultiArray data_imu;
-std_msgs::Int8MultiArray test_array;
+uint16_t BNO055_SAMPLERATE_DELAY_MS = 100;
+Adafruit_BNO055 bno = Adafruit_BNO055(55, 0x28);
+
 std_msgs::String msg;
 
-//void servo_cb(const std_msgs::UInt16 &cmd_msg);
-void TCA9548A(uint8_t bus);
-void readXangles(std_msgs::Float64MultiArray* data_imu);
-float getXangle(uint8_t imu_num, MPU6050 imu_type);
-void imu_init();
 void servo_init();
-void test_feedback(const std_msgs::Int8MultiArray *test_array);
+void BNO_init();
+void servo_cmd(const controls::Servo_cmd &cmd_msg);
+void bno_update();
+float get_angle(uint8_t pot_id);
+void test_feedback(controls::BNO &feedback_array);
 
 #endif
