@@ -37,7 +37,7 @@ do
 		echo "installing champ"
 		sudo apt install -y python3-rosdep
 		pushd control/ros_ws
-		rosdep install --from-paths src --ignore-src -r -y
+		rosdep install --os=ubuntu:focal --from-paths src --ignore-src -r -y
 		popd;;&
 
 	all | build)
