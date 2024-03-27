@@ -21,7 +21,9 @@ uint64_t period_angle = 500;
 // BNO variables
 float ACCEL_VEL_TRANSITION = (float)(BNO055_SAMPLERATE_DELAY_MS) / 1000.0;
 float ACCEL_POS_TRANSITION = 0.5 * ACCEL_VEL_TRANSITION * ACCEL_VEL_TRANSITION;
-float accelX = 0, accelY = 0, accelZ = 0, angleX = 0, angleY = 0, angleZ = 0;
+float accelX = 0, accelY = 0, accelZ = 0;
+imu::Quaternion quat;
+float quatX, quatY, quatZ, quatW;
 
 void setup()
 {
@@ -99,13 +101,13 @@ void servo_cmd(const controls::Servo_cmd &cmd_msg){
     delay(10);
     bno_update();
     bno_feedback(bno_array);
-    pot_feedback(pot_update(&pot_id_array));
+    pot_feedback(pot_update(pot_id_array));
 }
 
 void bno_update() {
     // BNO position loop
-    sensors_event_t orientationData, linearAccelData;
-    bno.getEvent(&orientationData, Adafruit_BNO055::VECTOR_EULER);
+    sensors_event_t linearAccelData;
+    imu::Quaternion quat = bno.getQuat();
     bno.getEvent(&linearAccelData, Adafruit_BNO055::VECTOR_LINEARACCEL);
     
     accelX = linearAccelData.acceleration.x;
@@ -118,10 +120,11 @@ void bno_update() {
     // BNO velocity in the direction it's facing
     // heading_vel = ACCEL_VEL_TRANSITION * linearAccelData.acceleration.x / cos(DEG_TO_RAD * orientationData.orientation.x);
 
-    // BNO Tilt angles (deg)
-    angleX = orientationData.orientation.x;
-    angleY = orientationData.orientation.y;
-    angleZ = orientationData.orientation.z;
+    // BNO quaternion data
+    quatX = quat.x();
+    quatY = quat.y();
+    quatZ = quat.z();
+    quatW = quat.w();
 
     // BNO Calibration data
     uint8_t sys, gyro, accel, mag = 0;
@@ -132,13 +135,14 @@ void bno_feedback(controls::BNO &feedback_array) {
     feedback_array.data[0] = accelX;
     feedback_array.data[1] = accelY;
     feedback_array.data[2] = accelZ;
-    feedback_array.data[3] = angleX;
-    feedback_array.data[4] = angleY;
-    feedback_array.data[5] = angleZ;
+    feedback_array.data[3] = quatX;
+    feedback_array.data[4] = quatY;
+    feedback_array.data[5] = quatZ;
+    feedback_array.data[6] = quatW;
     feedback.publish(&feedback_array);
 }
 
-controls::Servo_cmd pot_update(const int* pot_id_array) {
+controls::Servo_cmd pot_update(const int pot_id_array[NUMBER_OF_POTS]) {
     for (uint8_t i = 0; i < NUMBER_OF_POTS; i++) {
         pot_value_array.data[i] = long2float_map(analogRead(pot_id_array[i]), POT_MIN_VALUE, POT_MAX_VALUE, POT_MIN_ANGLE, POT_MAX_ANGLE);
     }

@@ -8,7 +8,7 @@ import rospy
 from std_msgs.msg import Bool, Int8, Float32
 import QFloatSliderEntryBox
 
-
+show_GUI = rospy.get_param('/GUI/show_GUI')
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -249,6 +249,7 @@ if __name__ == "__main__":
     # Create an array for servo IDs
     servo_id = [[0,1,2], [3,4,5], [6,7,8], [9,10,11]]
     
-    MainWindow.show()
+    if show_GUI:
+        MainWindow.show()
 
     sys.exit(app.exec_())
