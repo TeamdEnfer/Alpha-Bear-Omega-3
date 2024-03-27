@@ -21,7 +21,7 @@ uint64_t period_angle = 500;
 // BNO variables
 float ACCEL_VEL_TRANSITION = (float)(BNO055_SAMPLERATE_DELAY_MS) / 1000.0;
 float ACCEL_POS_TRANSITION = 0.5 * ACCEL_VEL_TRANSITION * ACCEL_VEL_TRANSITION;
-float xPos = 0, yPos = 0, heading_vel = 0, angleX = 0, angleY = 0, angleZ = 0;
+float accelX = 0, accelY = 0, accelZ = 0, angleX = 0, angleY = 0, angleZ = 0;
 
 void setup()
 {
@@ -107,12 +107,16 @@ void bno_update() {
     sensors_event_t orientationData, linearAccelData;
     bno.getEvent(&orientationData, Adafruit_BNO055::VECTOR_EULER);
     bno.getEvent(&linearAccelData, Adafruit_BNO055::VECTOR_LINEARACCEL);
+    
+    accelX = linearAccelData.acceleration.x;
+    accelY = linearAccelData.acceleration.y;
+    accelZ = linearAccelData.acceleration.z;
 
-    xPos += ACCEL_POS_TRANSITION * linearAccelData.acceleration.x;
-    yPos += ACCEL_POS_TRANSITION * linearAccelData.acceleration.y;
+    // xPos += ACCEL_POS_TRANSITION * linearAccelData.acceleration.x;
+    // yPos += ACCEL_POS_TRANSITION * linearAccelData.acceleration.y;
 
     // BNO velocity in the direction it's facing
-    heading_vel = ACCEL_VEL_TRANSITION * linearAccelData.acceleration.x / cos(DEG_TO_RAD * orientationData.orientation.x);
+    // heading_vel = ACCEL_VEL_TRANSITION * linearAccelData.acceleration.x / cos(DEG_TO_RAD * orientationData.orientation.x);
 
     // BNO Tilt angles (deg)
     angleX = orientationData.orientation.x;
@@ -125,9 +129,9 @@ void bno_update() {
 }
 
 void bno_feedback(controls::BNO &feedback_array) {
-    feedback_array.data[0] = xPos;
-    feedback_array.data[1] = yPos;
-    feedback_array.data[2] = heading_vel;
+    feedback_array.data[0] = accelX;
+    feedback_array.data[1] = accelY;
+    feedback_array.data[2] = accelZ;
     feedback_array.data[3] = angleX;
     feedback_array.data[4] = angleY;
     feedback_array.data[5] = angleZ;
