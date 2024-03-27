@@ -17,24 +17,32 @@
 #include <Servo.h> 
 #include "Wire.h"
 
-#define NUMBER_OF_POTS 12
 
-#define POT_MIN_ANGLE 0
-#define POT_MAX_ANGLE 343
+// Potentiometers parameters
+const long POT_MIN_VALUE = 0;
+const long POT_MAX_VALUE = 1023;
+const long POT_MIN_ANGLE = 0;
+const long POT_MAX_ANGLE = 343;
+const uint8_t NUMBER_OF_POTS = 12;
 
-#define POT_ABD_AV_G 0
-#define POT_FEM_AV_G 1
-#define POT_TIB_AV_G 2
-#define POT_ABD_AV_D 3
-#define POT_FEM_AV_D 4
-#define POT_TIB_AV_D 5
-#define POT_ABD_AR_G 6
-#define POT_FEM_AR_G 7
-#define POT_TIB_AR_G 8
-#define POT_ABD_AR_D 9
-#define POT_FEM_AR_D 10
-#define POT_TIB_AR_D 11
+#define POT_PIN_ABD_AV_G A0
+#define POT_PIN_FEM_AV_G A1
+#define POT_PIN_TIB_AV_G A2
+#define POT_PIN_ABD_AV_D A3
+#define POT_PIN_FEM_AV_D A4
+#define POT_PIN_TIB_AV_D A5
+#define POT_PIN_ABD_AR_G A6
+#define POT_PIN_FEM_AR_G A7
+#define POT_PIN_TIB_AR_G A8
+#define POT_PIN_ABD_AR_D A9
+#define POT_PIN_FEM_AR_D A10
+#define POT_PIN_TIB_AR_D A11
+const int pot_id_array[NUMBER_OF_POTS] = {POT_PIN_ABD_AV_G, POT_PIN_FEM_AV_G, POT_PIN_TIB_AV_G,
+                                          POT_PIN_ABD_AV_D, POT_PIN_FEM_AV_D, POT_PIN_TIB_AV_D,
+                                          POT_PIN_ABD_AR_G, POT_PIN_FEM_AR_G, POT_PIN_TIB_AR_G,
+                                          POT_PIN_ABD_AR_D, POT_PIN_FEM_AR_D, POT_PIN_TIB_AR_D};
 
+// Servos parameters
 #define NUMBER_OF_SERVOS 12
 
 #define MOT_FEM_AV_D 2
@@ -50,29 +58,27 @@
 #define MOT_TIB_AR_G 12
 #define MOT_ABD_AR_G 13
 
-Servo ABD_AV_G;
-Servo FEM_AV_G;
-Servo TIB_AV_G;
-Servo ABD_AV_D;
-Servo FEM_AV_D;
-Servo TIB_AV_D;
-Servo ABD_AR_G;
-Servo FEM_AR_G;
-Servo TIB_AR_G;
-Servo ABD_AR_D;
-Servo FEM_AR_D;
-Servo TIB_AR_D;
+Servo ABD_AV_G, FEM_AV_G, TIB_AV_G, ABD_AV_D, FEM_AV_D, TIB_AV_D;
+Servo ABD_AR_G, FEM_AR_G, TIB_AR_G, ABD_AR_D, FEM_AR_D, TIB_AR_D;
 
+// BNO parameters
 uint16_t BNO055_SAMPLERATE_DELAY_MS = 100;
 Adafruit_BNO055 bno = Adafruit_BNO055(55, 0x28);
 
+// ROS custom messages
 std_msgs::String msg;
+controls::BNO bno_array;
+controls::Servo_cmd pot_value_array;
 
+// Functions prototypes
 void servo_init();
+void pot_init(const int* pot_id_array);
 void BNO_init();
 void servo_cmd(const controls::Servo_cmd &cmd_msg);
 void bno_update();
-float get_angle(uint8_t pot_id);
-void test_feedback(controls::BNO &feedback_array);
+void bno_feedback(controls::BNO &feedback_array);
+controls::Servo_cmd pot_update(const int* pot_id_array);
+void pot_feedback(controls::Servo_cmd pot_value_array);
+float long2float_map(long x, long IN_min, long IN_max, long OUT_min, long OUT_max);
 
 #endif
