@@ -14,8 +14,10 @@
 #include <std_msgs/Float32.h>
 #include <std_msgs/Int8.h>
 #include <std_msgs/Bool.h>
+#include <sensor_msgs/Imu.h>
 #include <string.h>
 #include <controls/Servo_cmd.h>
+#include <controls/BNO.h>
 #include <math.h>
 #include <trajectory_msgs/JointTrajectory.h>
 
@@ -31,6 +33,7 @@ class Bear : public hardware_interface::RobotHW
         void update(const ros::TimerEvent& e);
         //void read(const std_msgs::Float64MultiArray& Arduino_joint_position_subsriber);
         void read(const std_msgs::Int8MultiArray& Arduino_joint_position_subsriber);
+        void IMU_callback(const controls::BNO& BNO_callback);
         void fetchFeedback(const std_msgs::Float64MultiArray& feedback_message);
         void write( trajectory_msgs::JointTrajectory );
         void Selector(const std_msgs::Bool& controller_selector);
@@ -61,12 +64,14 @@ class Bear : public hardware_interface::RobotHW
         ros::Subscriber GUI_cmd;
         ros::Subscriber GUI_id;
         ros::Subscriber controller_selector;
+        ros::Subscriber BNO_callback;
 
         ros::Subscriber Arduino_joint_position_subsriber;
         ros::Publisher commandPublisher;
+        ros::Publisher IMU_feedback_publisher;
         //std_msgs::Float32MultiArray messageCommand;
         controls::Servo_cmd messageCommand;
-
+        sensor_msgs::Imu IMU_data;
 
         ros::NodeHandle nh_;
         ros::Timer my_control_loop_;
