@@ -2,6 +2,7 @@
     <arg name="joystick" default="false"/>
     <arg name="input_id"  default="/dev/input/js0"/>
     <arg name="auto_close" default="false" doc="Startup mode"/>
+    <arg name="show_GUI" default="false" doc="Show GUI app"/>
 
     <rosparam file="$(find controls)/config/trajectory_controller.yaml" command="load"/>
     <rosparam file="$(find controls)/config/joint_limits.yaml" command="load"/>
@@ -33,7 +34,9 @@
     </include>
 
     <!-- Load GUI -->
-    <node name="GUI" pkg="controls" type="servo_zeroing.py" output="screen"/>
+    <node name="GUI" pkg="controls" type="servo_zeroing.py" output="screen" >
+        <param name="show_GUI" value="$(arg show_GUI)" />
+    </node>
 
     <node if="$(arg joystick)" name="joy_node" pkg="joy" type="joy_node" required="true" >
         <param name="autorepeat_rate" value="5" />

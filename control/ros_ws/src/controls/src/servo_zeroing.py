@@ -3,12 +3,12 @@
 from PyQt5 import QtCore as qtc
 from PyQt5 import QtGui as qtgui
 from PyQt5 import QtWidgets as qtw
-#import qdarktheme
+# import qdarktheme
 import rospy
 from std_msgs.msg import Bool, Int8, Float32
-import QFloatSlider, QFloatSliderEntryBox
+import QFloatSliderEntryBox
 
-
+show_GUI = rospy.get_param('/GUI/show_GUI')
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -30,12 +30,13 @@ class Ui_MainWindow(object):
 
         # Create button that switches between controllers (i.e modes)
         self.control_switch_button = qtw.QPushButton(self.central_widget)
-        self.control_switch_button.setGeometry(qtc.QRect(88, 500, 300, 40))
+        self.control_switch_button.setGeometry(qtc.QRect(138, 500, 300, 40))
         self.control_switch_button.setFont(font)
         self.control_switch_button.setObjectName("control_switch_button")
         self.control_switch_button.setCheckable(True)
         self.control_switch_button.clicked.connect(self.switch_control_clicked)
         self.control_switch_button.clicked.connect(self.change_control_switch_color)
+        self.change_control_switch_color()
         self.control_switch_button.setText("Controller: CHAMP")
 
         # Create a label showing which leg is currently being controlled
@@ -183,6 +184,7 @@ class Ui_MainWindow(object):
         if self.control_switch_button.isChecked():
             self.leg_selection_label.setText(f'Current leg: {self.leg_selection_box.currentText()}')
         else:
+            self.controller_error()
             self.leg_selection_label.setText("Current leg: None")
     
     def servo_update_cmd(self, joint_id: int, cmd: float):
@@ -192,7 +194,7 @@ class Ui_MainWindow(object):
         else:
             self.controller_error()
 
-    def servo_update_zero(self, joint_id: int, zero: float):
+    def servo_update_zero(self, joint_id: int, zero: float):    # Function is pretty much useless and acts only as a redondancy
         if self.control_switch_button.isChecked():
             id = self.update_servo_id(joint_id)
             servo_id_pub.publish(id)
@@ -232,7 +234,7 @@ if __name__ == "__main__":
     import sys
     app = qtw.QApplication(sys.argv)
     # Apply the dark theme
-    #qdarktheme.setup_theme()
+    # qdarktheme.setup_theme()
 
     # Create a publisher for control switching flag
     control_switch_flag_pub = rospy.Publisher('control_switch_flag', Bool, queue_size=1)
@@ -247,6 +249,7 @@ if __name__ == "__main__":
     # Create an array for servo IDs
     servo_id = [[0,1,2], [3,4,5], [6,7,8], [9,10,11]]
     
-    MainWindow.show()
+    if show_GUI:
+        MainWindow.show()
 
     sys.exit(app.exec_())

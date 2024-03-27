@@ -1,6 +1,6 @@
 control/ros_ws/build/*
 control/ros_ws/devel/*
 control/ros_ws/install/*
-.vscode/*
+.vscode
 control/ros_ws/src/controls/src/GUI/*
-control/ros_ws/src/controls/src/__pychache__/*
+*/__pychache__
