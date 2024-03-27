@@ -16,3 +16,6 @@
 [submodule "control/ros_ws/control/ros_ws/src/rplidar_ros"]
 	path = control/ros_ws/control/ros_ws/src/rplidar_ros
 	url = https://github.com/Slamtec/rplidar_ros.git
+[submodule "control/ROS_Arduino/lib/Adafruit_BNO055"]
+    path = control/ROS_Arduino/lib/Adafruit_BNO055
+    url = https://github.com/adafruit/Adafruit_BNO055
