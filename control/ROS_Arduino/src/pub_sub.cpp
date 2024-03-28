@@ -35,13 +35,15 @@ void setup()
 
     nh.subscribe(command);
     nh.advertise(feedback);
+    nh.advertise(pot_feedback_pub);
 
     pinMode(LED_PIN, OUTPUT);
 }
 
 void loop() {
     nh.spinOnce();
-    delay(250);
+    //pot_feedback(pot_update(pot_id_array));
+    delay(10);
 }
 
 void servo_init(){
@@ -74,7 +76,7 @@ void BNO_init() {
 
     if (!bno.begin()) {
         //Serial.print("No BNO055 detected");
-        while (1);
+        //while (1);
     }
     
     bno.setExtCrystalUse(true);
@@ -101,7 +103,7 @@ void servo_cmd(const controls::Servo_cmd &cmd_msg){
     delay(10);
     bno_update();
     bno_feedback(bno_array);
-    pot_feedback(pot_update(pot_id_array));
+    pot_feedback(pot_id_array);
 }
 
 void bno_update() {
@@ -143,14 +145,16 @@ void bno_feedback(controls::BNO &feedback_array) {
 }
 
 controls::Servo_cmd pot_update(const int pot_id_array[NUMBER_OF_POTS]) {
-    for (uint8_t i = 0; i < NUMBER_OF_POTS; i++) {
-        pot_value_array.data[i] = long2float_map(analogRead(pot_id_array[i]), POT_MIN_VALUE, POT_MAX_VALUE, POT_MIN_ANGLE, POT_MAX_ANGLE);
-    }
     return pot_value_array;
 }
 
-void pot_feedback(controls::Servo_cmd pot_value_array) {
+void pot_feedback(const int pot_id_array[NUMBER_OF_POTS]) {
+
+    for (int i = 0; i < NUMBER_OF_POTS; i++) {
+        pot_value_array.data[i] = long2float_map(analogRead(pot_id_array[i]), POT_MIN_VALUE, POT_MAX_VALUE, POT_MIN_ANGLE, POT_MAX_ANGLE);
+    }
     pot_feedback_pub.publish(&pot_value_array);
+
 }
 
 float long2float_map(long x, long IN_min, long IN_max, long OUT_min, long OUT_max) {

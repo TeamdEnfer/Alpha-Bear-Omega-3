@@ -57,7 +57,7 @@ namespace controls
     }
 
     virtual const char * getType() override { return "controls/BNO"; };
-    virtual const char * getMD5() override { return "cbe6c1973bf87bc6f241f9cadfa96a20"; };
+    virtual const char * getMD5() override { return "e4844fe6885794a5295df1d81cbae79f"; };
 
   };
 
