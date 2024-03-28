@@ -24,6 +24,8 @@
         <arg name="rviz" value="true"/>
     </include>
 
+    <include file="$(find champ_navigation)/launch/slam.launch"/>
+
     <!--Load the controllers-->
     <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="
             /Alpha_Bear/joints_update
