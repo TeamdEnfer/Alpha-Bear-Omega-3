@@ -19,6 +19,8 @@
     <!--Load CHAMP-->
     <include file="$(find alphabear_config)/launch/bringup.launch">
         <arg name="hardware_connected" value="true"/>
+        <arg name="laser" value="rplidar"/>
+        <arg name="rviz" value="true"/>
     </include>
 
     <!--Load the controllers-->
