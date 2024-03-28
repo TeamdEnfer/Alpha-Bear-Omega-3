@@ -32,7 +32,7 @@ class Bear : public hardware_interface::RobotHW
         void init();
         void update(const ros::TimerEvent& e);
         //void read(const std_msgs::Float64MultiArray& Arduino_joint_position_subsriber);
-        void read(const std_msgs::Int8MultiArray& Arduino_joint_position_subsriber);
+        void Angles_callback(const controls::Servo_cmd Pot_data);
         void IMU_callback(const controls::BNO& BNO_callback);
         void fetchFeedback(const std_msgs::Float64MultiArray& feedback_message);
         void write( trajectory_msgs::JointTrajectory );
@@ -65,12 +65,14 @@ class Bear : public hardware_interface::RobotHW
         ros::Subscriber GUI_id;
         ros::Subscriber controller_selector;
         ros::Subscriber BNO_callback;
+        ros::Subscriber Pot_callback;
 
-        ros::Subscriber Arduino_joint_position_subsriber;
         ros::Publisher commandPublisher;
         ros::Publisher IMU_feedback_publisher;
         //std_msgs::Float32MultiArray messageCommand;
+
         controls::Servo_cmd messageCommand;
+        controls::Servo_cmd Pot_data;
         sensor_msgs::Imu IMU_data;
 
         ros::NodeHandle nh_;

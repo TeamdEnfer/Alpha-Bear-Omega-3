@@ -27,20 +27,21 @@ Bear::Bear(ros::NodeHandle& nh) : nh_(nh) {
     my_control_loop_ = nh_.createTimer(update_freq, &Bear::update, this);
 
 //On publish les commande qui vont au servos
-    commandPublisher = nh_.advertise<controls::Servo_cmd>("Command", 10);
-    IMU_feedback_publisher = nh_.advertise<sensor_msgs::Imu>("imu/data" , 10);
+    commandPublisher = nh_.advertise<controls::Servo_cmd>("Command", 12);
+    IMU_feedback_publisher = nh_.advertise<sensor_msgs::Imu>("imu/data" , 12);
 
 //On subscribe au ArduiNode
-    //Arduino_joint_position_subsriber = nh_.subscribe("Feedback" , 10 , &Bear::read , this);
+    Pot_callback = nh_.subscribe("pot_feedback_topic" , 12 , &Bear::Angles_callback , this);
+    BNO_callback = nh_.subscribe("Feedback" , 12 , &Bear::IMU_callback, this);
 
 //on subscribe au controller champ
     champ_cmd = nh_.subscribe("/joint_group_position_controller/command" , 10 , &Bear::write , this);
 
 //on subscribe au topics du GUI pour pouvoir controller manuellement, et changer de controlleur
-    GUI_cmd = nh_.subscribe("/servo_cmd_topic" , 10 , &Bear::GUI_CMD , this);
-    GUI_id = nh_.subscribe("/servo_id_topic" , 10 , &Bear::GUI_ID , this);
+    GUI_cmd = nh_.subscribe("/servo_cmd_topic" , 12 , &Bear::GUI_CMD , this);
+    GUI_id = nh_.subscribe("/servo_id_topic" , 12 , &Bear::GUI_ID , this);
     controller_selector = nh_.subscribe("/control_switch_flag" , 1 , &Bear::Selector , this);
-    BNO_callback = nh.subscribe("Feedback" , 7 , &Bear::IMU_callback, this);
+    
 }
 
 
@@ -174,12 +175,12 @@ void Bear::GUI_CMD(const std_msgs::Float32& GUI_cmd)
 }
 
 //void Bear::read(const std_msgs::Float64MultiArray& Arduino_joint_position_topic){
-void Bear::read(const std_msgs::Int8MultiArray& Arduino_joint_position_topic){
+void Bear::Angles_callback(const controls::Servo_cmd Pot_callback){
     // Lecture des messages de commandes du controleur
 
 
     for (int i = 0; i < Nb_Of_Joints; i++) {
-        pos[i] = Arduino_joint_position_topic.data[i]*DEG2RAD;
+        pos[i] = Pot_callback.data[i]*DEG2RAD;
     }
 
 }
