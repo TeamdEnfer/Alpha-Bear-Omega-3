@@ -12,7 +12,7 @@ namespace controls
   class BNO : public ros::Msg
   {
     public:
-      float data[6];
+      float data[7];
 
     BNO():
       data()
@@ -22,7 +22,7 @@ namespace controls
     virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
-      for( uint32_t i = 0; i < 6; i++){
+      for( uint32_t i = 0; i < 7; i++){
       union {
         float real;
         uint32_t base;
@@ -40,7 +40,7 @@ namespace controls
     virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
-      for( uint32_t i = 0; i < 6; i++){
+      for( uint32_t i = 0; i < 7; i++){
       union {
         float real;
         uint32_t base;
@@ -57,7 +57,7 @@ namespace controls
     }
 
     virtual const char * getType() override { return "controls/BNO"; };
-    virtual const char * getMD5() override { return "cbe6c1973bf87bc6f241f9cadfa96a20"; };
+    virtual const char * getMD5() override { return "e4844fe6885794a5295df1d81cbae79f"; };
 
   };
 

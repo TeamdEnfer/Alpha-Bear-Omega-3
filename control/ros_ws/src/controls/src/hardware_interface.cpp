@@ -8,6 +8,7 @@ bool ctrl_selector = false;
 int leg_id = 0;
 float leg_cmd = 0.0;
 
+
 Bear::Bear(ros::NodeHandle& nh) : nh_(nh) {
 
  
@@ -25,21 +26,22 @@ Bear::Bear(ros::NodeHandle& nh) : nh_(nh) {
 //Run the control loop
     my_control_loop_ = nh_.createTimer(update_freq, &Bear::update, this);
 
-//Inform master that the node will be publishing to topic /command with queue size 10
-    //commandPublisher = nh_.advertise<std_msgs::Float32MultiArray>("Command", 10);
-    commandPublisher = nh_.advertise<controls::Servo_cmd>("Command", 10);
+//On publish les commande qui vont au servos
+    commandPublisher = nh_.advertise<controls::Servo_cmd>("Command", 12);
+    IMU_feedback_publisher = nh_.advertise<sensor_msgs::Imu>("imu/data" , 12);
 
 //On subscribe au ArduiNode
-    Arduino_joint_position_subsriber = nh_.subscribe("Feedback" , 10 , &Bear::read , this);
+    Pot_callback = nh_.subscribe("pot_feedback_topic" , 12 , &Bear::Angles_callback , this);
+    BNO_callback = nh_.subscribe("Feedback" , 12 , &Bear::IMU_callback, this);
 
 //on subscribe au controller champ
     champ_cmd = nh_.subscribe("/joint_group_position_controller/command" , 10 , &Bear::write , this);
 
 //on subscribe au topics du GUI pour pouvoir controller manuellement, et changer de controlleur
-    GUI_cmd = nh_.subscribe("/servo_cmd_topic" , 10 , &Bear::GUI_CMD , this);
-    GUI_id = nh_.subscribe("/servo_id_topic" , 10 , &Bear::GUI_ID , this);
+    GUI_cmd = nh_.subscribe("/servo_cmd_topic" , 12 , &Bear::GUI_CMD , this);
+    GUI_id = nh_.subscribe("/servo_id_topic" , 12 , &Bear::GUI_ID , this);
     controller_selector = nh_.subscribe("/control_switch_flag" , 1 , &Bear::Selector , this);
-
+    
 }
 
 
@@ -51,6 +53,10 @@ Bear::~Bear() {
 
 void Bear::init() {
         
+
+    //IMU_data.linear_acceleration.x = 0;
+    //IMU_data.linear_acceleration.y = 0;
+    //IMU_data.linear_acceleration.z = 0;
 
     //HWI pour la jambe avant gauche
     jsHandle[0] = hardware_interface::JointStateHandle(("FL_shoulder_servo"), &pos[0], &vel[0], &eff[0]);
@@ -169,13 +175,46 @@ void Bear::GUI_CMD(const std_msgs::Float32& GUI_cmd)
 }
 
 //void Bear::read(const std_msgs::Float64MultiArray& Arduino_joint_position_topic){
-void Bear::read(const std_msgs::Int8MultiArray& Arduino_joint_position_topic){
+void Bear::Angles_callback(const controls::Servo_cmd Pot_callback){
     // Lecture des messages de commandes du controleur
 
 
     for (int i = 0; i < Nb_Of_Joints; i++) {
-        pos[i] = Arduino_joint_position_topic.data[i]*DEG2RAD;
+        pos[i] = Pot_callback.data[i]*DEG2RAD;
     }
+
+}
+
+void Bear::IMU_callback(const controls::BNO& BNO_callback)
+{
+    
+    //Acceleration lineaire
+    IMU_data.linear_acceleration.x = BNO_callback.data[0];
+    IMU_data.linear_acceleration.y = BNO_callback.data[1];
+    IMU_data.linear_acceleration.z = BNO_callback.data[2];
+
+    for(int i = 0 ; i<9 ; i++)
+    {
+        IMU_data.linear_acceleration_covariance[i] = 0;
+    }
+
+    //Orientation du corp
+    IMU_data.orientation.x = BNO_callback.data[3]*DEG2RAD;
+    IMU_data.orientation.y = BNO_callback.data[4]*DEG2RAD;
+    IMU_data.orientation.z = BNO_callback.data[5]*DEG2RAD;
+    IMU_data.orientation.w = BNO_callback.data[6]*DEG2RAD;
+
+    for(int i = 0 ; i<9 ; i++)
+    {
+        IMU_data.orientation_covariance[i] = 0;
+    }
+    
+
+    //Vitesse angulaire
+    IMU_data.angular_velocity_covariance[0] = -1;
+
+
+    IMU_feedback_publisher.publish(IMU_data);
 
 }
 
