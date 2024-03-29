@@ -20,5 +20,7 @@
         <param name="port" value="/dev/ttyACM0"/>
         <param name="baud" value="115200"/>
     </node>
+    
+    <node pkg="rostopic" type="rostopic" name="rostopic_echo_node" output="screen" args="echo /Command" />
 
 </launch>

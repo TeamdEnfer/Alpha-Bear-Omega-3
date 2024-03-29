@@ -208,32 +208,32 @@ void Bear::write(trajectory_msgs::JointTrajectory champ_cmd) {
    
 
 
-        float OFFSET_03 = 3*PI/4;
-        float OFFSET_69 = -3*PI/4;
+        float OFFSET_03 = 2*PI/4;
+        float OFFSET_69 = -2*PI/4;
 
     if(ctrl_selector == false)
     {
 
         //JAMBE AVANT GAUCHE: ABD -- FEMUR -- TIBIA
-        messageCommand.data[0]=(abs((champ_cmd.points[0].positions[0]+OFFSET_03)*RAD2DEG));
+        messageCommand.data[0]=(abs((-champ_cmd.points[0].positions[0]+OFFSET_03)*RAD2DEG));
         //messageCommand.data[1]=abs(1/(1.2823*exp(0.3685*champ_cmd.points[0].positions[1]))*RAD2DEG);  
-        messageCommand.data[1]=abs((0.3408*pow(champ_cmd.points[0].positions[1],2)+0.6434*(abs(champ_cmd.points[0].positions[1]))+0.0095)*RAD2DEG);
-        messageCommand.data[2]=((champ_cmd.points[0].positions[2]-champ_cmd.points[0].positions[1]*ratio_pulleys_tibia+champ_cmd.points[0].positions[1])/ratio_pulleys_tibia)*RAD2DEG;
+        messageCommand.data[1]=(0.3408*pow(champ_cmd.points[0].positions[1],2)-0.6434*(champ_cmd.points[0].positions[1])+0.0095)*RAD2DEG;
+        messageCommand.data[2]=abs((champ_cmd.points[0].positions[2]-champ_cmd.points[0].positions[1]*ratio_pulleys_tibia+champ_cmd.points[0].positions[1]-1.658063)/ratio_pulleys_tibia)*RAD2DEG;
 
         //JAMBE AVANT DROITE: ABD -- FEMUR -- TIBIA
-        messageCommand.data[3]=(abs((champ_cmd.points[0].positions[3]+OFFSET_03)*RAD2DEG));
-        messageCommand.data[4]=abs((-0.3593*pow(champ_cmd.points[0].positions[4],2)-0.6064*(abs(champ_cmd.points[0].positions[4]))+2.375-(PI/20))*RAD2DEG);  
-        messageCommand.data[5]=abs(((champ_cmd.points[0].positions[5])-(champ_cmd.points[0].positions[4])*ratio_pulleys_tibia+(champ_cmd.points[0].positions[4]))/ratio_pulleys_tibia)*RAD2DEG;
+        messageCommand.data[3]=(abs((-champ_cmd.points[0].positions[3]+OFFSET_03)*RAD2DEG));
+        messageCommand.data[4]=(-0.3593*pow(champ_cmd.points[0].positions[4],2)+0.6064*champ_cmd.points[0].positions[4]+2.375)*RAD2DEG;  
+        messageCommand.data[5]=((champ_cmd.points[0].positions[5])-champ_cmd.points[0].positions[4]*ratio_pulleys_tibia+champ_cmd.points[0].positions[4])/ratio_pulleys_tibia*RAD2DEG;
 
         //JAMBE ARRIERE GAUCHE: ABD -- FEMUR -- TIBIA
-        messageCommand.data[6]=(abs((champ_cmd.points[0].positions[6]+OFFSET_69+(PI/12))*RAD2DEG));
-        messageCommand.data[7]=abs((0.3408*pow(champ_cmd.points[0].positions[7],2)+0.6434*(abs(champ_cmd.points[0].positions[7]))+0.0095)*RAD2DEG); 
-        messageCommand.data[8]=((champ_cmd.points[0].positions[8]-champ_cmd.points[0].positions[7]*ratio_pulleys_tibia+champ_cmd.points[0].positions[7])/ratio_pulleys_tibia)*RAD2DEG;
+        messageCommand.data[6]=(abs((champ_cmd.points[0].positions[6]+OFFSET_69)*RAD2DEG));
+        messageCommand.data[7]=(0.3408*pow(champ_cmd.points[0].positions[7],2)-0.6434*(champ_cmd.points[0].positions[7])+0.0095)*RAD2DEG;
+        messageCommand.data[8]=abs((champ_cmd.points[0].positions[8]-champ_cmd.points[0].positions[7]*ratio_pulleys_tibia+champ_cmd.points[0].positions[7]-1.658063)/ratio_pulleys_tibia)*RAD2DEG;
 
         //JAMBE ARRIERE DROITE: ABD -- FEMUR -- TIBIA
-        messageCommand.data[9]=(abs((champ_cmd.points[0].positions[9]+OFFSET_69-(PI/24))*RAD2DEG));
-        messageCommand.data[10]=abs((-0.3593*pow(champ_cmd.points[0].positions[10],2)-0.6064*(abs(champ_cmd.points[0].positions[10]))+2.375-PI/5)*RAD2DEG);  
-        messageCommand.data[11]=abs(((champ_cmd.points[0].positions[11])-(champ_cmd.points[0].positions[10])*ratio_pulleys_tibia+(champ_cmd.points[0].positions[10]))/ratio_pulleys_tibia)*RAD2DEG;
+        messageCommand.data[9]=(abs((champ_cmd.points[0].positions[9]+OFFSET_69)*RAD2DEG));
+        messageCommand.data[10]=(-0.3593*pow(champ_cmd.points[0].positions[10],2)+0.6064*champ_cmd.points[0].positions[10]+2.375)*RAD2DEG;  
+        messageCommand.data[11]=((champ_cmd.points[0].positions[11])-champ_cmd.points[0].positions[10]*ratio_pulleys_tibia+champ_cmd.points[0].positions[10])/ratio_pulleys_tibia*RAD2DEG;
 
     }
 
