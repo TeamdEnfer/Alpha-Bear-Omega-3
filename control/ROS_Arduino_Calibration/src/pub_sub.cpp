@@ -10,19 +10,19 @@ ros::NodeHandle  nh;
 
 void servo_cmd(const controls::Servo_cmd &cmd_msg){
 
-    ABD_AV_G.writeMicroseconds((int)(cmd_msg.data[0]*2000/270+500));
+    ABD_AV_G.writeMicroseconds((int)(cmd_msg.data[0]*2000/180+500));
     FEM_AV_G.writeMicroseconds((int)(cmd_msg.data[1]*2000/270+500));
     TIB_AV_G.writeMicroseconds((int)(cmd_msg.data[2]*2000/270+500));
 
-    ABD_AV_D.writeMicroseconds((int)(cmd_msg.data[3]*2000/270+500));
+    ABD_AV_D.writeMicroseconds((int)(cmd_msg.data[3]*2000/180+500));
     FEM_AV_D.writeMicroseconds((int)(cmd_msg.data[4]*2000/270+500));
     TIB_AV_D.writeMicroseconds((int)(cmd_msg.data[5]*2000/270+500));
 
-    ABD_AR_G.writeMicroseconds((int)(cmd_msg.data[6]*2000/270+500));
+    ABD_AR_G.writeMicroseconds((int)(cmd_msg.data[6]*2000/180+500));
     FEM_AR_G.writeMicroseconds((int)(cmd_msg.data[7]*2000/270+500));
     TIB_AR_G.writeMicroseconds((int)(cmd_msg.data[8]*2000/270+500));
 
-    ABD_AR_D.writeMicroseconds((int)(cmd_msg.data[9]*2000/270+500));
+    ABD_AR_D.writeMicroseconds((int)(cmd_msg.data[9]*2000/180+500));
     FEM_AR_D.writeMicroseconds((int)(cmd_msg.data[10]*2000/270+500));
     TIB_AR_D.writeMicroseconds((int)(cmd_msg.data[11]*2000/270+500));
 
