@@ -31,12 +31,10 @@ void setup()
     Serial.begin(115200);
     servo_init();
     pca_init();
-    // pot_init(pot_id_array);
     BNO_init();
 
     nh.subscribe(command);
     nh.advertise(feedback);
-    // nh.advertise(pot_feedback_pub);
 
     pinMode(LED_PIN, OUTPUT);
 }
@@ -46,22 +44,10 @@ void loop() {
     delay(10);
 }
 
-void servo_init(){
-  ABD_AV_G.attach(MOT_ABD_AV_G);
-  FEM_AV_G.attach(MOT_FEM_AV_G);
-  TIB_AV_G.attach(MOT_TIB_AV_G);
-
-  ABD_AV_D.attach(MOT_ABD_AV_D);
-  FEM_AV_D.attach(MOT_FEM_AV_D);
-  TIB_AV_D.attach(MOT_TIB_AV_D);
-
-  ABD_AR_G.attach(MOT_ABD_AR_G);
-  FEM_AR_G.attach(MOT_FEM_AR_G);
-  TIB_AR_G.attach(MOT_TIB_AR_G);
-
-  ABD_AR_D.attach(MOT_ABD_AR_D);
-  FEM_AR_D.attach(MOT_FEM_AR_D);
-  TIB_AR_D.attach(MOT_TIB_AR_D);
+void servo_init() {
+    for (int i = 0; i < NUMBER_OF_SERVOS; i++) {
+        servo_array[i].attach(servo_pins[i]);
+    }
 }
 
 void pca_init() {
@@ -69,19 +55,13 @@ void pca_init() {
     pca.setPWMFreq(PWM_FREQ);
 }
 
-// void pot_init(const int* pot_id_array) {
-//     for (uint8_t i = 0; i < NUMBER_OF_POTS; i++) {
-//         pinMode(pot_id_array[i], INPUT);
-//     }
-// }
-
 void BNO_init() {
     while (!Serial)
         delay(10);  // Wait for serial port to open
 
     if (!bno.begin()) {
-        Serial.print("No BNO055 detected");
-        while (1);
+        // Serial.print("No BNO055 detected");
+        // while (1);
     }
     
     bno.setExtCrystalUse(true);
@@ -96,7 +76,6 @@ void servo_cmd(const controls::Servo_cmd &cmd_msg) {
     delay(10);
     bno_update();
     bno_feedback(bno_array);
-    //pot_feedback(pot_id_array);
 }
 
 void bno_update() {
@@ -132,32 +111,16 @@ void bno_feedback(controls::BNO &feedback_array) {
     feedback.publish(&feedback_array);
 }
 
-// controls::Servo_cmd pot_update(const int pot_id_array[NUMBER_OF_POTS]) {
-//     return pot_value_array;
-// }
 
 /*
     Converts the angle received from the controller into an impulse sent to the servo.
     angle is in degrees (deg).
 */
-int deg2imp(bool isShoulder, float angle) {
+uint16_t deg2imp(bool isShoulder, float angle) {
     if (isShoulder)
-        imp = (int)(angle * (MAX_IMPULSE - MIN_IMPULSE) / (MAX_ANGLE_S - MIN_ANGLE) + MIN_IMPULSE);
+        imp = (uint16_t)(angle * (MAX_IMPULSE - MIN_IMPULSE) / (MAX_ANGLE_S - MIN_ANGLE) + MIN_IMPULSE);
     else
-        imp =(int)(angle * (MAX_IMPULSE - MIN_IMPULSE) / (MAX_ANGLE_FT - MIN_ANGLE) + MIN_IMPULSE);
+        imp =(uint16_t)(angle * (MAX_IMPULSE - MIN_IMPULSE) / (MAX_ANGLE_FT - MIN_ANGLE) + MIN_IMPULSE);
     return constrain(imp, MIN_IMPULSE, MAX_IMPULSE);
 }
-
-// void pot_feedback(const int pot_id_array[NUMBER_OF_POTS]) {
-
-//     for (int i = 0; i < NUMBER_OF_POTS; i++) {
-//         pot_value_array.data[i] = long2float_map(analogRead(pot_id_array[i]), POT_MIN_VALUE, POT_MAX_VALUE, POT_MIN_ANGLE, POT_MAX_ANGLE);
-//     }
-//     pot_feedback_pub.publish(&pot_value_array);
-
-// }
-
-// float long2float_map(long x, long IN_min, long IN_max, long OUT_min, long OUT_max) {
-//     return (float)(x - IN_min) * (float)(OUT_max - OUT_min) / (float)(IN_max - IN_min) + (float)OUT_min;
-// }
 
