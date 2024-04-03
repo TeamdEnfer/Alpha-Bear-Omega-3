@@ -1,0 +1,411 @@
+#VRML_SIM R2023b utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/appearances/protos/DamascusSteel.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/appearances/protos/ElectricConduit.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/appearances/protos/Grass.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/appearances/protos/CorrugatedMetal.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  orientation 0.09086183540632084 0.24008203862907665 0.9664909423239834 1.586581235461169
+  position 0.46570600690893277 -1.628088706075047 0.34823530737990077
+}
+Background {
+  skyColor [
+    1 1 1
+  ]
+}
+DirectionalLight {
+  ambientIntensity 1
+  direction 0.1 -0.5 0.3
+}
+RectangleArena {
+  floorSize 10 10
+}
+Robot {
+  translation 0 0 0.4
+  children [
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor 0.15 -0.08 0
+      }
+      device [
+        RotationalMotor {
+          name "FR_shoulder_servo"
+        }
+      ]
+      endPoint Solid {
+        translation 0.15 -0.08 0
+        rotation 1 0 0 0
+        children [
+          HingeJoint {
+            jointParameters HingeJointParameters {
+              axis 0 1 0
+              anchor 0 -0.05 0
+            }
+            device [
+              RotationalMotor {
+                name "FR_femur_servo"
+              }
+            ]
+            endPoint Solid {
+              translation 0 -0.06 -0.075
+              rotation 0 1 0 0
+              children [
+                DEF femur Shape {
+                  appearance ElectricConduit {
+                  }
+                  geometry Box {
+                    size 0.025 0.025 0.15
+                  }
+                }
+                HingeJoint {
+                  jointParameters HingeJointParameters {
+                    axis 0 1 0
+                    anchor 0 0 -0.075
+                  }
+                  device [
+                    RotationalMotor {
+                      name "FR_tibia_servo"
+                    }
+                  ]
+                  endPoint Solid {
+                    translation 0 0 -0.165
+                    rotation 0 1 0 0
+                    children [
+                      Solid {
+                        children [
+                          DEF foot Shape {
+                            geometry Sphere {
+                              radius 0.015
+                            }
+                          }
+                        ]
+                        name "FR_foot"
+                        boundingObject USE foot
+                      }
+                      DEF tibia Shape {
+                        appearance Grass {
+                        }
+                        geometry Box {
+                          size 0.02 0.02 0.183
+                        }
+                      }
+                    ]
+                    name "FR_tibia"
+                    boundingObject USE tibia
+                  }
+                }
+              ]
+              name "FR_femur"
+              boundingObject USE femur
+              physics Physics {
+              }
+            }
+          }
+          DEF shoulder Shape {
+            appearance CorrugatedMetal {
+            }
+            geometry Box {
+              size 0.05 0.05 0.07
+            }
+          }
+        ]
+        name "FR_shoulder"
+        boundingObject USE shoulder
+        physics Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor -0.125 -0.08 0
+      }
+      device [
+        RotationalMotor {
+          name "RR_shoulder_servo"
+        }
+      ]
+      endPoint Solid {
+        translation -0.125 -0.08 0
+        rotation 1 0 0 0
+        children [
+          HingeJoint {
+            jointParameters HingeJointParameters {
+              axis 0 1 0
+              anchor 0 -0.05 0
+            }
+            device [
+              RotationalMotor {
+                name "RR_femur_servo"
+              }
+            ]
+            endPoint Solid {
+              translation 0 -0.06 -0.075
+              children [
+                DEF femur Shape {
+                  appearance ElectricConduit {
+                  }
+                  geometry Box {
+                    size 0.025 0.025 0.15
+                  }
+                }
+                HingeJoint {
+                  jointParameters HingeJointParameters {
+                    axis 0 1 0
+                    anchor 0 0 -0.075
+                  }
+                  device [
+                    RotationalMotor {
+                      name "RR_tibia_servo"
+                    }
+                  ]
+                  endPoint Solid {
+                    translation 0 0 -0.165
+                    children [
+                      Solid {
+                        children [
+                          DEF foot Shape {
+                            geometry Sphere {
+                              radius 0.015
+                            }
+                          }
+                        ]
+                        name "RR_foot"
+                        boundingObject USE foot
+                      }
+                      DEF tibia Shape {
+                        appearance Grass {
+                        }
+                        geometry Box {
+                          size 0.02 0.02 0.183
+                        }
+                      }
+                    ]
+                    name "RR_tibia"
+                    boundingObject USE tibia
+                  }
+                }
+              ]
+              name "RR_femur"
+              boundingObject USE femur
+              physics Physics {
+              }
+            }
+          }
+          DEF shoulder Shape {
+            appearance CorrugatedMetal {
+            }
+            geometry Box {
+              size 0.05 0.05 0.07
+            }
+          }
+        ]
+        name "RR_shoulder"
+        boundingObject USE shoulder
+        physics Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor 0.15 0.08 0
+      }
+      device [
+        RotationalMotor {
+          name "FL_shoulder_servo"
+        }
+      ]
+      endPoint Solid {
+        translation 0.15 0.08 0
+        rotation 1 0 0 0
+        children [
+          HingeJoint {
+            jointParameters HingeJointParameters {
+              axis 0 1 0
+              anchor 0 0.05 0
+            }
+            device [
+              RotationalMotor {
+                name "FL_femur_servo"
+              }
+            ]
+            endPoint Solid {
+              translation 0 0.06 -0.075
+              children [
+                DEF femur Shape {
+                  appearance ElectricConduit {
+                  }
+                  geometry Box {
+                    size 0.025 0.025 0.15
+                  }
+                }
+                HingeJoint {
+                  jointParameters HingeJointParameters {
+                    axis 0 1 0
+                    anchor 0 0 -0.075
+                  }
+                  device [
+                    RotationalMotor {
+                      name "FL_tibia_servo"
+                    }
+                  ]
+                  endPoint Solid {
+                    translation 0 0 -0.165
+                    children [
+                      Solid {
+                        children [
+                          DEF foot Shape {
+                            geometry Sphere {
+                              radius 0.015
+                            }
+                          }
+                        ]
+                        name "FL_foot"
+                        boundingObject USE foot
+                      }
+                      DEF tibia Shape {
+                        appearance Grass {
+                        }
+                        geometry Box {
+                          size 0.02 0.02 0.183
+                        }
+                      }
+                    ]
+                    name "FL_tibia"
+                    boundingObject USE tibia
+                  }
+                }
+              ]
+              name "FL_femur"
+              boundingObject USE femur
+              physics Physics {
+              }
+            }
+          }
+          DEF shoulder Shape {
+            appearance CorrugatedMetal {
+            }
+            geometry Box {
+              size 0.05 0.05 0.07
+            }
+          }
+        ]
+        name "FL_shoulder"
+        boundingObject USE shoulder
+        physics Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor -0.125 0.08 0
+      }
+      device [
+        RotationalMotor {
+          name "RL_shoulder_servo"
+        }
+      ]
+      endPoint Solid {
+        translation -0.125 0.08 0
+        rotation 1 0 0 0
+        children [
+          HingeJoint {
+            jointParameters HingeJointParameters {
+              axis 0 1 0
+              anchor 0 0.05 0
+            }
+            device [
+              RotationalMotor {
+                name "RL_femur_servo"
+              }
+            ]
+            endPoint Solid {
+              translation 0 0.06 -0.075
+              children [
+                DEF femur Shape {
+                  appearance ElectricConduit {
+                  }
+                  geometry Box {
+                    size 0.025 0.025 0.15
+                  }
+                }
+                HingeJoint {
+                  jointParameters HingeJointParameters {
+                    axis 0 1 0
+                    anchor 0 0 -0.075
+                  }
+                  device [
+                    RotationalMotor {
+                      name "RL_tibia_servo"
+                    }
+                  ]
+                  endPoint Solid {
+                    translation 0 0 -0.165
+                    children [
+                      Solid {
+                        children [
+                          DEF foot Shape {
+                            geometry Sphere {
+                              radius 0.015
+                            }
+                          }
+                        ]
+                        name "RL_foot"
+                        boundingObject USE foot
+                      }
+                      DEF tibia Shape {
+                        appearance Grass {
+                        }
+                        geometry Box {
+                          size 0.02 0.02 0.183
+                        }
+                      }
+                    ]
+                    name "RL_tibia"
+                    boundingObject USE tibia
+                  }
+                }
+              ]
+              name "RL_femur"
+              boundingObject USE femur
+              physics Physics {
+              }
+            }
+          }
+          DEF shoulder Shape {
+            appearance CorrugatedMetal {
+            }
+            geometry Box {
+              size 0.05 0.05 0.07
+            }
+          }
+        ]
+        name "RL_shoulder"
+        boundingObject USE shoulder
+        physics Physics {
+        }
+      }
+    }
+    DEF Body Solid {
+      children [
+        DEF Body Shape {
+          appearance DamascusSteel {
+          }
+          geometry Box {
+            size 0.4 0.2 0.05
+          }
+        }
+      ]
+      name "Body"
+      boundingObject USE Body
+      physics Physics {
+      }
+    }
+  ]
+  boundingObject USE Body
+  physics Physics {
+  }
+}

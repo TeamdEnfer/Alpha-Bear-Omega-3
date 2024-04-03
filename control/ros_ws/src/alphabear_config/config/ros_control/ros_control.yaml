@@ -19,17 +19,16 @@
           - RR_femur_servo
           - RR_tibia_servo
 
-
       gains:
-        FL_shoulder_servo : {p: 180, d: 0.5, i: 20}
-        FL_femur_servo :    {p: 180, d: 0.5, i: 20}
-        FL_tibia_servo :    {p: 180, d: 0.5, i: 20}
-        FR_shoulder_servo : {p: 180, d: 0.5, i: 20}
-        FR_femur_servo :    {p: 180, d: 0.5, i: 20}
-        FR_tibia_servo :    {p: 180, d: 0.5, i: 20}
-        RL_shoulder_servo : {p: 180, d: 0.5, i: 20}
-        RL_femur_servo :    {p: 180, d: 0.5, i: 20}
-        RL_tibia_servo :    {p: 180, d: 0.5, i: 20}
-        RR_shoulder_servo : {p: 180, d: 0.5, i: 20}
-        RR_femur_servo :    {p: 180, d: 0.5, i: 20}
-        RR_tibia_servo :    {p: 180, d: 0.5, i: 20}
+        FL_shoulder_servo : {p: 180, d: 0.9, i: 20}
+        FL_femur_servo : {p: 180, d: 0.9, i: 20}
+        FL_tibia_servo : {p: 180, d: 0.9, i: 20}
+        FR_shoulder_servo : {p: 180, d: 0.9, i: 20}
+        FR_femur_servo : {p: 180, d: 0.9, i: 20}
+        FR_tibia_servo : {p: 180, d: 0.9, i: 20}
+        RL_shoulder_servo : {p: 180, d: 0.9, i: 20}
+        RL_femur_servo : {p: 180, d: 0.9, i: 20}
+        RL_tibia_servo : {p: 180, d: 0.9, i: 20}
+        RR_shoulder_servo : {p: 180, d: 0.9, i: 20}
+        RR_femur_servo : {p: 180, d: 0.9, i: 20}
+        RR_tibia_servo : {p: 180, d: 0.9, i: 20}
