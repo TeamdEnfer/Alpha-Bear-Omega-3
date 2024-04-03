@@ -9,25 +9,25 @@ namespace champ
     {
         void loadFromHeader(champ::QuadrupedBase &base)
         {
-      base.lf.hip.setOrigin(0.25, 0.3, 0.0, -M_PI/2, M_PI, M_PI);
-base.lf.upper_leg.setOrigin(-0.05, 0.0, -0.0, 0.0, 0.0, 0.0);
+      base.lf.hip.setOrigin(0.14, 0.075, 0.0, 0.0, 0.0, 0.0);
+base.lf.upper_leg.setOrigin(-0.0, 0.06, -0.0, 0.0, 0.0, 0.0);
 base.lf.lower_leg.setOrigin(0.0, 0.0, -0.15, 0.0, 0.0, 0.0);
-     base.lf.foot.setOrigin(0.0, 0.0, -0.085, 0.0, 0.0, 0.0);
+     base.lf.foot.setOrigin(0.0, 0.0, -0.185, 0.0, 0.0, 0.0);
 
-      base.rf.hip.setOrigin(0.25, -0.3, 0.0, 0.0, 0.0, 0.0);
-base.rf.upper_leg.setOrigin(0.05, 0.0, -0.0, 0.0, 0.0, 0.0);
+      base.rf.hip.setOrigin(0.14, -0.075, 0.0, 0.0, 0.0, 0.0);
+base.rf.upper_leg.setOrigin(0.0, -0.06, -0.0, 0.0, 0.0, 0.0);
 base.rf.lower_leg.setOrigin(0.0, 0.0, -0.15, 0.0, 0.0, 0.0);
-     base.rf.foot.setOrigin(0.0, 0.0, -0.085, 0.0, 0.0, 0.0);
+     base.rf.foot.setOrigin(0.0, 0.0, -0.185, 0.0, 0.0, 0.0);
 
-      base.lh.hip.setOrigin(-0.25, 0.3, 0.0, 0.0, 0.0, 0.0);
-base.lh.upper_leg.setOrigin(-0.05, 0.0, -0.0, 0.0, 0.0, 0.0);
+      base.lh.hip.setOrigin(-0.125, 0.075, 0.0, 0.0, 0.0, 0.0);
+base.lh.upper_leg.setOrigin(-0.0, 0.06, -0.0, 0.0, 0.0, 0.0);
 base.lh.lower_leg.setOrigin(0.0, 0.0, -0.15, 0.0, 0.0, 0.0);
-     base.lh.foot.setOrigin(0.0, 0.0, -0.085, 0.0, 0.0, 0.0);
+     base.lh.foot.setOrigin(0.0, 0.0, -0.185, 0.0, 0.0, 0.0);
 
-      base.rh.hip.setOrigin(-0.25, -0.3, 0.0, 0.0, 0.0, 0.0);
-base.rh.upper_leg.setOrigin(0.05, 0.0, -0.0, 0.0, 0.0, 0.0);
+      base.rh.hip.setOrigin(-0.125, -0.075, 0.0, 0.0, 0.0, 0.0);
+base.rh.upper_leg.setOrigin(0.0, -0.06, -0.0, 0.0, 0.0, 0.0);
 base.rh.lower_leg.setOrigin(0.0, 0.0, -0.15, 0.0, 0.0, 0.0);
-     base.rh.foot.setOrigin(0.0, 0.0, -0.085, 0.0, 0.0, 0.0);
+     base.rh.foot.setOrigin(0.0, 0.0, -0.185, 0.0, 0.0, 0.0);
         }
     }
 }
