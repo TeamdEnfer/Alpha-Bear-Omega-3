@@ -22,16 +22,14 @@
 #include <trajectory_msgs/JointTrajectory.h>
 
 
-#define Nb_Of_Joints 12
+#define NB_OF_JOINTS 12
 
-class Bear : public hardware_interface::RobotHW 
-{
+class Bear : public hardware_interface::RobotHW {
     public:
         Bear(ros::NodeHandle& nh);
         ~Bear();
         void init();
         void update(const ros::TimerEvent& e);
-        //void read(const std_msgs::Float64MultiArray& Arduino_joint_position_subsriber);
         void Angles_callback(const controls::Servo_cmd Pot_data);
         void IMU_callback(const controls::BNO& BNO_callback);
         void fetchFeedback(const std_msgs::Float64MultiArray& feedback_message);
@@ -42,22 +40,19 @@ class Bear : public hardware_interface::RobotHW
 
         
     protected:
-
         hardware_interface::JointStateInterface joint_state_interface_;
         hardware_interface::PositionJointInterface position_joint_interface_;
         
-        joint_limits_interface::JointLimits limits[Nb_Of_Joints];
-        //joint_limits_interface::PositionJointSaturationInterface positionJointSaturationInterface;
-        
-        joint_limits_interface::JointLimits jlimits[Nb_Of_Joints];
+        joint_limits_interface::JointLimits limits[NB_OF_JOINTS];        
+        joint_limits_interface::JointLimits jlimits[NB_OF_JOINTS];
 
-        hardware_interface::JointStateHandle jsHandle[Nb_Of_Joints];
-        hardware_interface::JointHandle jpHandle[Nb_Of_Joints];
+        hardware_interface::JointStateHandle jsHandle[NB_OF_JOINTS];
+        hardware_interface::JointHandle jpHandle[NB_OF_JOINTS];
 
-        double pos[Nb_Of_Joints];
-        double vel[Nb_Of_Joints];
-        double eff[Nb_Of_Joints];
-        double cmd[Nb_Of_Joints];
+        double pos[NB_OF_JOINTS];
+        double vel[NB_OF_JOINTS];
+        double eff[NB_OF_JOINTS];
+        double cmd[NB_OF_JOINTS];
         double joint_position_command_;
         
         ros::Subscriber champ_cmd;
@@ -69,11 +64,10 @@ class Bear : public hardware_interface::RobotHW
 
         ros::Publisher commandPublisher;
         ros::Publisher IMU_feedback_publisher;
-        //std_msgs::Float32MultiArray messageCommand;
 
         controls::Servo_cmd messageCommand;
         controls::Servo_cmd Pot_data;
-        sensor_msgs::Imu IMU_data;
+        sensor_msgs::Imu IMU_data;  // 2024-04-03: should be changed to BNO_data
 
         ros::NodeHandle nh_;
         ros::Timer my_control_loop_;

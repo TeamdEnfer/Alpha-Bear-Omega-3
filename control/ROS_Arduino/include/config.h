@@ -71,14 +71,18 @@ controls::BNO bno_array;
 controls::Servo_cmd pot_value_array;
 
 // Functions prototypes
+
+// Servo
 void servo_init();
-void pot_init(const int* pot_id_array);
-void BNO_init();
 void servo_cmd(const controls::Servo_cmd &cmd_msg);
-void bno_update();
-void bno_feedback(controls::BNO &feedback_array);
+// Potentiometers
+void pot_init(const int* pot_id_array);
 controls::Servo_cmd pot_update(const int pot_id_array[NUMBER_OF_POTS]);
 void pot_feedback(const int pot_id_array[NUMBER_OF_POTS]);
 float long2float_map(long x, long IN_min, long IN_max, long OUT_min, long OUT_max);
+// BNO
+void BNO_init();
+void bno_update();
+void bno_feedback(controls::BNO &feedback_array);
 
 #endif

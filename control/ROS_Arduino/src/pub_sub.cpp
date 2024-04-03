@@ -107,20 +107,15 @@ void servo_cmd(const controls::Servo_cmd &cmd_msg){
 }
 
 void bno_update() {
-    // BNO position loop
+    // BNO measurements loop
     sensors_event_t linearAccelData;
     imu::Quaternion quat = bno.getQuat();
     bno.getEvent(&linearAccelData, Adafruit_BNO055::VECTOR_LINEARACCEL);
     
+    // BNO acceleration data
     accelX = linearAccelData.acceleration.x;
     accelY = linearAccelData.acceleration.y;
     accelZ = linearAccelData.acceleration.z;
-
-    // xPos += ACCEL_POS_TRANSITION * linearAccelData.acceleration.x;
-    // yPos += ACCEL_POS_TRANSITION * linearAccelData.acceleration.y;
-
-    // BNO velocity in the direction it's facing
-    // heading_vel = ACCEL_VEL_TRANSITION * linearAccelData.acceleration.x / cos(DEG_TO_RAD * orientationData.orientation.x);
 
     // BNO quaternion data
     quatX = quat.x();
@@ -158,6 +153,6 @@ void pot_feedback(const int pot_id_array[NUMBER_OF_POTS]) {
 }
 
 float long2float_map(long x, long IN_min, long IN_max, long OUT_min, long OUT_max) {
-    return ((float)x - (float)IN_min) * ((float)OUT_max - (float)OUT_min) / ((float)IN_max - (float)IN_min) + (float)OUT_min;
+    return (float)(x - IN_min) * (float)(OUT_max - OUT_min) / (float)(IN_max - IN_min) + (float)OUT_min;
 }
 
