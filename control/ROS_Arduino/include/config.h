@@ -19,12 +19,12 @@
 
 // Servos parameters
 #define NUMBER_OF_SERVOS 12
-const int servo_pins[NUMBER_OF_SERVOS] = {2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13};
+// const int servo_pins[NUMBER_OF_SERVOS] = {2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13};
 
-Servo servo_array[NUMBER_OF_SERVOS] = {ABD_AV_G, FEM_AV_G, TIB_AV_G,
-                                        ABD_AV_D, FEM_AV_D, TIB_AV_D,
-                                        ABD_AR_G, FEM_AR_G, TIB_AR_G,
-                                        ABD_AR_D, FEM_AR_D, TIB_AR_D};
+// Servo servo_array[NUMBER_OF_SERVOS] = {ABD_AV_G, FEM_AV_G, TIB_AV_G,
+//                                         ABD_AV_D, FEM_AV_D, TIB_AV_D,
+//                                         ABD_AR_G, FEM_AR_G, TIB_AR_G,
+//                                         ABD_AR_D, FEM_AR_D, TIB_AR_D};
 
 // PCA parameters
 Adafruit_PWMServoDriver pca = Adafruit_PWMServoDriver(0x40);

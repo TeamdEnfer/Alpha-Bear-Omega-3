@@ -29,7 +29,7 @@ void setup()
 {
     nh.initNode();
     Serial.begin(115200);
-    servo_init();
+    // servo_init();
     pca_init();
     BNO_init();
 
@@ -44,11 +44,11 @@ void loop() {
     delay(10);
 }
 
-void servo_init() {
-    for (int i = 0; i < NUMBER_OF_SERVOS; i++) {
-        servo_array[i].attach(servo_pins[i]);
-    }
-}
+// void servo_init() {
+//     for (int i = 0; i < NUMBER_OF_SERVOS; i++) {
+//         servo_array[i].attach(servo_pins[i]);
+//     }
+// }
 
 void pca_init() {
     pca.begin();
