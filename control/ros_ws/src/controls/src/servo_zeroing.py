@@ -8,7 +8,7 @@ import rospy
 from std_msgs.msg import Bool, Int8, Float32
 import QFloatSliderEntryBox
 
-show_GUI = rospy.get_param('/GUI/show_GUI')
+show_GUI = rospy.get_param('/GUI/show_GUI') # Boolean parameter passed from CL
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -20,6 +20,7 @@ class Ui_MainWindow(object):
         # Create central widget
         self.central_widget = qtw.QWidget(MainWindow)
         self.central_widget.setObjectName("central_widget")
+        self.boxLayout = qtw.QVBoxLayout(self.central_widget)
         
         # Set font
         qtgui.QFontDatabase.addApplicationFont("FiraCode-Regular.ttf")
@@ -38,6 +39,7 @@ class Ui_MainWindow(object):
         self.control_switch_button.clicked.connect(self.change_control_switch_color)
         self.change_control_switch_color()
         self.control_switch_button.setText("Controller: CHAMP")
+        self.boxLayout.addWidget(self.control_switch_button)
 
         # Create a label showing which leg is currently being controlled
         self.leg_selection_label = qtw.QLabel(self.central_widget)
@@ -45,6 +47,8 @@ class Ui_MainWindow(object):
         self.leg_selection_label.setFont(font)
         self.leg_selection_label.setObjectName("leg_selection_label")
         self.leg_selection_label.setText("Current leg: None")
+        self.leg_selection_label.setAlignment(qtc.Qt.AlignHCenter)
+        self.boxLayout.addWidget(self.leg_selection_label)
 
         # Create a warning label
         self.warning_label = qtw.QLabel(self.central_widget)
@@ -52,9 +56,11 @@ class Ui_MainWindow(object):
         self.warning_label.setFont(qtgui.QFont('Fira Code Bold', 14))
         self.warning_label.setAlignment(qtc.Qt.AlignCenter)
         self.warning_label.setObjectName("warning_label")
+        self.boxLayout.addWidget(self.warning_label)
         
         # Create a grid layout for controls
         self.control_panel = qtw.QWidget(self.central_widget)
+        self.control_panel.setDisabled(True)
         self.control_panel.setGeometry(qtc.QRect(38, 80, 500, 360))
         self.control_panel.setObjectName("control_panel")
         self.gridLayout = qtw.QGridLayout(self.control_panel)
@@ -76,8 +82,8 @@ class Ui_MainWindow(object):
             id=0,
             decimals=2,
             regex="\-?\d{1,2}\.?\d{0,2}")
-        self.shoulder_slider_entry._slider.setMinimum(-45.0)
-        self.shoulder_slider_entry._slider.setMaximum(45.0)
+        self.shoulder_slider_entry._slider.setMinimum(-135.0)
+        self.shoulder_slider_entry._slider.setMaximum(135.0)
         self.shoulder_slider_entry._slider.setSingleStep(0.05)
         self.shoulder_slider_entry._slider.setFont(font)
         self.shoulder_slider_entry._slider.valueChanged.connect(lambda: self.servo_update_cmd(self.shoulder_slider_entry._slider.getID(), self.shoulder_slider_entry._slider.getValue()))
@@ -92,8 +98,8 @@ class Ui_MainWindow(object):
             id=1,
             decimals=2,
             regex="\-?\d{1,2}\.?\d{0,2}")
-        self.femur_slider_entry._slider.setMinimum(-10.0)
-        self.femur_slider_entry._slider.setMaximum(90.0)
+        self.femur_slider_entry._slider.setMinimum(-135.0)
+        self.femur_slider_entry._slider.setMaximum(135.0)
         self.femur_slider_entry._slider.setSingleStep(0.05)
         self.femur_slider_entry._slider.setFont(font)
         self.femur_slider_entry._slider.valueChanged.connect(lambda: self.servo_update_cmd(self.femur_slider_entry._slider.getID(), self.femur_slider_entry._slider.getValue()))
@@ -108,8 +114,8 @@ class Ui_MainWindow(object):
             id=2,
             decimals=2,
             regex="\-?\d{1,2}\.?\d{0,2}")
-        self.tibia_slider_entry._slider.setMinimum(-10.0)
-        self.tibia_slider_entry._slider.setMaximum(90.0)
+        self.tibia_slider_entry._slider.setMinimum(-135.0)
+        self.tibia_slider_entry._slider.setMaximum(135.0)
         self.tibia_slider_entry._slider.setSingleStep(0.05)
         self.tibia_slider_entry._slider.setFont(font)
         self.tibia_slider_entry._slider.valueChanged.connect(lambda: self.servo_update_cmd(self.tibia_slider_entry._slider.getID(), self.tibia_slider_entry._slider.getValue()))
@@ -118,15 +124,15 @@ class Ui_MainWindow(object):
         self.gridLayout.addWidget(self.tibia_slider_entry, 3, 1, 1, 1)
 
         # Create labels for spin boxes
-        self.shoulder_label = qtw.QLabel("épaule: ")
+        self.shoulder_label = qtw.QLabel("Épaule: ")
         self.shoulder_label.setFont(font)
         self.gridLayout.addWidget(self.shoulder_label, 1, 0, 1, 1)
 
-        self.femur_label = qtw.QLabel("fémur: ")
+        self.femur_label = qtw.QLabel("Fémur: ")
         self.femur_label.setFont(font)
         self.gridLayout.addWidget(self.femur_label, 2, 0, 1, 1)
 
-        self.tibia_label = qtw.QLabel("tibia: ")
+        self.tibia_label = qtw.QLabel("Tibia: ")
         self.tibia_label.setFont(font)
         self.gridLayout.addWidget(self.tibia_label, 3, 0, 1, 1)
 
@@ -162,16 +168,18 @@ class Ui_MainWindow(object):
         self.gridLayout.addWidget(self.set_zero_tibia_button, 3, 2, 1, 1)
 
         MainWindow.setCentralWidget(self.central_widget)
-        self.control_switch_button
-        self.leg_selection_label
+        self.boxLayout.addWidget(self.control_panel)
+        self.boxLayout.setAlignment(qtc.Qt.AlignVCenter)
 
         qtc.QMetaObject.connectSlotsByName(MainWindow)
 
     def switch_control_clicked(self):
         if self.control_switch_button.isChecked():
             self.control_switch_button.setText("Controller: Manual")
+            self.control_panel.setEnabled(True)
         else:
             self.control_switch_button.setText("Controller: CHAMP")
+            self.control_panel.setDisabled(True)
         
         control_switch_flag = self.control_switch_button.isChecked()
         control_switch_flag_pub.publish(control_switch_flag)
@@ -194,7 +202,7 @@ class Ui_MainWindow(object):
         else:
             self.controller_error()
 
-    def servo_update_zero(self, joint_id: int, zero: float):    # Function is pretty much useless and acts only as a redondancy
+    def servo_update_zero(self, joint_id: int, zero: float):    # Method is pretty much useless and acts only as a redondancy
         if self.control_switch_button.isChecked():
             id = self.update_servo_id(joint_id)
             servo_id_pub.publish(id)
@@ -233,13 +241,19 @@ class Ui_MainWindow(object):
 if __name__ == "__main__":
     import sys
     app = qtw.QApplication(sys.argv)
+    app.setStyle("Fusion")
+    
     # Apply the dark theme
     # qdarktheme.setup_theme()
 
     # Create a publisher for control switching flag
     control_switch_flag_pub = rospy.Publisher('control_switch_flag', Bool, queue_size=1)
+    # Create a publisher for servo IDs
     servo_id_pub = rospy.Publisher('servo_id_topic', Int8, queue_size=1)
+    # Create a publisher for servo commands
     servo_cmd_pub = rospy.Publisher('servo_cmd_topic', Float32, queue_size=5)
+    
+    # Initialize the GUI node (need because working with ROS topics)
     rospy.init_node('GUI')
 
     MainWindow = qtw.QMainWindow()
@@ -249,6 +263,7 @@ if __name__ == "__main__":
     # Create an array for servo IDs
     servo_id = [[0,1,2], [3,4,5], [6,7,8], [9,10,11]]
     
+    # Whether to show the GUI or not; controlled by argument from CL
     if show_GUI:
         MainWindow.show()
 
