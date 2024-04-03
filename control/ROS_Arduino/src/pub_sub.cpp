@@ -9,7 +9,7 @@ bool LED_ON = false;
 // ROS objects declarations
 ros::NodeHandle nh;
 ros::Publisher feedback("Feedback", &bno_array);
-ros::Publisher pot_feedback_pub("pot_feedback_topic", &pot_value_array);
+// ros::Publisher pot_feedback_pub("pot_feedback_topic", &pot_value_array);
 ros::Subscriber<controls::Servo_cmd> command("Command", servo_cmd);
 
 // TODO: ID and name this section
@@ -29,81 +29,53 @@ void setup()
 {
     nh.initNode();
     Serial.begin(115200);
-    servo_init();
-    pot_init(pot_id_array);
+    // servo_init();
+    pca_init();
     BNO_init();
 
     nh.subscribe(command);
     nh.advertise(feedback);
-    nh.advertise(pot_feedback_pub);
 
     pinMode(LED_PIN, OUTPUT);
 }
 
 void loop() {
     nh.spinOnce();
-    //pot_feedback(pot_update(pot_id_array));
     delay(10);
 }
 
-void servo_init(){
-  ABD_AV_G.attach(MOT_ABD_AV_G);
-  FEM_AV_G.attach(MOT_FEM_AV_G);
-  TIB_AV_G.attach(MOT_TIB_AV_G);
+// void servo_init() {
+//     for (int i = 0; i < NUMBER_OF_SERVOS; i++) {
+//         servo_array[i].attach(servo_pins[i]);
+//     }
+// }
 
-  ABD_AV_D.attach(MOT_ABD_AV_D);
-  FEM_AV_D.attach(MOT_FEM_AV_D);
-  TIB_AV_D.attach(MOT_TIB_AV_D);
-
-  ABD_AR_G.attach(MOT_ABD_AR_G);
-  FEM_AR_G.attach(MOT_FEM_AR_G);
-  TIB_AR_G.attach(MOT_TIB_AR_G);
-
-  ABD_AR_D.attach(MOT_ABD_AR_D);
-  FEM_AR_D.attach(MOT_FEM_AR_D);
-  TIB_AR_D.attach(MOT_TIB_AR_D);
-}
-
-void pot_init(const int* pot_id_array) {
-    for (uint8_t i = 0; i < NUMBER_OF_POTS; i++) {
-        pinMode(pot_id_array[i], INPUT);
-    }
+void pca_init() {
+    pca.begin();
+    pca.setPWMFreq(PWM_FREQ);
 }
 
 void BNO_init() {
     while (!Serial)
-        delay(10); // wait for serial port to open!
+        delay(10);  // Wait for serial port to open
 
     if (!bno.begin()) {
-        //Serial.print("No BNO055 detected");
-        //while (1);
+        // Serial.print("No BNO055 detected");
+        // while (1);
     }
     
     bno.setExtCrystalUse(true);
 }
 
-void servo_cmd(const controls::Servo_cmd &cmd_msg){
+void servo_cmd(const controls::Servo_cmd &cmd_msg) {
+    for (int i = 0; i < NUMBER_OF_SERVOS; i++) {
+        pca.writeMicroseconds(i, (deg2imp(true, cmd_msg.data[i])));
+        pca.setPin(i,0,true);   // Deactivate pin i
+    }
 
-    ABD_AV_G.writeMicroseconds((int)(cmd_msg.data[0]*2000/180+500));
-    FEM_AV_G.writeMicroseconds((int)(cmd_msg.data[1]*2000/270+500));
-    TIB_AV_G.writeMicroseconds((int)(cmd_msg.data[2]*2000/270+500));
-
-    ABD_AV_D.writeMicroseconds((int)(cmd_msg.data[3]*2000/180+500));
-    FEM_AV_D.writeMicroseconds((int)(cmd_msg.data[4]*2000/270+500));
-    TIB_AV_D.writeMicroseconds((int)(cmd_msg.data[5]*2000/270+500));
-
-    ABD_AR_G.writeMicroseconds((int)(cmd_msg.data[6]*2000/180+500));
-    FEM_AR_G.writeMicroseconds((int)(cmd_msg.data[7]*2000/270+500));
-    TIB_AR_G.writeMicroseconds((int)(cmd_msg.data[8]*2000/270+500));
-
-    ABD_AR_D.writeMicroseconds((int)(cmd_msg.data[9]*2000/180+500));
-    FEM_AR_D.writeMicroseconds((int)(cmd_msg.data[10]*2000/270+500));
-    TIB_AR_D.writeMicroseconds((int)(cmd_msg.data[11]*2000/270+500));
-    
-    //delay(10);
-    //bno_update();
-    //bno_feedback(bno_array);
-    //pot_feedback(pot_id_array);
+    delay(10);
+    bno_update();
+    bno_feedback(bno_array);
 }
 
 void bno_update() {
@@ -139,20 +111,16 @@ void bno_feedback(controls::BNO &feedback_array) {
     feedback.publish(&feedback_array);
 }
 
-controls::Servo_cmd pot_update(const int pot_id_array[NUMBER_OF_POTS]) {
-    return pot_value_array;
-}
 
-void pot_feedback(const int pot_id_array[NUMBER_OF_POTS]) {
-
-    for (int i = 0; i < NUMBER_OF_POTS; i++) {
-        pot_value_array.data[i] = long2float_map(analogRead(pot_id_array[i]), POT_MIN_VALUE, POT_MAX_VALUE, POT_MIN_ANGLE, POT_MAX_ANGLE);
-    }
-    pot_feedback_pub.publish(&pot_value_array);
-
-}
-
-float long2float_map(long x, long IN_min, long IN_max, long OUT_min, long OUT_max) {
-    return (float)(x - IN_min) * (float)(OUT_max - OUT_min) / (float)(IN_max - IN_min) + (float)OUT_min;
+/*
+    Converts the angle received from the controller into an impulse sent to the servo.
+    angle is in degrees (deg).
+*/
+uint16_t deg2imp(bool isShoulder, float angle) {
+    if (isShoulder)
+        imp = (uint16_t)(angle * (MAX_IMPULSE - MIN_IMPULSE) / (MAX_ANGLE_S - MIN_ANGLE) + MIN_IMPULSE);
+    else
+        imp =(uint16_t)(angle * (MAX_IMPULSE - MIN_IMPULSE) / (MAX_ANGLE_FT - MIN_ANGLE) + MIN_IMPULSE);
+    return constrain(imp, MIN_IMPULSE, MAX_IMPULSE);
 }
 
