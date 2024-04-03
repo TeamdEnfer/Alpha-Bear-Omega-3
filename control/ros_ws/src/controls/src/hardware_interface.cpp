@@ -10,9 +10,6 @@ float leg_cmd = 0.0;    // cmd received from Arduino (deg)
 
 
 Bear::Bear(ros::NodeHandle& nh) : nh_(nh) {
-
-
-
 // Declare all JointHandles, JointInterfaces and JointLimitInterfaces of the robot.
     init();
     
@@ -57,7 +54,7 @@ Bear::~Bear() {
 // Class instance initialization method
 void Bear::init() {
         
-// TODO: clean up commented codes
+// TODO (2024-04-03): clean up commented codes
     //IMU_data.linear_acceleration.x = 0;
     //IMU_data.linear_acceleration.y = 0;
     //IMU_data.linear_acceleration.z = 0;
@@ -179,7 +176,7 @@ void Bear::GUI_CMD(const std_msgs::Float32& GUI_cmd) {
 
 // Read cmd msgs from Arduino
 void Bear::Angles_callback(const controls::Servo_cmd Pot_callback) {
-    for (int i = 0; i < Nb_Of_Joints; i++) {
+    for (int i = 0; i < NB_OF_JOINTS; i++) {
         pos[i] = Pot_callback.data[i] * DEG2RAD;
     }
 }
@@ -216,7 +213,7 @@ void Bear::fetchFeedback(const std_msgs::Float64MultiArray& feedback_message)
     //On prend les lecture et on les met dans le JointStateHandle (jsHandle[i]) du joint approrier.
 
     
-    for(int i = 0 ; i < Nb_Of_Joints ; i++)
+    for(int i = 0 ; i < NB_OF_JOINTS ; i++)
     {
         pos[i] = feedback_message.data[i];
     }
@@ -242,6 +239,7 @@ void Bear::write(trajectory_msgs::JointTrajectory champ_cmd) {
         iii) Tibia
 */
         // N.B. This section is FULL of magic numbers; ask TX for more info.
+        // 2024-04-03: messageCommand is not defined in hardware_interface.h!!
         messageCommand.data[0]=(abs((-champ_cmd.points[0].positions[0]+OFFSET_03)*RAD2DEG));
         messageCommand.data[1]=(0.3408*pow(champ_cmd.points[0].positions[1],2)-0.6434*(champ_cmd.points[0].positions[1])+0.0095)*RAD2DEG;
         messageCommand.data[2]=abs((champ_cmd.points[0].positions[2]-champ_cmd.points[0].positions[1]*ratio_pulleys_tibia+champ_cmd.points[0].positions[1]-1.658063)/ratio_pulleys_tibia)*RAD2DEG;
