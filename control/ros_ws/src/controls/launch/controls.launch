@@ -24,10 +24,10 @@
     </include>
 
   <!--Initialisation de la communication serial avec le arduino-->
-  <!--<node pkg="rosserial_python" type="serial_node.py" name="ArduiNode">
+  <node pkg="rosserial_python" type="serial_node.py" name="ArduiNode">
       <param name="port" value="/dev/ttyACM0"/>
       <param name="baud" value="115200"/>
-  </node>-->
+  </node>
 
 
     
