@@ -9,7 +9,7 @@ rate1=rospy.Rate(1)
 
 
 positions=[0,90,125]*4
-cmd_msg=JointTrajectory(points=[JointTrajectoryPoint(positions=[0,-1.57,3*3.1415/4]*4)])
+cmd_msg=JointTrajectory(points=[JointTrajectoryPoint(positions=[0,1.57,-3*3.1415/4]*4)])
 print(cmd_msg)
 
 i=0
