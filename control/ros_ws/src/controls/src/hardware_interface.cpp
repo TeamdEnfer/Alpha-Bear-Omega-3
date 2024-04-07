@@ -251,45 +251,27 @@ void Bear::write(trajectory_msgs::JointTrajectory champ_cmd) {
          	
         */
         // 2024-04-03: messageCommand is not defined in hardware_interface.h!!
+        
+ // 2024-04-03: messageCommand is not defined in hardware_interface.h!!
         messageCommand.data[0]=(abs((-champ_cmd.points[0].positions[0]+OFFSET_03)*RAD2DEG))+3.12;//Shoulder
-        messageCommand.data[1]=(0.3408*pow(champ_cmd.points[0].positions[1],2)+0.6434*(champ_cmd.points[0].positions[1])+0.0095)*RAD2DEG;//Femur
+        messageCommand.data[1]=(0.3408*pow(champ_cmd.points[0].positions[1],2)+0.6434*(champ_cmd.points[0].positions[1])+0.0095)*RAD2DEG -4.0;//Femur
         messageCommand.data[2]=((champ_cmd.points[0].positions[2]-champ_cmd.points[0].positions[1]*ratio_pulleys_tibia+champ_cmd.points[0].positions[1]+1.658063)/ratio_pulleys_tibia)*RAD2DEG;//Tibia
 
 	//Front Right
         messageCommand.data[3]=(abs((-champ_cmd.points[0].positions[3]+OFFSET_03)*RAD2DEG)); //Shoulder
-        messageCommand.data[4]=(-0.3593*pow(champ_cmd.points[0].positions[4],2)-0.6064*champ_cmd.points[0].positions[4]+2.375)*RAD2DEG;  //Femur
+        messageCommand.data[4]=(-0.3593*pow(champ_cmd.points[0].positions[4],2)-0.6064*champ_cmd.points[0].positions[4]+2.375)*RAD2DEG +4.75;  //Femur
         messageCommand.data[5]=-(((champ_cmd.points[0].positions[5])-champ_cmd.points[0].positions[4]*ratio_pulleys_tibia+champ_cmd.points[0].positions[4])/ratio_pulleys_tibia*RAD2DEG); //Tibia
 
 	//Rear Left
         messageCommand.data[6]=(abs((champ_cmd.points[0].positions[6]+OFFSET_69)*RAD2DEG))-9.88;//Shoulder
-        messageCommand.data[7]=(0.3408*pow(champ_cmd.points[0].positions[7],2)+0.6434*(champ_cmd.points[0].positions[7])+0.0095)*RAD2DEG;//Femur
+        messageCommand.data[7]=(0.3408*pow(champ_cmd.points[0].positions[7],2)+0.6434*(champ_cmd.points[0].positions[7])+0.0095)*RAD2DEG + 5.3;//Femur
         messageCommand.data[8]=((champ_cmd.points[0].positions[8]-champ_cmd.points[0].positions[7]*ratio_pulleys_tibia+champ_cmd.points[0].positions[7]+1.658063)/ratio_pulleys_tibia)*RAD2DEG;//Tibia
 
 	//Rear Right
         messageCommand.data[9]=(abs((champ_cmd.points[0].positions[9]+OFFSET_69)*RAD2DEG))+1.1;//Shoulder
         messageCommand.data[10]=(-0.3593*pow(champ_cmd.points[0].positions[10],2)-0.6064*champ_cmd.points[0].positions[10]+2.375)*RAD2DEG;//Femur
-        messageCommand.data[11]=-(((champ_cmd.points[0].positions[11])-champ_cmd.points[0].positions[10]*ratio_pulleys_tibia+champ_cmd.points[0].positions[10])/ratio_pulleys_tibia*RAD2DEG);//Tibia
-        
-        
-    
-        /*
-        messageCommand.data[0]=(abs((-champ_cmd.points[0].positions[0]+OFFSET_03)*RAD2DEG))+3.12;
-        messageCommand.data[1]=(0.3408*pow(champ_cmd.points[0].positions[1],2)-0.6434*(champ_cmd.points[0].positions[1])+0.0095)*RAD2DEG;
-        messageCommand.data[2]=abs((champ_cmd.points[0].positions[2]-champ_cmd.points[0].positions[1]*ratio_pulleys_tibia+champ_cmd.points[0].positions[1]-1.658063)/ratio_pulleys_tibia)*RAD2DEG;
-
-        messageCommand.data[3]=(abs((-champ_cmd.points[0].positions[3]+OFFSET_03)*RAD2DEG));
-        messageCommand.data[4]=(-0.3593*pow(champ_cmd.points[0].positions[4],2)+0.6064*champ_cmd.points[0].positions[4]+2.375)*RAD2DEG + 4.98;  
-        messageCommand.data[5]=((champ_cmd.points[0].positions[5])-champ_cmd.points[0].positions[4]*ratio_pulleys_tibia+champ_cmd.points[0].positions[4])/ratio_pulleys_tibia*RAD2DEG;
-
-        messageCommand.data[6]=(abs((champ_cmd.points[0].positions[6]+OFFSET_69)*RAD2DEG))-9.88;
-        messageCommand.data[7]=(0.3408*pow(champ_cmd.points[0].positions[7],2)-0.6434*(champ_cmd.points[0].positions[7])+0.0095)*RAD2DEG +3.43;
-        messageCommand.data[8]=abs((champ_cmd.points[0].positions[8]-champ_cmd.points[0].positions[7]*ratio_pulleys_tibia+champ_cmd.points[0].positions[7]-1.658063)/ratio_pulleys_tibia)*RAD2DEG;
-
-        messageCommand.data[9]=(abs((champ_cmd.points[0].positions[9]+OFFSET_69)*RAD2DEG))+1.1;
-        messageCommand.data[10]=(-0.3593*pow(champ_cmd.points[0].positions[10],2)+0.6064*champ_cmd.points[0].positions[10]+2.375)*RAD2DEG;  
-        messageCommand.data[11]=((champ_cmd.points[0].positions[11])-champ_cmd.points[0].positions[10]*ratio_pulleys_tibia+champ_cmd.points[0].positions[10])/ratio_pulleys_tibia*RAD2DEG;
-        */
-    }
+        messageCommand.data[11]=-(((champ_cmd.points[0].positions[11])-champ_cmd.points[0].positions[10]*ratio_pulleys_tibia+champ_cmd.points[0].positions[10])/ratio_pulleys_tibia*RAD2DEG);//-12.84;//Tibia
+            }
 
     // Sending cmds with manual controller
     else if (ctrl_selector == true) {   // Unnecessary (should be replaced with else)
