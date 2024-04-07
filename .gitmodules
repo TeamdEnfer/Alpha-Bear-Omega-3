@@ -1,6 +1,6 @@
 [submodule "control/ros_ws/src/champ"]
 	path = control/ros_ws/src/champ
-	url = git@github.com:Revixa1/champ.git
+	url = https://github.com/Revixa1/champ.git
 [submodule "control/ros_ws/src/champ_setup_assistant"]
 	path = control/ros_ws/src/champ_setup_assistant
 	url = https://github.com/Revixa1/champ_setup_assistant.git
