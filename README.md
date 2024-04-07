@@ -56,6 +56,8 @@
 
 ### Dependencies installation
 
+- Go to [ros-noetic installation page](https://wiki.ros.org/noetic/Installation/Ubuntu) and install ros-noetic.
+
 - Install all dependencies for kinematics:
 ```bash
 sudo apt install python3-pip ros-noetic-joy ros-noetic-rosserial ros-noetic-rosserial-python ros-noetic-rosserial-arduino
@@ -94,7 +96,7 @@ The ROS environment should now be set up and ready to work with.
 #### Project setup notes
 
 - Each time the code is modified, do `catkin_make` in the **ros_ws** directory to update the executables.
-- Each time a new terminal is opened, run the `install.sh` script with option `6` to source the ROS setup files.
+- Each time a new terminal is opened, run the `source ./install.sh` script with option `6` to source the ROS setup files.
 
 ### Using this repository
 
