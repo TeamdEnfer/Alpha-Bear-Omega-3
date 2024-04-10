@@ -8,7 +8,6 @@ bool LED_ON = false;
 
 // ROS objects declarations
 ros::NodeHandle nh;
-ros::Publisher feedback("Feedback", &bno_array);
 ros::Publisher pot_feedback_pub("pot_feedback_topic", &pot_value_array);
 ros::Subscriber<controls::Servo_cmd> command("Command", servo_cmd);
 
