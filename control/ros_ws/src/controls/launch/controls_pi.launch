@@ -11,20 +11,21 @@
 
     <!--Load CHAMP-->
     <include file="$(find alphabear_config)/launch/bringup.launch">
-     
-        <arg name="rviz" value="true"/>
+     <arg name="laser" value="rplidar"/>
+     <arg name="hardware_connected"     value="true" />
+       
     </include>
 
-    <node if="$(arg joystick)" name="joy_node" pkg="joy" type="joy_node" required="true" >
+    <!--<node if="$(arg joystick)" name="joy_node" pkg="joy" type="joy_node" required="true" >
         <param name="autorepeat_rate" value="5" />
         <param name="dev" value="$(arg input_id)" />
-    </node>
+    </node>-->
 
-
+	
     <!-- Load CHAMP teleoperation node and joy_node -->
-    <include file="$(find champ_teleop)/launch/teleop.launch">
+    <!--<include file="$(find champ_teleop)/launch/teleop.launch">
      
-    </include>
+    </include>-->
 
     <!-- Load GUI 
     <node name="GUI" pkg="controls" type="servo_zeroing.py" output="screen" >
@@ -42,7 +43,10 @@
       <param name="baud" value="115200"/>
   </node>
 
+  <!--<include file="$(find champ_bringup)/launch/include/laser/rplidar.launch"/>-->
 
+
+<include file="$(find alphabear_config)/launch/slam.launch"/>
     
 
 </launch>

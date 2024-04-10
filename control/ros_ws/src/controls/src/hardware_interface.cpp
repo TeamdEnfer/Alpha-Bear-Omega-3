@@ -17,7 +17,7 @@ Bear::Bear(ros::NodeHandle& nh) : nh_(nh) {
     controller_manager_.reset(new controller_manager::ControllerManager(this, nh_));
     
 //Set the frequency of the control loop.
-    loop_hz_= 100;
+    loop_hz_= 150;
     // Sets the loop's period (ms)
     ros::Duration update_freq = ros::Duration(1.0/loop_hz_);
     
@@ -28,6 +28,7 @@ Bear::Bear(ros::NodeHandle& nh) : nh_(nh) {
 // (FR) On publish les commande qui vont au servos
     commandPublisher = nh_.advertise<controls::Servo_cmd>("Command", 12);
     IMU_feedback_publisher = nh_.advertise<sensor_msgs::Imu>("imu/data" , 12);
+    JointStatePublisher = nh_.advertise<sensor_msgs::JointState>("joint_states",12);
 
 // Subscribes to ArduiNode
 // (FR) On subscribe au ArduiNode
@@ -260,7 +261,7 @@ void Bear::write(trajectory_msgs::JointTrajectory champ_cmd) {
 	//Front Right
         messageCommand.data[3]=(abs((-champ_cmd.points[0].positions[3]+OFFSET_03)*RAD2DEG))-2.0; //Shoulder
         messageCommand.data[4]=(-0.3593*pow(champ_cmd.points[0].positions[4],2)-0.6064*champ_cmd.points[0].positions[4]+2.375)*RAD2DEG +4.75;  //Femur
-        messageCommand.data[5]=-(((champ_cmd.points[0].positions[5])-champ_cmd.points[0].positions[4]*ratio_pulleys_tibia+champ_cmd.points[0].positions[4])/ratio_pulleys_tibia*RAD2DEG); //Tibia
+        messageCommand.data[5]=-(((champ_cmd.points[0].positions[5])-champ_cmd.points[0].positions[4]*ratio_pulleys_tibia+champ_cmd.points[0].positions[4])/ratio_pulleys_tibia*RAD2DEG)-5; //Tibia
 
 	//Rear Left
         messageCommand.data[6]=(abs((champ_cmd.points[0].positions[6]+OFFSET_69)*RAD2DEG))-10.88;//Shoulder
@@ -273,12 +274,28 @@ void Bear::write(trajectory_msgs::JointTrajectory champ_cmd) {
         messageCommand.data[11]=-(((champ_cmd.points[0].positions[11])-champ_cmd.points[0].positions[10]*ratio_pulleys_tibia+champ_cmd.points[0].positions[10])/ratio_pulleys_tibia*RAD2DEG);//-12.84;//Tibia
             }
 
+        
+            
+
     // Sending cmds with manual controller
     else if (ctrl_selector == true) {   // Unnecessary (should be replaced with else)
         messageCommand.data[leg_id] = leg_cmd;
     }
-
+    
+    JointState.header.stamp = ros::Time::now();
+    JointState.name=champ_cmd.joint_names;
+    JointState.position = champ_cmd.points[0].positions;
+    /*
+    for(int i = 0 ; i < 12 ; i++)
+    {
+		
+		
+    	
+    }
+	*/
     commandPublisher.publish(messageCommand);
+    //ros::Duration(0.005).sleep();
+    JointStatePublisher.publish(JointState);
 }
 
 
