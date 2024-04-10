@@ -154,4 +154,3 @@ void pot_feedback(const int pot_id_array[NUMBER_OF_POTS]) {
 float long2float_map(long x, long IN_min, long IN_max, long OUT_min, long OUT_max) {
     return (float)(x - IN_min) * (float)(OUT_max - OUT_min) / (float)(IN_max - IN_min) + (float)OUT_min;
 }
-
