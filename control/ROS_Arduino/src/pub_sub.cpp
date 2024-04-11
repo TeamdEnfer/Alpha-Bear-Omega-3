@@ -8,7 +8,7 @@ bool LED_ON = false;
 
 // ROS objects declarations
 ros::NodeHandle nh;
-ros::Publisher pot_feedback_pub("pot_feedback_topic", &pot_value_array);
+//ros::Publisher pot_feedback_pub("pot_feedback_topic", &pot_value_array);
 ros::Subscriber<controls::Servo_cmd> command("Command", servo_cmd);
 
 // TODO: ID and name this section
@@ -18,23 +18,23 @@ uint64_t prev_time = 0;
 uint64_t period_angle = 500;
 
 // BNO variables
-float ACCEL_VEL_TRANSITION = (float)(BNO055_SAMPLERATE_DELAY_MS) / 1000.0;
-float ACCEL_POS_TRANSITION = 0.5 * ACCEL_VEL_TRANSITION * ACCEL_VEL_TRANSITION;
-float accelX = 0, accelY = 0, accelZ = 0;
-imu::Quaternion quat;
-float quatX, quatY, quatZ, quatW;
+//float ACCEL_VEL_TRANSITION = (float)(BNO055_SAMPLERATE_DELAY_MS) / 1000.0;
+//float ACCEL_POS_TRANSITION = 0.5 * ACCEL_VEL_TRANSITION * ACCEL_VEL_TRANSITION;
+//float accelX = 0, accelY = 0, accelZ = 0;
+//imu::Quaternion quat;
+//float quatX, quatY, quatZ, quatW;
 
 void setup()
 {
     nh.initNode();
     Serial.begin(115200);
     servo_init();
-    pot_init(pot_id_array);
-    BNO_init();
+   // pot_init(pot_id_array);
+   // BNO_init();
 
     nh.subscribe(command);
-    nh.advertise(feedback);
-    nh.advertise(pot_feedback_pub);
+   // nh.advertise(feedback);
+   // nh.advertise(pot_feedback_pub);
 
     pinMode(LED_PIN, OUTPUT);
 }
@@ -63,6 +63,7 @@ void servo_init(){
   TIB_AR_D.attach(MOT_TIB_AR_D);
 }
 
+/*
 void pot_init(const int* pot_id_array) {
     for (uint8_t i = 0; i < NUMBER_OF_POTS; i++) {
         pinMode(pot_id_array[i], INPUT);
@@ -80,6 +81,7 @@ void BNO_init() {
     
     bno.setExtCrystalUse(true);
 }
+*/
 
 void servo_cmd(const controls::Servo_cmd &cmd_msg){
 
@@ -104,7 +106,7 @@ void servo_cmd(const controls::Servo_cmd &cmd_msg){
     //bno_feedback(bno_array);
     //pot_feedback(pot_id_array);
 }
-
+/*
 void bno_update() {
     // BNO measurements loop
     sensors_event_t linearAccelData;
@@ -137,10 +139,12 @@ void bno_feedback(controls::BNO &feedback_array) {
     feedback_array.data[6] = quatW;
     feedback.publish(&feedback_array);
 }
-
+*/
+/*
 controls::Servo_cmd pot_update(const int pot_id_array[NUMBER_OF_POTS]) {
     return pot_value_array;
 }
+
 
 void pot_feedback(const int pot_id_array[NUMBER_OF_POTS]) {
 
@@ -154,3 +158,5 @@ void pot_feedback(const int pot_id_array[NUMBER_OF_POTS]) {
 float long2float_map(long x, long IN_min, long IN_max, long OUT_min, long OUT_max) {
     return (float)(x - IN_min) * (float)(OUT_max - OUT_min) / (float)(IN_max - IN_min) + (float)OUT_min;
 }
+
+*/

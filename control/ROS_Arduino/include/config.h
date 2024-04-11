@@ -10,12 +10,12 @@
 #include <std_msgs/Int8MultiArray.h>
 #include <std_msgs/String.h>
 #include <controls/Servo_cmd.h>
-#include <controls/BNO.h>
-#include <Adafruit_Sensor.h>
-#include <Adafruit_BNO055.h>
+//#include <controls/BNO.h>
+//#include <Adafruit_Sensor.h>
+//#include <Adafruit_BNO055.h>
 
 #include <Servo.h> 
-#include "Wire.h"
+//#include "Wire.h"
 
 
 // Potentiometers parameters
@@ -62,13 +62,13 @@ Servo ABD_AV_G, FEM_AV_G, TIB_AV_G, ABD_AV_D, FEM_AV_D, TIB_AV_D;
 Servo ABD_AR_G, FEM_AR_G, TIB_AR_G, ABD_AR_D, FEM_AR_D, TIB_AR_D;
 
 // BNO parameters
-uint16_t BNO055_SAMPLERATE_DELAY_MS = 100;
-Adafruit_BNO055 bno = Adafruit_BNO055(55, 0x28);
+//uint16_t BNO055_SAMPLERATE_DELAY_MS = 100;
+//Adafruit_BNO055 bno = Adafruit_BNO055(55, 0x28);
 
 // ROS custom messages
 std_msgs::String msg;
-controls::BNO bno_array;
-controls::Servo_cmd pot_value_array;
+//controls::BNO bno_array;
+//controls::Servo_cmd pot_value_array;
 
 // Functions prototypes
 
@@ -76,13 +76,13 @@ controls::Servo_cmd pot_value_array;
 void servo_init();
 void servo_cmd(const controls::Servo_cmd &cmd_msg);
 // Potentiometers
-void pot_init(const int* pot_id_array);
+//void pot_init(const int* pot_id_array);
 controls::Servo_cmd pot_update(const int pot_id_array[NUMBER_OF_POTS]);
-void pot_feedback(const int pot_id_array[NUMBER_OF_POTS]);
-float long2float_map(long x, long IN_min, long IN_max, long OUT_min, long OUT_max);
+//void pot_feedback(const int pot_id_array[NUMBER_OF_POTS]);
+//float long2float_map(long x, long IN_min, long IN_max, long OUT_min, long OUT_max);
 // BNO
-void BNO_init();
-void bno_update();
-void bno_feedback(controls::BNO &feedback_array);
+//void BNO_init();
+//void bno_update();
+//void bno_feedback(controls::BNO &feedback_array);
 
 #endif
