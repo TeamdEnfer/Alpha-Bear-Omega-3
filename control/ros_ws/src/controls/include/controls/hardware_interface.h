@@ -15,6 +15,7 @@
 #include <std_msgs/Int8.h>
 #include <std_msgs/Bool.h>
 #include <sensor_msgs/Imu.h>
+#include <sensor_msgs/JointState.h>
 #include <string.h>
 #include <controls/Servo_cmd.h>
 #include <controls/BNO.h>
@@ -64,10 +65,12 @@ class Bear : public hardware_interface::RobotHW {
 
         ros::Publisher commandPublisher;
         ros::Publisher IMU_feedback_publisher;
-
+		ros::Publisher JointStatePublisher;
+		
         controls::Servo_cmd messageCommand;
         controls::Servo_cmd Pot_data;
         sensor_msgs::Imu IMU_data;  // 2024-04-03: should be changed to BNO_data
+        sensor_msgs::JointState JointState;
 
         ros::NodeHandle nh_;
         ros::Timer my_control_loop_;
