@@ -10,21 +10,12 @@
 #include <std_msgs/Int8MultiArray.h>
 #include <std_msgs/String.h>
 #include <controls/Servo_cmd.h>
-<<<<<<< HEAD
-#include <controls/BNO.h>
-#include <Adafruit_Sensor.h>
-#include <Adafruit_BNO055.h>
-
-#include <Servo.h> 
-#include "Wire.h"
-=======
 //#include <controls/BNO.h>
 //#include <Adafruit_Sensor.h>
 //#include <Adafruit_BNO055.h>
 
 #include <Servo.h> 
 //#include "Wire.h"
->>>>>>> 6aab6f32f276a02b6d6a9fa069145de750414a31
 
 
 // Potentiometers parameters
@@ -71,15 +62,6 @@ Servo ABD_AV_G, FEM_AV_G, TIB_AV_G, ABD_AV_D, FEM_AV_D, TIB_AV_D;
 Servo ABD_AR_G, FEM_AR_G, TIB_AR_G, ABD_AR_D, FEM_AR_D, TIB_AR_D;
 
 // BNO parameters
-<<<<<<< HEAD
-uint16_t BNO055_SAMPLERATE_DELAY_MS = 100;
-Adafruit_BNO055 bno = Adafruit_BNO055(55, 0x28);
-
-// ROS custom messages
-std_msgs::String msg;
-controls::BNO bno_array;
-controls::Servo_cmd pot_value_array;
-=======
 //uint16_t BNO055_SAMPLERATE_DELAY_MS = 100;
 //Adafruit_BNO055 bno = Adafruit_BNO055(55, 0x28);
 
@@ -87,7 +69,6 @@ controls::Servo_cmd pot_value_array;
 std_msgs::String msg;
 //controls::BNO bno_array;
 //controls::Servo_cmd pot_value_array;
->>>>>>> 6aab6f32f276a02b6d6a9fa069145de750414a31
 
 // Functions prototypes
 
@@ -95,16 +76,6 @@ std_msgs::String msg;
 void servo_init();
 void servo_cmd(const controls::Servo_cmd &cmd_msg);
 // Potentiometers
-<<<<<<< HEAD
-void pot_init(const int* pot_id_array);
-controls::Servo_cmd pot_update(const int pot_id_array[NUMBER_OF_POTS]);
-void pot_feedback(const int pot_id_array[NUMBER_OF_POTS]);
-float long2float_map(long x, long IN_min, long IN_max, long OUT_min, long OUT_max);
-// BNO
-void BNO_init();
-void bno_update();
-void bno_feedback(controls::BNO &feedback_array);
-=======
 //void pot_init(const int* pot_id_array);
 controls::Servo_cmd pot_update(const int pot_id_array[NUMBER_OF_POTS]);
 //void pot_feedback(const int pot_id_array[NUMBER_OF_POTS]);
@@ -113,6 +84,5 @@ controls::Servo_cmd pot_update(const int pot_id_array[NUMBER_OF_POTS]);
 //void BNO_init();
 //void bno_update();
 //void bno_feedback(controls::BNO &feedback_array);
->>>>>>> 6aab6f32f276a02b6d6a9fa069145de750414a31
 
 #endif

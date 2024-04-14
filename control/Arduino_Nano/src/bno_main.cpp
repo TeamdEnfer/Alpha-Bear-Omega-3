@@ -1,18 +1,9 @@
 #include <Arduino.h>
 #include "bno_config.h"
-<<<<<<< HEAD
 
 // ROS object declarations
 ros::NodeHandle nh;
 ros::Publisher bno_feedback_pub("Feedback", &bno_array);
-=======
-#include <string.h>
-#include <math.h>
-
-// ROS object declarations
-ros::NodeHandle nh;
-ros::Publisher bno_feedback_pub("bno_feedback_topic", &bno_array);
->>>>>>> 6aab6f32f276a02b6d6a9fa069145de750414a31
 
 // BNO variables
 float ACCEL_VEL_TRANSITION = (float)(BNO055_SAMPLERATE_DELAY_MS) / 1000.0;
@@ -31,12 +22,9 @@ void setup() {
 void loop() {
   nh.spinOnce();
   delay(10);
-<<<<<<< HEAD
   bno_update();
   bno_feedback(bno_array);
   delay(10);
-=======
->>>>>>> 6aab6f32f276a02b6d6a9fa069145de750414a31
 }
 
 void bno_init() {
@@ -60,7 +48,6 @@ void bno_update() {
 
   // BNO acceleration data
   accelX = linearAccelData.acceleration.x;
-<<<<<<< HEAD
   accelY = -linearAccelData.acceleration.y;
   accelZ = -linearAccelData.acceleration.z;
 
@@ -68,15 +55,6 @@ void bno_update() {
   quatX = quat.x();
   quatY = -quat.y();
   quatZ = -quat.z();
-=======
-  accelY = linearAccelData.acceleration.y;
-  accelZ = linearAccelData.acceleration.z;
-
-  // BNO quaternion data
-  quatX = quat.x();
-  quatY = quat.y();
-  quatZ = quat.z();
->>>>>>> 6aab6f32f276a02b6d6a9fa069145de750414a31
   quatW = quat.w();
 
   // BNO Calibration data

@@ -4,15 +4,9 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
-<<<<<<< HEAD
 #include "ros/duration.h"
-#include "sensor_msgs/RegionOfInterest.h"
 #include "ros/time.h"
-=======
 #include "sensor_msgs/RegionOfInterest.h"
-#include "ros/time.h"
-#include "ros/duration.h"
->>>>>>> 6aab6f32f276a02b6d6a9fa069145de750414a31
 
 namespace polled_camera
 {

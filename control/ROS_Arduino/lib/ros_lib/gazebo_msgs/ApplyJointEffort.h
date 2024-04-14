@@ -4,13 +4,8 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
-<<<<<<< HEAD
 #include "ros/duration.h"
 #include "ros/time.h"
-=======
-#include "ros/time.h"
-#include "ros/duration.h"
->>>>>>> 6aab6f32f276a02b6d6a9fa069145de750414a31
 
 namespace gazebo_msgs
 {
