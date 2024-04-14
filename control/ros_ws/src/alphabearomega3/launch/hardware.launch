@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="auto_close" default="false" doc="Startup mode"/>
+  <node pkg="alphabearomega3" type="HWIFace.py" name="sigma_words"/>
+
+
+</launch>

@@ -1,0 +1,24 @@
+[submodule "control/ros_ws/src/champ"]
+	path = control/ros_ws/src/champ
+	url = https://github.com/Revixa1/champ.git
+[submodule "control/ros_ws/src/champ_setup_assistant"]
+	path = control/ros_ws/src/champ_setup_assistant
+	url = https://github.com/Revixa1/champ_setup_assistant.git
+[submodule "control/ros_ws/src/yocs_velocity_smoother"]
+	path = control/ros_ws/src/yocs_velocity_smoother
+	url = https://github.com/chvmp/yocs_velocity_smoother.git
+[submodule "control/ros_ws/src/champ_teleop"]
+	path = control/ros_ws/src/champ_teleop
+	url = https://github.com/chvmp/champ_teleop.git
+[submodule "control/ros_ws/src/robot_state_plugin"]
+	path = control/ros_ws/src/robot_state_plugin
+	url = https://github.com/chvmp/robot_state_plugin.git
+[submodule "control/ros_ws/control/ros_ws/src/rplidar_ros"]
+	path = control/ros_ws/control/ros_ws/src/rplidar_ros
+	url = https://github.com/Slamtec/rplidar_ros.git
+[submodule "control/ros_ws/rplidar_ros"]
+	path = control/ros_ws/rplidar_ros
+	url = https://github.com/justinelandry2/rplidar_ros.git
+[submodule "control/ros_ws/src/rplidar_ros"]
+	path = control/ros_ws/src/rplidar_ros
+	url = https://github.com/justinelandry2/rplidar_ros.git

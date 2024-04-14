@@ -1,0 +1,290 @@
+#VRML_SIM R2023b utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/appearances/protos/DamascusSteel.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/appearances/protos/RustyMetal.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/appearances/protos/VarnishedPine.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/appearances/protos/Pcb.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/appearances/protos/BlanketFabric.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/appearances/protos/Grass.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  orientation 0.053303331973126915 -0.03601908275908986 -0.9979285447755046 3.372315192564597
+  position 1.4394483686260902 -0.2979303268051127 0.21113482936622882
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  floorSize 5 5
+}
+Robot {
+  translation 0 0 0.35
+  children [
+    DEF solid_body Solid {
+      children [
+        DEF body Shape {
+          appearance DamascusSteel {
+          }
+          geometry Box {
+            size 0.5 0.8 0.1
+          }
+        }
+      ]
+      name "solid(1)"
+      boundingObject Box {
+        size 0.04 0.05 0.01
+      }
+      physics Physics {
+      }
+    }
+    DEF FR HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor 0.25 0.3 0
+      }
+      device [
+        RotationalMotor {
+          name "FR_femur_servo"
+          maxVelocity 500
+          maxTorque 1000
+        }
+      ]
+      endPoint Solid {
+        translation 0.25 0.3 -0.075
+        rotation 1 0 0 0
+        children [
+          HingeJoint {
+            jointParameters HingeJointParameters {
+              anchor 0 0 -0.075
+            }
+            device [
+              RotationalMotor {
+                name "FR_tibia_servo"
+                maxTorque 1000
+              }
+            ]
+            endPoint Solid {
+              translation 0 -5.62483e-23 -0.16
+              rotation 1 0 0 0
+              children [
+                DEF foot Shape {
+                  appearance VarnishedPine {
+                  }
+                  geometry Box {
+                    size 0.025 0.025 0.17064
+                  }
+                }
+              ]
+              boundingObject USE foot
+              physics Physics {
+                centerOfMass [
+                  0 0 0
+                ]
+              }
+            }
+          }
+          DEF femur Shape {
+            appearance RustyMetal {
+            }
+            geometry Box {
+              size 0.05 0.05 0.15
+            }
+          }
+        ]
+        boundingObject USE femur
+        physics Physics {
+        }
+      }
+    }
+    DEF FL HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor -0.25 0.3 0
+      }
+      device [
+        RotationalMotor {
+          name "FL_femur_servo"
+          maxVelocity 50
+          maxTorque 1000
+        }
+      ]
+      endPoint Solid {
+        translation -0.25 0.3 -0.075
+        rotation 1 0 0 0
+        children [
+          HingeJoint {
+            jointParameters HingeJointParameters {
+              anchor 0 0 -0.075
+            }
+            device [
+              RotationalMotor {
+                name "FL_tibia_servo"
+                maxVelocity 50
+                maxTorque 1000
+              }
+            ]
+            endPoint Solid {
+              translation 0 1.66018e-19 -0.16
+              rotation 1 0 0 0
+              children [
+                DEF foot Shape {
+                  appearance VarnishedPine {
+                  }
+                  geometry Box {
+                    size 0.025 0.025 0.17064
+                  }
+                }
+              ]
+              boundingObject USE foot
+              physics Physics {
+                centerOfMass [
+                  0 0 0
+                ]
+              }
+            }
+          }
+          DEF femur Shape {
+            appearance Pcb {
+            }
+            geometry Box {
+              size 0.05 0.05 0.15
+            }
+          }
+        ]
+        name "solid(2)"
+        boundingObject USE femur
+        physics Physics {
+        }
+      }
+    }
+    DEF RR HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor 0.25 -0.3 0
+      }
+      device [
+        RotationalMotor {
+          name "RR_femur_servo"
+          maxVelocity 50
+          maxTorque 1000
+        }
+      ]
+      endPoint Solid {
+        translation 0.25 -0.3 -0.075
+        rotation 1 0 0 0
+        children [
+          HingeJoint {
+            jointParameters HingeJointParameters {
+              anchor 0 0 -0.075
+            }
+            device [
+              RotationalMotor {
+                name "RR_tibia_servo"
+                maxVelocity 50
+                maxTorque 1000
+              }
+            ]
+            endPoint Solid {
+              translation 0 -6.938893903907228e-18 -0.16000000000000003
+              rotation 1 0 0 0
+              children [
+                DEF foot Shape {
+                  appearance VarnishedPine {
+                  }
+                  geometry Box {
+                    size 0.025 0.025 0.17064
+                  }
+                }
+              ]
+              boundingObject USE foot
+              physics Physics {
+                centerOfMass [
+                  0 0 0
+                ]
+              }
+            }
+          }
+          DEF femur Shape {
+            appearance BlanketFabric {
+            }
+            geometry Box {
+              size 0.05 0.05 0.15
+            }
+          }
+        ]
+        name "solid(3)"
+        boundingObject USE femur
+        physics Physics {
+        }
+      }
+    }
+    DEF RL HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor -0.25 -0.3 0
+      }
+      device [
+        RotationalMotor {
+          name "RL_femur_servo"
+          maxVelocity 50
+          maxTorque 1000
+        }
+      ]
+      endPoint Solid {
+        translation -0.25 -0.3 -0.075
+        rotation 1 0 0 0
+        children [
+          HingeJoint {
+            jointParameters HingeJointParameters {
+              anchor 0 0 -0.075
+            }
+            device [
+              RotationalMotor {
+                name "RL_tibia_servo"
+                maxVelocity 50
+                maxTorque 1000
+              }
+            ]
+            endPoint Solid {
+              translation 0 2.83211e-16 -0.16
+              rotation 1 0 0 0
+              children [
+                DEF foot Shape {
+                  appearance VarnishedPine {
+                  }
+                  geometry Box {
+                    size 0.025 0.025 0.17064
+                  }
+                }
+              ]
+              boundingObject USE foot
+              physics Physics {
+                centerOfMass [
+                  0 0 0
+                ]
+              }
+            }
+          }
+          DEF femur Shape {
+            appearance Grass {
+            }
+            geometry Box {
+              size 0.05 0.05 0.15
+            }
+          }
+        ]
+        name "solid(4)"
+        boundingObject USE femur
+        physics Physics {
+        }
+      }
+    }
+  ]
+  name "alpha_bear"
+  boundingObject USE body
+  physics Physics {
+  }
+  controller "<extern>"
+}

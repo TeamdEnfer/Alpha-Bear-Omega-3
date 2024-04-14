@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<launch>
+
+ 
+  <arg name="auto_close" default="false" doc="Startup mode"/>
+  <node pkg="rosserial_python" type="serial_node.py" name="serial_node">
+      <param name="port" value="/dev/ttyACM0"/>
+      <param name="baud" value="115200"/>
+   </node>
+
+  <include file="$(find alphabear_config)/launch/bringup.launch"/>
+
+</launch>

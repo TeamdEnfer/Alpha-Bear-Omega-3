@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:macro name="servo_joint" params="id *origin parent child *axis lower_limit upper_limit">
+        <joint name="${id}_joint" type="revolute">
+            <origin xyz="${origin}" rpy="0 0 0"/>
+            <parent link="${parent}"/>
+            <child link="${child}"/>
+            <axis xyz="${axis}"/>
+            <limit lower="${lower_limit}" upper="${upper_limit}" effort="1000" velocity="50"/>
+        </joint>
+    </xacro:macro>
+
+    <xacro:macro name="generic_link" params="id *origin *size *material">
+        <link name="${id}_link">
+            <visual>
+                <origin xyz="${origin}" rpy="0 0 0"/>
+                <geometry>
+                    <box size="${size}"/>
+                </geometry>
+                <material name="${material}"/>
+            </visual>
+            <collision>
+                <origin xyz="${origin}" rpy="0 0 0"/>
+                <geometry>
+                    <box size="${size}"/>
+                </geometry>
+            </collision>
+        </link>
+    </xacro:macro>
+
+</robot>

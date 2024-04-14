@@ -1,0 +1,26 @@
+<launch>
+    
+    <arg name="auto_close" default="false" doc="Startup mode"/>
+
+    
+    
+
+
+    
+
+    <!--Load the hardware interface-->
+    <node name="Hardware_Interface" pkg="controls" type="hardware_interface" output="screen"/>
+
+    <!--Load the calibration Node-->
+    <node name="Calibration" pkg="controls" type="calibration.py" output="screen"/>
+
+
+    <!--Initialisation de la communication serial avec le arduino-->
+    <node pkg="rosserial_python" type="serial_node.py" name="ArduiNode">
+        <param name="port" value="/dev/ttyACM0"/>
+        <param name="baud" value="115200"/>
+    </node>
+    
+    <node pkg="rostopic" type="rostopic" name="rostopic_echo_node" output="screen" args="echo /Command" />
+
+</launch>

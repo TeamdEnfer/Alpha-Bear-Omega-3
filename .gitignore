@@ -1,0 +1,6 @@
+control/ros_ws/build/*
+control/ros_ws/devel/*
+control/ros_ws/install/*
+.vscode
+control/ros_ws/src/controls/src/GUI/*
+*/__pychache__

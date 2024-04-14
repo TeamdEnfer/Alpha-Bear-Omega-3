@@ -1,0 +1,26 @@
+En regardant Quadrus, l'interaction cmd<-->feedback ressemble a ceci:
+
+Sur le arduino:
+
+    Setup:
+        initialisation (voir rosInit dans qd_hw_control.cpp)
+            -Dans l'init, on le subscriber cmd_sub surveille le topic hw_cmd (voir definition de cmd_topic)
+            -Dans l'init, on advertise le publisher feedback_pub, qui publish sur le topic hw_feedback (voir definition de feedback_topic)
+
+    Subscriber:
+        -Le subscriber prend des message multiarray
+        -Surveille le topic cmd_topic
+        -Utilise la fonction subscriberCallback
+            -Cette fonction recois les angle (via hw_cmd) et envoie la commande aux moteurs
+    
+    Publisher:
+        -Le publisher (feedback_pub) envoie des message multiarray et est lier au topic hw_feedback
+
+    Loop:
+        -Utilise la fonction readAngles, laquelle va chercher les angles et les store dans le message multiarray feedback_msg
+        -Publish feedback_msg avec le publisher feedback_pub.
+        -spinonce()
+        -delay selon la frequence voulue
+    
+        
+        

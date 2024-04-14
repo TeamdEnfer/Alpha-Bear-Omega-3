@@ -1,0 +1,529 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="robot">
+
+    <xacro:include filename="materials.xacro" />
+    <xacro:include filename="constants.xacro" />
+    <xacro:include filename="include.xacro" />
+
+    <link name="world"></link>
+
+    <joint name="body_joint" type="fixed">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <parent link="world"/>
+        <child link="body_link"/>
+    </joint>
+
+    <link name="body_link">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box>
+                    <size>${body_size}</size>
+                </box>
+            </geometry>
+            <material name="white"/>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box>
+                    <size>${body_size}</size>
+                </box>
+            </geometry>
+        </collision>
+    </link>
+
+    <!-- Joints and links for Front Left leg -->
+    <xacro:servo_joint id="FLS" origin="-0.25 0.3 0" parent="body_link" child="FLS_link" axis="shoulder_axis" lower_limit=${-pi/4} upper_limit=${pi/4}/>
+    <xacro:generic_link id="FLS" origin="-0.25 0.3 0" size="shoulder_sketch_size" material="white"/>
+
+    <xacro:servo_joint id="FLF" origin="-0.05 0 0" parent="FLS_link" child="FLT_link" axis="leg_axis" lower_limit="0" upper_limit=${pi/2}/>
+    <xacro:generic_link id="FLF" origin="-0.05 0 0" size="femur_sketch_size" material="white"/>
+
+    <xacro:servo_joint id="FLT" origin="0 0 -0.15" parent="FLF_link" child="FLB_link" axis="leg_axis" lower_limit="0" upper_limit=${pi/2}/>
+    <xacro:generic_link id="FLT" origin="0 0 -0.15" size="tibia_sketch_size" material="white"/>
+
+    <joint name="FLB_joint" type="fixed">
+        <origin xyz="0 0 -0.085" rpy="0 0 0"/>
+        <parent link="FLT_link"/>
+        <child link="FLB_link"/>
+    </joint>
+
+    <link name="FLB_link">
+        <visual>
+            <origin xyz="0 0 -0.085" rpy="0 0 0"/>
+            <geometry>
+                <sphere radius="0.02"/>
+            </geometry>
+            <material name="red"/>
+        </visual>
+        <collision>
+            <origin xyz="0 0 -0.085" rpy="0 0 0"/>
+            <geometry>
+                <sphere radius="0.02"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <!-- Joints and links for Front Right leg -->
+    <xacro:servo_joint id="FRS" origin="0.25 0.3 0" parent="body_link" child="FRS_link" axis="shoulder_axis" lower_limit=${-pi/4} upper_limit=${pi/4}/>
+    <xacro:generic_link id="FRS" origin="0.25 0.3 0" size="shoulder_sketch_size" material="white"/>
+
+    <xacro:servo_joint id="FRF" origin="0.05 0 0" parent="FRS_link" child="FRT_link" axis="leg_axis" lower_limit="0" upper_limit=${pi/2}/>
+    <xacro:generic_link id="FRF" origin="0.05 0 0" size="femur_sketch_size" material="white"/>
+
+    <xacro:servo_joint id="FRT" origin="0 0 -0.15" parent="FRF_link" child="FRB_link" axis="leg_axis" lower_limit="0" upper_limit=${pi/2}/>
+    <xacro:generic_link id="FRT" origin="0 0 -0.15" size="tibia_sketch_size" material="white"/>
+
+    <joint name="FRB_joint" type="fixed">
+        <origin xyz="0 0 -0.085" rpy="0 0 0"/>
+        <parent link="FRT_link"/>
+        <child link="FRB_link"/>
+    </joint>
+
+    <link name="FRB_link">
+        <visual>
+            <origin xyz="0 0 -0.085" rpy="0 0 0"/>
+            <geometry>
+                <sphere radius="0.02"/>
+            </geometry>
+            <material name="red"/>
+        </visual>
+        <collision>
+            <origin xyz="0 0 -0.085" rpy="0 0 0"/>
+            <geometry>
+                <sphere radius="0.02"/>
+            </geometry>
+        </collision>
+    </link>
+
+
+    <!-- Joints and links for Rear Left leg -->
+    <xacro:servo_joint id="RLS" origin="-0.25 -0.3 0" parent="body_link" child="RLS_link" axis="shoulder_axis" lower_limit=${-pi/4} upper_limit=${pi/4}/>
+    <xacro:generic_link id="RLS" origin="-0.25 -0.3 0" size="shoulder_sketch_size" material="white"/>
+
+    <xacro:servo_joint id="RLF" origin="-0.05 0 0" parent="RLS_link" child="RLT_link" axis="leg_axis" lower_limit="0" upper_limit=${pi/2}/>
+    <xacro:generic_link id="RLF" origin="-0.05 0 0" size="femur_sketch_size" material="white"/>
+
+    <xacro:servo_joint id="RLT" origin="0 0 -0.15" parent="RLF_link" child="RLB_link" axis="leg_axis" lower_limit="0" upper_limit=${pi/2}/>
+    <xacro:generic_link id="RLT" origin="0 0 -0.15" size="tibia_sketch_size" material="white"/>
+
+    <joint name="RLB_joint" type="fixed">
+        <origin xyz="0 0 -0.085" rpy="0 0 0"/>
+        <parent link="FRT_link"/>
+        <child link="FRB_link"/>
+    </joint>
+
+    <link name="RLB_link">
+        <visual>
+            <origin xyz="0 0 -0.085" rpy="0 0 0"/>
+            <geometry>
+                <sphere radius="0.02"/>
+            </geometry>
+            <material name="red"/>
+        </visual>
+        <collision>
+            <origin xyz="0 0 -0.085" rpy="0 0 0"/>
+            <geometry>
+                <sphere radius="0.02"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <!-- Joints and links for Rear Right leg -->
+    <xacro:servo_joint id="RRS" origin="0.25 -0.3 0" parent="body_link" child="RRS_link" axis="shoulder_axis" lower_limit=${-pi/4} upper_limit=${pi/4}/>
+    <xacro:generic_link id="RRS" origin="0.25 -0.3 0" size="shoulder_sketch_size" material="white"/>
+
+    <xacro:servo_joint id="RRF" origin="0.05 0 0" parent="RRS_link" child="RRT_link" axis="leg_axis" lower_limit="0" upper_limit=${pi/2}/>
+    <xacro:generic_link id="RRF" origin="0.05 0 0" size="femur_sketch_size" material="white"/>
+
+    <xacro:servo_joint id="RRT" origin="0 0 -0.15" parent="RRF_link" child="RRB_link" axis="leg_axis" lower_limit="0" upper_limit=${pi/2}/>
+    <xacro:generic_link id="RRT" origin="0 0 -0.15" size="tibia_sketch_size" material="white"/>
+
+    <joint name="RRB_joint" type="fixed">
+        <origin xyz="0 0 -0.085" rpy="0 0 0"/>
+        <parent link="RRT_link"/>
+        <child link="RRB_link"/>
+    </joint>
+
+    <link name="RRB_link">
+        <visual>
+            <origin xyz="0 0 -0.085" rpy="0 0 0"/>
+            <geometry>
+                <sphere radius="0.02"/>
+            </geometry>
+            <material name="red"/>
+        </visual>
+        <collision>
+            <origin xyz="0 0 -0.085" rpy="0 0 0"/>
+            <geometry>
+                <sphere radius="0.02"/>
+            </geometry>
+        </collision>
+    </link>
+
+</robot>
+
+
+
+<!--
+  <joint name="base_link_Body_joint" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="Body"/>
+  </joint>
+
+  <joint name="RL_shoulder_servo" type="revolute">
+    <parent link="base_link"/>
+    <child link="RL_shoulder"/>
+    <origin xyz="-0.25 -0.3 0" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="${-pi/3}" upper="${pi/3}" effort="1000" velocity="50"/>
+  </joint>
+
+  <link name="RL_shoulder">
+    <visual>
+      <geometry>
+        <box size="0.05 0.05 0.05"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.05 0.05 0.05"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="RL_femur_servo" type="revolute">
+    <parent link="RL_shoulder"/>
+    <child link="RL_femur"/>
+    <origin xyz="-0.05 0 0" rpy="0 0 0"/>
+    <axis xyz="1 0 0"/>
+    <limit lower="0" upper="${pi/2}" effort="1000" velocity="50"/>
+  </joint>
+  
+  <link name="RL_femur">
+    <visual>
+      <origin xyz="0 0 -0.075" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.05 0.05 0.15"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 -0.075" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.05 0.05 0.15"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="RL_tibia_servo" type="revolute">
+    <parent link="RL_femur"/>
+    <child link="RL_tibia"/>
+    <origin xyz="0 0 -0.15" rpy="0 0 0"/>
+    <axis xyz="1 0 0"/>
+    <limit lower="0" upper="${pi/2}" effort="1000" velocity="50"/>
+  </joint>
+
+  <link name="RL_tibia">
+    <visual>
+      <origin xyz="0 0 -0.085" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.025 0.025 0.17064"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 -0.085" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.025 0.025 0.17064"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="RL_tibia_RL_foot_ball_joint" type="fixed">
+    <parent link="RL_tibia"/>
+    <child link="RL_foot_ball"/>
+    <origin xyz="0 0 -0.085" rpy="0 0 0"/>
+  </joint>
+
+  <link name="RL_foot_ball">
+    <visual>
+      <origin xyz="0 0 -0.085" rpy="0 0 0"/>
+      <geometry>
+        <sphere radius="0.02"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 -0.085" rpy="0 0 0"/>
+      <geometry>
+        <sphere radius="0.02"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="RR_shoulder_servo" type="revolute">
+    <parent link="base_link"/>
+    <child link="RR_shoulder"/>
+    <origin xyz="0.25 -0.3 0" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="${-pi/3}" upper="${pi/3}" effort="1000" velocity="50"/>
+  </joint>
+
+  <link name="RR_shoulder">
+    <visual>
+      <geometry>
+        <box size="0.05 0.05 0.05"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.05 0.05 0.05"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="RR_femur_servo" type="revolute">
+    <parent link="RR_shoulder"/>
+    <child link="RR_femur"/>
+    <origin xyz="0.05 0 0" rpy="0 0 0"/>
+    <axis xyz="1 0 0"/>
+    <limit lower="0" upper="${pi/2}" effort="1000" velocity="50"/>
+  </joint>
+
+  <link name="RR_femur">
+    <visual>
+      <origin xyz="0 0 -0.075" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.05 0.05 0.15"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 -0.075" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.05 0.05 0.15"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="RR_tibia_servo" type="revolute">
+    <parent link="RR_femur"/>
+    <child link="RR_tibia"/>
+    <origin xyz="0 0 -0.15" rpy="0 0 0"/>
+    <axis xyz="1 0 0"/>
+    <limit lower="0" upper="${pi/2}" effort="1000" velocity="50"/>
+  </joint>
+
+  <link name="RR_tibia">
+    <visual>
+      <origin xyz="0 0 -0.085" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.025 0.025 0.17064"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 -0.085" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.025 0.025 0.17064"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="RR_tibia_RR_foot_ball_joint" type="fixed">
+    <parent link="RR_tibia"/>
+    <child link="RR_foot_ball"/>
+    <origin xyz="0 0 -0.085" rpy="0 0 0"/>
+  </joint>
+
+  <link name="RR_foot_ball">
+    <visual>
+      <origin xyz="0 0 -0.085" rpy="0 0 0"/>
+      <geometry>
+        <sphere radius="0.02"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 -0.085" rpy="0 0 0"/>
+      <geometry>
+        <sphere radius="0.02"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="FL_shoulder_servo" type="revolute">
+    <parent link="base_link"/>
+    <child link="FL_shoulder"/>
+    <origin xyz="-0.25 0.3 0" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="${-pi/3}" upper="${pi/3}" effort="1000" velocity="50"/>
+  </joint>
+
+  <link name="FL_shoulder">
+    <visual>
+      <geometry>
+        <box size="0.05 0.05 0.05"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.05 0.05 0.05"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="FL_femur_servo" type="revolute">
+    <parent link="FL_shoulder"/>
+    <child link="FL_femur"/>
+    <origin xyz="-0.05 0 0" rpy="0 0 0"/>
+    <axis xyz="1 0 0"/>
+    <limit lower="0" upper="${pi/2}" effort="1000" velocity="50"/>
+  </joint>
+
+  <link name="FL_femur">
+    <visual>
+      <origin xyz="0 0 -0.075" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.05 0.05 0.15"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 -0.075" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.05 0.05 0.15"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="FL_tibia_servo" type="revolute">
+    <parent link="FL_femur"/>
+    <child link="FL_tibia"/>
+    <origin xyz="0 0 -0.15" rpy="0 0 0"/>
+    <axis xyz="1 0 0"/>
+    <limit lower="0" upper="${pi/2}" effort="1000" velocity="50"/>
+  </joint>
+
+  <link name="FL_tibia">
+    <visual>
+      <origin xyz="0 0 -0.085" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.025 0.025 0.17064"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 -0.085" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.025 0.025 0.17064"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="FL_tibia_FL_foot_ball_joint" type="fixed">
+    <parent link="FL_tibia"/>
+    <child link="FL_foot_ball"/>
+    <origin xyz="0 0 -0.085" rpy="0 0 0"/>
+  </joint>
+
+  <link name="FL_foot_ball">
+    <visual>
+      <origin xyz="0 0 -0.085" rpy="0 0 0"/>
+      <geometry>
+        <sphere radius="0.02"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 -0.085" rpy="0 0 0"/>
+      <geometry>
+        <sphere radius="0.02"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="FR_shoulder_servo" type="revolute">
+    <parent link="base_link"/>
+    <child link="FR_shoulder"/>
+    <origin xyz="0.25 0.3 0" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="${-pi/3}" upper="${pi/3}" effort="1000" velocity="50"/>
+  </joint>
+
+  <link name="FR_shoulder">
+    <visual>
+      <geometry>
+        <box size="0.05 0.05 0.05"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.05 0.05 0.05"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="FR_femur_servo" type="revolute">
+    <parent link="FR_shoulder"/>
+    <child link="FR_femur"/>
+    <origin xyz="0.05 0 0" rpy="0 0 0"/>
+    <axis xyz="1 0 0"/>
+    <limit lower="0" upper="${pi/2}" effort="1000" velocity="50"/>
+  </joint>
+
+  <link name="FR_femur">
+    <visual>
+      <origin xyz="0 0 -0.075" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.05 0.05 0.15"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 -0.075" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.05 0.05 0.15"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="FR_tibia_servo" type="revolute">
+    <parent link="FR_femur"/>
+    <child link="FR_tibia"/>
+    <origin xyz="0 0 -0.15" rpy="0 0 0"/>
+    <axis xyz="1 0 0"/>
+    <limit lower="0" upper="${pi/2}" effort="1000" velocity="50"/>
+  </joint>
+
+  <link name="FR_tibia">
+    <visual>
+      <origin xyz="0 0 -0.085" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.025 0.025 0.17064"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 -0.085" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.025 0.025 0.17064"/>
+      </geometry>
+    </collision>
+  </link>
+  
+  <joint name="FR_tibia_FR_foot_ball_joint" type="fixed">
+    <parent link="FR_tibia"/>
+    <child link="FR_foot_ball"/>
+    <origin xyz="0 0 -0.085" rpy="0 0 0"/>
+  </joint>
+
+  <link name="FR_foot_ball">
+    <visual>
+      <origin xyz="0 0 -0.085" rpy="0 0 0"/>
+      <geometry>
+        <sphere radius="0.02"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 -0.085" rpy="0 0 0"/>
+      <geometry>
+        <sphere radius="0.02"/>
+      </geometry>
+    </collision>
+  </link>
+
+</robot>
+-->
