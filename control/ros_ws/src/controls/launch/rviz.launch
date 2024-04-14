@@ -1,9 +1,22 @@
 
 <launch>
+<arg name="input_id"  default="/dev/input/js0"/>
+<arg name="joystick" default="false"/>
+
 <!--rviz -d control/ros_ws/src/champ/champ_description/rviz/urdf_viewer.rviz -f odom-->
+<!---->
  <node name="rviz" pkg="rviz" type="rviz"
-            args="-d $(find champ_description)/rviz/urdf_viewer.rviz -f odom"
+            args="-d $(find champ_navigation)/rviz/navigate.rviz"
             output="screen"/>
 
+
+<node if="$(arg joystick)" name="joy_node" pkg="joy" type="joy_node" required="true" >
+    <param name="autorepeat_rate" value="5" />
+    <param name="dev" value="$(arg input_id)" />
+</node>
+
+<include file="$(find champ_teleop)/launch/teleop.launch">
+     
+</include>
 
 </launch>
