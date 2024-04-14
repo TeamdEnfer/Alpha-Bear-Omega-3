@@ -1,10 +1,10 @@
-# Alpha-Bear-Omega-3 ($\alpha$-:bear:-$\Omega$-$\pi$)
+# Alpha-Bear-Omega-3 ($\alpha-$:bear: $-\Omega-\pi$)
 
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.png?v=103)](https://opensource.com/resources/what-open-source) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-$\alpha$-:bear:-$\Omega$-$\pi$ | The **better-ish**(?) quadruped robot | UdeS-GRO-68
+$\alpha-$:bear: $-\Omega-\pi$ | The **better-ish**(?) quadruped robot | UdeS-GRO-68
 
-Inspired by project [QuadrUS](https://github.com/olivierfournier2/S4H2021-QuadrUS), Boston Dynamics' [Spot](https://bostondynamics.com/products/spot/) and MIT's [mini cheetah](https://news.mit.edu/2019/mit-mini-cheetah-first-four-legged-robot-to-backflip-0304),  $\alpha$-:bear:-$\Omega$-$\pi$ is a quadruped robot bear made by six robotics engineering students from [Université de Sherbrooke](https://www.usherbrooke.ca/).
+Inspired by project [QuadrUS](https://github.com/olivierfournier2/S4H2021-QuadrUS), Boston Dynamics' [Spot](https://bostondynamics.com/products/spot/) and MIT's [mini cheetah](https://news.mit.edu/2019/mit-mini-cheetah-first-four-legged-robot-to-backflip-0304),  $\alpha-$:bear: $-\Omega-\pi$ is a quadruped robot bear made by six robotics engineering students from [Université de Sherbrooke](https://www.usherbrooke.ca/).
 
 ## Original Contributors
 
