@@ -17,7 +17,11 @@ Bear::Bear(ros::NodeHandle& nh) : nh_(nh) {
     controller_manager_.reset(new controller_manager::ControllerManager(this, nh_));
     
 //Set the frequency of the control loop.
+<<<<<<< HEAD
     loop_hz_= 100;
+=======
+    loop_hz_= 150;
+>>>>>>> 6aab6f32f276a02b6d6a9fa069145de750414a31
     // Sets the loop's period (ms)
     ros::Duration update_freq = ros::Duration(1.0/loop_hz_);
     
@@ -196,6 +200,7 @@ void Bear::IMU_callback(const controls::BNO& BNO_callback) {
     IMU_data.orientation.w = BNO_callback.data[6]*DEG2RAD;
 
     for(int i = 0 ; i < 9 ; i++) {  // 8 potentiometers are used, so hard-coded 9
+<<<<<<< HEAD
         IMU_data.linear_acceleration_covariance[i] = 0.0;
         IMU_data.orientation_covariance[i] = 0.0;
     }
@@ -208,6 +213,12 @@ void Bear::IMU_callback(const controls::BNO& BNO_callback) {
 	IMU_data.orientation_covariance[4] = 0.025;
 	IMU_data.orientation_covariance[8] = 0.025
 	;
+=======
+        IMU_data.linear_acceleration_covariance[i] = 0;
+        IMU_data.orientation_covariance[i] = 0;
+    }
+
+>>>>>>> 6aab6f32f276a02b6d6a9fa069145de750414a31
     // Linear velocity
     IMU_data.angular_velocity_covariance[0] = -1;
 
@@ -274,12 +285,20 @@ void Bear::write(trajectory_msgs::JointTrajectory champ_cmd) {
 	//Rear Left
         messageCommand.data[6]=(abs((champ_cmd.points[0].positions[6]+OFFSET_69)*RAD2DEG))-10.88;//Shoulder
         messageCommand.data[7]=(0.3408*pow(champ_cmd.points[0].positions[7],2)+0.6434*(champ_cmd.points[0].positions[7])+0.0095)*RAD2DEG + 5.3;//Femur
+<<<<<<< HEAD
         messageCommand.data[8]=((champ_cmd.points[0].positions[8]-champ_cmd.points[0].positions[7]*ratio_pulleys_tibia+champ_cmd.points[0].positions[7]+1.658063)/ratio_pulleys_tibia)*RAD2DEG+4.0;//Tibia
+=======
+        messageCommand.data[8]=((champ_cmd.points[0].positions[8]-champ_cmd.points[0].positions[7]*ratio_pulleys_tibia+champ_cmd.points[0].positions[7]+1.658063)/ratio_pulleys_tibia)*RAD2DEG;//Tibia
+>>>>>>> 6aab6f32f276a02b6d6a9fa069145de750414a31
 
 	//Rear Right
         messageCommand.data[9]=(abs((champ_cmd.points[0].positions[9]+OFFSET_69)*RAD2DEG))+5.1;//Shoulder 1.1
         messageCommand.data[10]=(-0.3593*pow(champ_cmd.points[0].positions[10],2)-0.6064*champ_cmd.points[0].positions[10]+2.375)*RAD2DEG;//Femur
+<<<<<<< HEAD
         messageCommand.data[11]=-(((champ_cmd.points[0].positions[11])-champ_cmd.points[0].positions[10]*ratio_pulleys_tibia+champ_cmd.points[0].positions[10])/ratio_pulleys_tibia*RAD2DEG)-4.0;//-12.84;//Tibia
+=======
+        messageCommand.data[11]=-(((champ_cmd.points[0].positions[11])-champ_cmd.points[0].positions[10]*ratio_pulleys_tibia+champ_cmd.points[0].positions[10])/ratio_pulleys_tibia*RAD2DEG);//-12.84;//Tibia
+>>>>>>> 6aab6f32f276a02b6d6a9fa069145de750414a31
             }
 
         

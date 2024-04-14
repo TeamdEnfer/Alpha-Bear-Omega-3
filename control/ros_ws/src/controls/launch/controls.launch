@@ -1,0 +1,47 @@
+<launch>
+    <arg name="input_id"  default="/dev/input/js0"/>
+    <arg name="auto_close" default="false" doc="Startup mode"/>
+    <arg name="show_GUI" default="false" doc="Show GUI app"/>
+    <arg name="joystick" default="false"/>
+
+
+    <!--Load le hardware interface-->
+    <!--<node name="Hardware_Interface" pkg="controls" type="hardware_interface" output="screen"/>-->
+
+
+    <!--Load CHAMP-->
+    <include file="$(find alphabear_config)/launch/bringup.launch">
+        <arg name="laser" value="sim"/>
+        <arg name="rviz" value="true"/>
+    </include>
+
+    <include file="$(find champ_navigation)/launch/slam.launch"/>
+
+<!--
+    <node if="$(arg joystick)" name="joy_node" pkg="joy" type="joy_node" required="true" >
+        <param name="autorepeat_rate" value="5" />
+        <param name="dev" value="$(arg input_id)" />
+    </node>
+
+
+     Load CHAMP teleoperation node and joy_node 
+    <include file="$(find champ_teleop)/launch/teleop.launch">
+     
+    </include>
+-->
+
+    <!-- Load GUI 
+    <node name="GUI" pkg="controls" type="servo_zeroing.py" output="screen" >
+        <param name="show_GUI" value="$(arg show_GUI)" />
+    </node>-->
+    
+  <!--Initialisation de la communication serial avec le arduino-->
+  <!--<node pkg="rosserial_python" type="serial_node.py" name="ArduiNode">
+      <param name="port" value="/dev/ttyACM0"/>
+      <param name="baud" value="115200"/>
+  </node>-->
+
+
+    
+
+</launch>

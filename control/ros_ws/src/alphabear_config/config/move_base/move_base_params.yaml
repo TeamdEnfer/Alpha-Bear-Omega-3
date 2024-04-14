@@ -12,4 +12,8 @@ planner_patience: 5.0
 oscillation_timeout: 10.0
 oscillation_distance: 0.2
 
+<<<<<<< HEAD
 conservative_reset_dist: 0.05
+=======
+conservative_reset_dist: 0.1
+>>>>>>> 6aab6f32f276a02b6d6a9fa069145de750414a31

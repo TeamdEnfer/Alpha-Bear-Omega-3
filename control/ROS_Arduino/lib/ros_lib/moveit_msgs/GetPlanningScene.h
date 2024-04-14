@@ -4,8 +4,13 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+<<<<<<< HEAD
 #include "moveit_msgs/PlanningScene.h"
 #include "moveit_msgs/PlanningSceneComponents.h"
+=======
+#include "moveit_msgs/PlanningSceneComponents.h"
+#include "moveit_msgs/PlanningScene.h"
+>>>>>>> 6aab6f32f276a02b6d6a9fa069145de750414a31
 
 namespace moveit_msgs
 {

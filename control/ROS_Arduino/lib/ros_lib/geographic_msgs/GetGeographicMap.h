@@ -4,8 +4,13 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+<<<<<<< HEAD
 #include "geographic_msgs/GeographicMap.h"
 #include "geographic_msgs/BoundingBox.h"
+=======
+#include "geographic_msgs/BoundingBox.h"
+#include "geographic_msgs/GeographicMap.h"
+>>>>>>> 6aab6f32f276a02b6d6a9fa069145de750414a31
 
 namespace geographic_msgs
 {

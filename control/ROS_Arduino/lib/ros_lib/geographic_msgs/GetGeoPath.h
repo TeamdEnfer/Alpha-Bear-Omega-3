@@ -5,8 +5,13 @@
 #include <stdlib.h>
 #include "ros/msg.h"
 #include "geographic_msgs/GeoPath.h"
+<<<<<<< HEAD
 #include "uuid_msgs/UniqueID.h"
 #include "geographic_msgs/GeoPoint.h"
+=======
+#include "geographic_msgs/GeoPoint.h"
+#include "uuid_msgs/UniqueID.h"
+>>>>>>> 6aab6f32f276a02b6d6a9fa069145de750414a31
 
 namespace geographic_msgs
 {
