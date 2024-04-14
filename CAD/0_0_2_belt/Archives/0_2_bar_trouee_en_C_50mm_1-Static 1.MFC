@@ -1,0 +1,16 @@
+[StartTime]
+0_2_bar_trouee_en_C_50mm_1-Static 1.MFC=1s
+[SolverState]
+0_2_bar_trouee_en_C_50mm_1-Static 1.MFC=2
+[MainFrame]
+0_2_bar_trouee_en_C_50mm_1-Static 1.MFC=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPJLCAAAAALLBAAAAABCEAAAAAOICAAAAA
+[ShowMin]
+0_2_bar_trouee_en_C_50mm_1-Static 1.MFC=No
+[SolverType]
+0_2_bar_trouee_en_C_50mm_1-Static 1.MFC=Linear Analysis
+[StudyType]
+0_2_bar_trouee_en_C_50mm_1-Static 1.MFC=0
+[StudyName]
+0_2_bar_trouee_en_C_50mm_1-Static 1.MFC=Static 1
+[Solver]
+0_2_bar_trouee_en_C_50mm_1-Static 1.MFC=Sparse
